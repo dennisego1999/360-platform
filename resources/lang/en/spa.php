@@ -1,7 +1,21 @@
 <?php
 
 return [
+    'toasts' => [
+        'description' => [
+            'import_completed' => 'The import was successful',
+            'scan_completed' => 'The scan was successful',
+            'translation_updated' => 'The translation is updated',
+            'translation_deleted' => 'The translation is deleted',
+            'error' => 'Something went wrong',
+        ],
+    ],
     'buttons' => [
+        'go_back' => 'Back',
+        'edit' => 'Edit',
+        'cancel' => 'Cancel',
+        'save' => 'Save',
+        'close' => 'Close',
         'scan' => 'Scan',
         'import' => 'Import',
         'export' => 'Export',
