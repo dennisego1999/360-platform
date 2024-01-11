@@ -16,10 +16,16 @@ defineProps({
 // Set variables
 const showingNavigationDropdown = ref(false);
 const menuItems = ref([
-	{ label: 'Dashboard', active: usePage().props.current_route_name === 'dashboard', href: route('dashboard') },
 	{
+		check: usePage().props.policies.can.accessDashboard,
+		label: 'Dashboard',
+		route_name: 'dashboard',
+		href: route('dashboard')
+	},
+	{
+		check: usePage().props.policies.can.manageTranslations,
 		label: 'Translations',
-		active: usePage().props.current_route_name === 'translations.index',
+		route_name: 'translations.index',
 		href: route('translations.index')
 	}
 ]);
@@ -63,14 +69,15 @@ function logout() {
 
 							<!-- Navigation Links -->
 							<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-								<NavLink
-									v-for="(item, index) in menuItems"
-									:key="'menu-item-' + index"
-									:href="item.href"
-									:active="item.active"
-								>
-									{{ item.label }}
-								</NavLink>
+								<template v-for="(item, index) in menuItems" :key="'menu-item-' + index">
+									<NavLink
+										v-if="item.check"
+										:href="item.href"
+										:active="route().current(item.route_name)"
+									>
+										{{ item.label }}
+									</NavLink>
+								</template>
 							</div>
 						</div>
 
@@ -268,9 +275,15 @@ function logout() {
 					class="sm:hidden"
 				>
 					<div class="pt-2 pb-3 space-y-1">
-						<ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
-							Dashboard
-						</ResponsiveNavLink>
+						<template v-for="(item, index) in menuItems" :key="'responsive-menu-item-' + index">
+							<ResponsiveNavLink
+								v-if="item.check"
+								:href="item.href"
+								:active="route().current(item.route_name)"
+							>
+								{{ item.label }}
+							</ResponsiveNavLink>
+						</template>
 					</div>
 
 					<!-- Responsive Settings Options -->
