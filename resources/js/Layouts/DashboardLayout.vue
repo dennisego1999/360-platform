@@ -135,7 +135,8 @@ function logout() {
 															<div class="flex items-center">
 																<svg
 																	v-if="
-																		team.id == $page.props.auth.user.current_team_id
+																		team.id ===
+																		$page.props.auth.user.current_team_id
 																	"
 																	class="me-2 h-5 w-5 text-green-400"
 																	xmlns="http://www.w3.org/2000/svg"
@@ -348,7 +349,7 @@ function logout() {
 											<ResponsiveNavLink as="button">
 												<div class="flex items-center">
 													<svg
-														v-if="team.id == $page.props.auth.user.current_team_id"
+														v-if="team.id === $page.props.auth.user.current_team_id"
 														class="me-2 h-5 w-5 text-green-400"
 														xmlns="http://www.w3.org/2000/svg"
 														fill="none"
@@ -382,7 +383,7 @@ function logout() {
 			</header>
 
 			<!-- Page Content -->
-			<main class="max-w-[1400px] mx-auto py-12 sm:px-6 lg:px-8">
+			<main class="max-w-7xl mx-auto py-12 sm:px-6 lg:px-8">
 				<transition name="fade" mode="out-in" appear>
 					<slot />
 				</transition>

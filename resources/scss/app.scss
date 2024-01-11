@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+// Add global styles
+html {
+    scroll-behavior: smooth;
+}
+
 [x-cloak] {
     display: none;
 }
