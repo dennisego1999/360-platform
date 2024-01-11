@@ -9,5 +9,7 @@ defineOptions({
 </script>
 
 <template>
-	<p>Home</p>
+	<div class="flex-1 p-4">
+		<p>Home</p>
+	</div>
 </template>
