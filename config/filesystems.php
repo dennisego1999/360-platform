@@ -44,6 +44,12 @@ return [
             'throw' => false,
         ],
 
+        'assets' => [
+            'driver' => 'scoped',
+            'disk' => 'public',
+            'prefix' => 'assets',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
