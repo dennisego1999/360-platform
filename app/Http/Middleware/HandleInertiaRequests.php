@@ -129,6 +129,7 @@ class HandleInertiaRequests extends Middleware
             'can' => [
                 'manageUsers' => auth()->check() ? auth()->user()->can('manage-users', User::class) : false,
                 'manageCountries' => auth()->check() ? auth()->user()->can('manage-countries', User::class) : false,
+                'manageTranslations' => auth()->check() ? auth()->user()->can('manage-translations', User::class) : false,
                 'manageThreeSixties' => auth()->check() ? auth()->user()->can('manage-three-sixties', User::class) : false,
                 'accessDashboard' => auth()->check() ? auth()->user()->can('access-dashboard', User::class) : false,
                 'impersonate' => auth()->check() ? auth()->user()->can('impersonate', User::class) : false,

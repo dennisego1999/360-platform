@@ -66,9 +66,7 @@ watch(
 </script>
 
 <template>
-	<transition name="fade" mode="out-in" appear>
-		<slot />
-	</transition>
+	<slot />
 </template>
 
 <style>

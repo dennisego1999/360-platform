@@ -6,6 +6,8 @@ import Navigation from '@/Components/Navigation.vue';
 	<div class="flex flex-col justify-start items-stretch">
 		<navigation />
 
-		<slot />
+		<transition name="fade" mode="out-in" appear>
+			<slot />
+		</transition>
 	</div>
 </template>

@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { Head, Link, router } from '@inertiajs/vue3';
+import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Banner from '@/Components/Banner.vue';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -8,13 +8,24 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
+// Define props
 defineProps({
 	title: String
 });
 
+// Set variables
 const showingNavigationDropdown = ref(false);
+const menuItems = ref([
+	{ label: 'Dashboard', active: usePage().props.current_route_name === 'dashboard', href: route('dashboard') },
+	{
+		label: 'Translations',
+		active: usePage().props.current_route_name === 'translations.index',
+		href: route('translations.index')
+	}
+]);
 
-const switchToTeam = (team) => {
+// Define functions
+function switchToTeam(team) {
 	router.put(
 		route('current-team.update'),
 		{
@@ -24,11 +35,11 @@ const switchToTeam = (team) => {
 			preserveState: false
 		}
 	);
-};
+}
 
-const logout = () => {
+function logout() {
 	router.post(route('logout'));
-};
+}
 </script>
 
 <template>
@@ -52,8 +63,13 @@ const logout = () => {
 
 							<!-- Navigation Links -->
 							<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-								<NavLink :href="route('dashboard')" :active="route().current('dashboard')">
-									Dashboard
+								<NavLink
+									v-for="(item, index) in menuItems"
+									:key="'menu-item-' + index"
+									:href="item.href"
+									:active="item.active"
+								>
+									{{ item.label }}
 								</NavLink>
 							</div>
 						</div>
@@ -364,7 +380,9 @@ const logout = () => {
 
 			<!-- Page Content -->
 			<main>
-				<slot />
+				<transition name="fade" mode="out-in" appear>
+					<slot />
+				</transition>
 			</main>
 		</div>
 	</div>

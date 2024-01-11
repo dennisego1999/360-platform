@@ -15,6 +15,7 @@ class RolePermissionSeeder extends Seeder
                 'impersonate',
                 'manage-users',
                 'manage-countries',
+                'manage-translations',
                 'manage-three-sixties',
                 'access-dashboard',
             ]
@@ -24,6 +25,7 @@ class RolePermissionSeeder extends Seeder
             'permissions' => [
                 'manage-users',
                 'manage-countries',
+                'manage-translations',
                 'manage-three-sixties',
                 'access-dashboard',
             ]
