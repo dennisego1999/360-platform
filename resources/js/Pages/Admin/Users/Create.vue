@@ -53,6 +53,7 @@ function submitForm() {
 						name="first-name"
 						id="first-name"
 						class="mt-1 block w-full"
+						autocomplete="given-name"
 					/>
 
 					<InputError :message="form.errors.first_name" class="mt-2" />
@@ -67,6 +68,7 @@ function submitForm() {
 						name="last-name"
 						id="last-name"
 						class="mt-1 block w-full"
+						autocomplete="family-name"
 					/>
 
 					<InputError :message="form.errors.last_name" class="mt-2" />
@@ -75,7 +77,14 @@ function submitForm() {
 				<div class="sm:col-span-4">
 					<InputLabel for="email" :value="t('spa.labels.email')" />
 
-					<InputField v-model="form.email" type="text" name="email" id="email" class="mt-1 block w-full" />
+					<InputField
+						v-model="form.email"
+						type="text"
+						name="email"
+						id="email"
+						class="mt-1 block w-full"
+						autocomplete="username"
+					/>
 
 					<InputError :message="form.errors.email" class="mt-2" />
 				</div>
@@ -89,6 +98,7 @@ function submitForm() {
 						name="password"
 						id="password"
 						class="mt-1 block w-full"
+						autocomplete="new-password"
 					/>
 
 					<InputError :message="form.errors.password" class="mt-2" />
@@ -103,6 +113,7 @@ function submitForm() {
 						name="password_confirmation"
 						id="password_confirmation"
 						class="mt-1 block w-full"
+						autocomplete="new-password"
 					/>
 
 					<InputError :message="form.errors.password_confirmation" class="mt-2" />

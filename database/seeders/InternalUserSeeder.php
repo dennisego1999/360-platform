@@ -16,6 +16,13 @@ class InternalUserSeeder extends Seeder
             'password' => 'Arty007*',
             'roles' => ['super_admin'],
         ],
+        [
+            'first_name' => 'John',
+            'last_name' => 'Doe',
+            'email' => 'john.doe@artcoresociety.com',
+            'password' => 'Arty007*',
+            'roles' => ['editor'],
+        ],
     ];
 
     /**
