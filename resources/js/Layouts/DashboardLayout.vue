@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import { Head, Link, router, usePage } from '@inertiajs/vue3';
+import { Link, router, usePage } from '@inertiajs/vue3';
 import ApplicationMark from '@/Components/ApplicationMark.vue';
 import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
@@ -15,6 +15,12 @@ const menuItems = ref([
 		label: 'Dashboard',
 		route_name: 'dashboard',
 		href: route('dashboard')
+	},
+	{
+		check: usePage().props.policies.can.manageUsers,
+		label: 'Users',
+		route_name: 'users.index',
+		href: route('users.index')
 	},
 	{
 		check: usePage().props.policies.can.manageTranslations,

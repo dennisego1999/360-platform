@@ -29,7 +29,7 @@ class TranslationsController extends Controller
         // Get the search term when available
         $term = $request->query('search');
 
-        return Inertia::render('Admin/Translations', [
+        return Inertia::render('Admin/Translations/Index', [
             'languageLines' => $this->translationService->getLanguageLines($group, $term),
         ]);
     }

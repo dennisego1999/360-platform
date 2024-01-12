@@ -7,6 +7,9 @@ return [
             'scan_completed' => 'The scan was successful',
             'translation_updated' => 'The translation is updated',
             'translation_deleted' => 'The translation is deleted',
+            'user_deleted' => 'The user is deleted',
+            'user_updated' => 'The user is updated',
+            'user_created' => 'The user is created',
             'error' => 'Something went wrong',
         ],
     ],
@@ -19,6 +22,19 @@ return [
         'scan' => 'Scan',
         'import' => 'Import',
         'export' => 'Export',
+        'create_user' => 'Make new user',
+    ],
+    'labels' => [
+        'name' => 'Name',
+        'description' => 'Description',
+        'photo' => 'Photo',
+        'select' => 'Select',
+        'first_name' => 'First name',
+        'last_name' => 'Last name',
+        'email' => 'Email',
+        'password' => 'Password',
+        'password_confirmation' => 'Confirm password',
+        'roles' => 'Roles',
     ],
     'pages' => [
         'dashboard' => [
@@ -28,6 +44,10 @@ return [
             'roles' => 'Roles',
             'actions' => 'Actions',
             'search' => 'Search',
+        ],
+        'users' => [
+            'label' => 'Users',
+            'description' => 'A list of all users with all necessary information.',
         ],
         'translations' => [
             'label' => 'Translations',

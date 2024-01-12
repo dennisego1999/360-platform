@@ -68,15 +68,3 @@ watch(
 <template>
 	<slot />
 </template>
-
-<style>
-.fade-enter-active,
-.fade-leave-active {
-	transition: opacity 0.4s ease-in-out;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-	opacity: 0;
-}
-</style>
