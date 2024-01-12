@@ -8,7 +8,7 @@ const flashUuid = computed(() => usePage().props.flash.uuid);
 
 // Handle success messages
 watch(
-	() => usePage().props.flash.success,
+	() => usePage().props?.flash?.success,
 	(message) => {
 		if (!message || !flashUuid.value) {
 			return;
@@ -37,7 +37,7 @@ watch(
 
 // Handle error messages
 watch(
-	() => usePage().props.flash.error,
+	() => usePage().props?.flash?.error,
 	(message) => {
 		if (!message || !flashUuid.value) {
 			return;
