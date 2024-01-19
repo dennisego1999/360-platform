@@ -45,7 +45,7 @@ class RouteServiceProvider extends ServiceProvider
                     Route::middleware([
                         'web',
                         'localization',
-                        'admin',
+                        'permission:access-dashboard',
                         'auth:web',
                         config('jetstream.auth_session'),
                         'verified',
