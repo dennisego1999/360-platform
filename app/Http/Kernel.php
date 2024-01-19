@@ -55,6 +55,10 @@ class Kernel extends HttpKernel
             \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
             \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
         ],
+
+        'admin' => [
+            \App\Http\Middleware\VerifyAdminAccess::class,
+        ]
     ];
 
     /**
