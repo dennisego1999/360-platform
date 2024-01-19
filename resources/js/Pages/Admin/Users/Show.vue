@@ -66,7 +66,7 @@ const { t } = useI18n();
 		</div>
 
 		<div class="mt-6 flex items-center justify-start gap-x-6">
-			<PrimaryButton :href="route('users.index')">
+			<PrimaryButton :href="route('admin.users.index')">
 				{{ t('spa.buttons.go_back') }}
 			</PrimaryButton>
 		</div>

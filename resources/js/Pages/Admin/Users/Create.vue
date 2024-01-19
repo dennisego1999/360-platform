@@ -36,7 +36,7 @@ const form = useForm({
 // Define functions
 function submitForm() {
 	console.log('post');
-	form.post(route('users.store'));
+	form.post(route('admin.users.store'));
 }
 </script>
 
@@ -136,7 +136,7 @@ function submitForm() {
 		</div>
 
 		<div class="mt-6 flex items-center justify-start gap-x-6">
-			<SecondaryButton :href="route('users.index')">
+			<SecondaryButton :href="route('admin.users.index')">
 				{{ t('spa.buttons.cancel') }}
 			</SecondaryButton>
 

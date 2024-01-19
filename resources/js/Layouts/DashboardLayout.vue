@@ -9,27 +9,6 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 
 // Set variables
 const showingNavigationDropdown = ref(false);
-const menuItems = ref([
-	{
-		check: usePage().props.policies.can.accessDashboard,
-		label: 'Dashboard',
-		route_name: 'dashboard',
-		href: route('dashboard')
-	},
-	{
-		check: usePage().props.policies.can.manageUsers,
-		label: 'Users',
-		route_name: 'users.index',
-		href: route('users.index')
-	},
-	{
-		check: usePage().props.policies.can.manageTranslations,
-		label: 'Translations',
-		route_name: 'translations.index',
-		href: route('translations.index')
-	}
-]);
-
 // Define functions
 function switchToTeam(team) {
 	router.put(
@@ -65,12 +44,11 @@ function logout() {
 
 							<!-- Navigation Links -->
 							<div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-								<template v-for="(item, index) in menuItems" :key="'menu-item-' + index">
-									<NavLink
-										v-if="item.check"
-										:href="item.href"
-										:active="route().current(item.route_name)"
-									>
+								<template
+									v-for="(item, index) in usePage().props.navigationItems"
+									:key="'menu-item-' + index"
+								>
+									<NavLink :href="item.href" :active="item.current">
 										{{ item.label }}
 									</NavLink>
 								</template>
@@ -272,12 +250,11 @@ function logout() {
 					class="sm:hidden"
 				>
 					<div class="pt-2 pb-3 space-y-1">
-						<template v-for="(item, index) in menuItems" :key="'responsive-menu-item-' + index">
-							<ResponsiveNavLink
-								v-if="item.check"
-								:href="item.href"
-								:active="route().current(item.route_name)"
-							>
+						<template
+							v-for="(item, index) in usePage().props.navigationItems"
+							:key="'responsive-menu-item-' + index"
+						>
+							<ResponsiveNavLink :href="item.href" :active="item.current">
 								{{ item.label }}
 							</ResponsiveNavLink>
 						</template>

@@ -34,7 +34,7 @@ const form = useForm({
 
 // Define functions
 function submitForm() {
-	form.put(route('users.update', { user: props.user }));
+	form.put(route('admin.users.update', { user: props.user }));
 }
 </script>
 
@@ -95,7 +95,7 @@ function submitForm() {
 		</div>
 
 		<div class="mt-6 flex items-center justify-start gap-x-6">
-			<SecondaryButton :href="route('users.index')">
+			<SecondaryButton :href="route('admin.users.index')">
 				{{ t('spa.buttons.cancel') }}
 			</SecondaryButton>
 

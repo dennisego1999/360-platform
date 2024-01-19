@@ -47,12 +47,12 @@ const form = useForm({
 					</p>
 				</div>
 
-				<PrimaryButton :href="route('users.create')">
+				<PrimaryButton :href="route('admin.users.create')">
 					{{ t('spa.buttons.create_user') }}
 				</PrimaryButton>
 			</div>
 
-			<SearchBar :form="form" :href="route('users.index')" />
+			<SearchBar :form="form" :href="route('admin.users.index')" />
 
 			<div v-if="users.data.length !== 0" class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div class="inline-block min-w-full align-middle sm:px-6 lg:px-8">
@@ -152,7 +152,7 @@ const form = useForm({
 									</div>
 
 									<Link
-										:href="route('users.show', { user: user })"
+										:href="route('admin.users.show', { user: user })"
 										class="flex shrink-0 items-center gap-1"
 									>
 										<div class="p-2 rounded-md bg-gray-300 cursor-pointer">
@@ -162,7 +162,7 @@ const form = useForm({
 
 									<Link
 										v-if="usePage().props.policies.can.manageUsers"
-										:href="route('users.edit', { user: user })"
+										:href="route('admin.users.edit', { user: user })"
 										class="flex shrink-0 items-center gap-1"
 									>
 										<div class="p-2 rounded-md bg-gray-300 cursor-pointer">
@@ -172,7 +172,7 @@ const form = useForm({
 
 									<Link
 										v-if="usePage().props.policies.can.manageUsers"
-										:href="route('users.destroy', { user: user })"
+										:href="route('admin.users.destroy', { user: user })"
 										method="delete"
 										as="button"
 										class="flex shrink-0 items-center gap-1"

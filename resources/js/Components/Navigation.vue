@@ -13,7 +13,10 @@ import { Link, usePage } from '@inertiajs/vue3';
 			</template>
 
 			<template v-else>
-				<Link v-if="usePage().props.policies.can.accessDashboard" :href="route('dashboard')">Dashboard</Link>
+				<Link v-if="usePage().props.policies.can.accessDashboard" :href="route('admin.dashboard')">
+					Dashboard
+				</Link>
+
 				<Link v-else :href="route('profile.show')">Profile</Link>
 			</template>
 		</div>

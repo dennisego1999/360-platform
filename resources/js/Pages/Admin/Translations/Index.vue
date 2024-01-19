@@ -49,16 +49,16 @@ const editForm = useForm({
 
 // Define functions
 function deleteTranslation(languageLine) {
-	router.delete(route('translations.destroy', { language_line: languageLine }));
+	router.delete(route('admin.translations.destroy', { language_line: languageLine }));
 }
 
 function scanTranslations() {
-	router.post(route('translations.scan'));
+	router.post(route('admin.translations.scan'));
 }
 
 function importTranslations() {
 	// Import the uploaded excel
-	importForm.post(route('translations.import'), {
+	importForm.post(route('admin.translations.import'), {
 		onSuccess: () => {
 			// Close the modal
 			closeImportTranslationsModal();
@@ -67,7 +67,7 @@ function importTranslations() {
 }
 
 function editTranslation(languageLine) {
-	editForm.put(route('translations.update', { language_line: languageLine }), {
+	editForm.put(route('admin.translations.update', { language_line: languageLine }), {
 		onSuccess: () => {
 			// Close the modal
 			closeEditTranslationModal();
@@ -133,7 +133,7 @@ function closeEditTranslationModal() {
 						</div>
 					</SecondaryButton>
 
-					<SecondaryButton :download-file="true" :href="route('translations.export')">
+					<SecondaryButton :download-file="true" :href="route('admin.translations.export')">
 						<div class="flex justify-center items-center gap-2">
 							<ArrowDownTrayIcon class="h-4 w-4 text-gray-600" />
 
@@ -147,7 +147,7 @@ function closeEditTranslationModal() {
 				</div>
 			</div>
 
-			<SearchBar :form="form" :href="route('translations.index')" />
+			<SearchBar :form="form" :href="route('admin.translations.index')" />
 
 			<div v-if="languageLines.data.length !== 0" class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div class="inline-block min-w-full align-middle sm:px-6 lg:px-8">

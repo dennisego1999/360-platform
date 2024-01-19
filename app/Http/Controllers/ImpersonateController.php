@@ -15,6 +15,6 @@ class ImpersonateController extends Controller
         }
 
         //Redirect back with hard page reload
-        return Inertia::location(route('dashboard'));
+        return Inertia::location(route('admin.dashboard'));
     }
 }
