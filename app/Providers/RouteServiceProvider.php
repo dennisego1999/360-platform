@@ -35,24 +35,23 @@ class RouteServiceProvider extends ServiceProvider
                 ->group(base_path('routes/api.php'));
 
             Route::prefix(LaravelLocalization::setLocale())
-                ->middleware([
-                    'web',
-                    'localization',
-                    'app',
-                ])
-                ->group(base_path('routes/web.php'));
+                ->group(function() {
+                    Route::middleware([
+                        'web',
+                        'localization',
+                    ])->group(base_path('routes/web.php'));
 
-            Route::middleware([
-                'web',
-                'app',
-                'localization',
-                'auth:web',
-                config('jetstream.auth_session'),
-                'verified',
-            ])
-                ->prefix(LaravelLocalization::setLocale() . '/admin')
-                ->name('admin.')
-                ->group(base_path('routes/admin.php'));
+                    Route::middleware([
+                        'web',
+                        'localization',
+                        'auth:web',
+                        config('jetstream.auth_session'),
+                        'verified',
+                    ])
+                        ->prefix('admin')
+                        ->name('admin.')
+                        ->group(base_path('routes/admin.php'));
+                });
         });
     }
 }

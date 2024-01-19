@@ -12,6 +12,7 @@ class NavigationMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
+        ray('haha');
         // If the user is authenticated, update navigation items for dashboard pages
         if (Auth::check() && ($request->routeIs('admin.*') || $request->routeIs('profile.show'))) {
             Inertia::share('navigationItems', static fn () => static::getDashboardItems($request));
