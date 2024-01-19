@@ -43,7 +43,7 @@ class UserController extends Controller
         // Create new user
         $createNewUser->create($request->all());
 
-        return redirect()->route('users.index')->with('success', trans('spa.toasts.description.user_created'));
+        return redirect()->route('admin.users.index')->with('success', trans('spa.toasts.description.user_created'));
     }
 
     public function show(User $user)
@@ -69,7 +69,7 @@ class UserController extends Controller
         // Update user profile information
         $updateUserProfileInformation->update($user, $request->all());
 
-        return redirect()->route('users.index')->with('success', trans('spa.toasts.description.user_updated'));
+        return redirect()->route('admin.users.index')->with('success', trans('spa.toasts.description.user_updated'));
     }
 
     public function destroy(DeleteUser $deleteUserAction, User $user)

@@ -3,6 +3,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', HomeController::class)->name('home');
+
+Route::fallback(fn() => Inertia::render('Errors/404'));
 
 $verificationLimiter = config('fortify.limiters.verification', '6,1');
 Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)

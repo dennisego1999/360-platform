@@ -1,6 +1,6 @@
 <script setup>
-import { computed, watch } from 'vue';
-import { usePage } from '@inertiajs/vue3';
+import { computed, onUnmounted, watch } from 'vue';
+import { usePage, router } from '@inertiajs/vue3';
 import { useClearToast, useShowToast } from '@/Composables/Toastification.js';
 
 // Get the UUID
@@ -63,6 +63,29 @@ watch(
 		immediate: true
 	}
 );
+
+// Listen for validation errors
+onUnmounted(() => {
+	router.on('error', (e) => {
+		// Retrieve the errors out of the event
+		let errors = Object.values(e?.detail?.errors) || [];
+		errors = new Set(errors);
+
+		console.log('ERRORRRRRR');
+
+		// Print each error
+		errors.forEach((error) => {
+			// Set toast id
+			const errorId = 'error-toast';
+
+			// Toast
+			useClearToast(errorId);
+			useShowToast(null, error, 'error', {
+				id: errorId
+			});
+		});
+	});
+});
 </script>
 
 <template>
