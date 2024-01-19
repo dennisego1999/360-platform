@@ -29,7 +29,9 @@ return [
      |
      */
 
-    'middleware' => ['web'],
+    'prefix' => '{locale}',
+
+    'middleware' => ['web', 'localization'],
 
     'auth_session' => AuthenticateSession::class,
 
