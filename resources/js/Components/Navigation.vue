@@ -11,8 +11,8 @@ import { Link, usePage } from '@inertiajs/vue3';
 				v-for="(item, index) in usePage().props.navigationItems"
 				:key="'responsive-menu-item-' + index"
 				:href="item.href"
-				:active="item.current"
 				:method="item.method"
+				as="button"
 			>
 				{{ item.label }}
 			</Link>

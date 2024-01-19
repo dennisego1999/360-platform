@@ -31,35 +31,26 @@ class NavigationMiddleware
         $items = collect([
             'login' => [
                 'href' => route('login'),
-                'current' => $request->routeIs('login'),
                 'label' => trans('spa.pages.users.login'),
                 'active' => !$user,
-                'method' => 'get',
             ],
             'register' => [
                 'href' => route('register'),
-                'current' => $request->routeIs('register'),
                 'label' => trans('spa.pages.users.register'),
                 'active' => !$user,
-                'method' => 'get',
             ],
             'dashboard' => [
                 'href' => route('admin.dashboard'),
-                'current' => $request->routeIs('admin.dashboard'),
                 'label' => trans('spa.pages.dashboard.label'),
                 'active' => !!$user && $user->can('access-dashboard'),
-                'method' => 'get',
             ],
             'profile' => [
                 'href' => route('profile.show'),
-                'current' => $request->routeIs('profile.show'),
                 'label' => trans('spa.pages.users.profile'),
                 'active' => !!$user,
-                'method' => 'get',
             ],
             'logout' => [
                 'href' => route('logout'),
-                'current' => $request->routeIs('logout'),
                 'label' => trans('spa.pages.users.logout'),
                 'active' => !!$user,
                 'method' => 'post',
