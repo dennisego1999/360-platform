@@ -7,18 +7,15 @@ import { Link, usePage } from '@inertiajs/vue3';
 		<div></div>
 
 		<div class="flex justify-end items-center gap-2">
-			<template v-if="!usePage().props.auth.user">
-				<Link :href="route('login')"> Login </Link>
-				<Link :href="route('register')"> Register </Link>
-			</template>
-
-			<template v-else>
-				<Link v-if="usePage().props.policies.can.accessDashboard" :href="route('admin.dashboard')">
-					Dashboard
-				</Link>
-
-				<Link v-else :href="route('profile.show')">Profile</Link>
-			</template>
+			<Link
+				v-for="(item, index) in usePage().props.navigationItems"
+				:key="'responsive-menu-item-' + index"
+				:href="item.href"
+				:active="item.current"
+				:method="item.method"
+			>
+				{{ item.label }}
+			</Link>
 		</div>
 	</div>
 </template>

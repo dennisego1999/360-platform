@@ -48,6 +48,10 @@ return [
         'users' => [
             'label' => 'Users',
             'description' => 'A list of all users with all necessary information.',
+            'login' => 'Login',
+            'logout' => 'Logout',
+            'register' => 'Register',
+            'profile' => 'Profile',
         ],
         'translations' => [
             'label' => 'Translations',
