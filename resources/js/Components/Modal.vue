@@ -50,6 +50,7 @@ onUnmounted(() => {
 
 const maxWidthClass = computed(() => {
 	return {
+		fit: 'sm:max-w-fit',
 		sm: 'sm:max-w-sm',
 		md: 'sm:max-w-md',
 		lg: 'sm:max-w-lg',

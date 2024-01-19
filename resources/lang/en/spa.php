@@ -18,6 +18,8 @@ return [
         'edit' => 'Edit',
         'cancel' => 'Cancel',
         'save' => 'Save',
+        'yes' => 'Yes',
+        'no' => 'No',
         'close' => 'Close',
         'scan' => 'Scan',
         'import' => 'Import',
@@ -68,5 +70,8 @@ return [
         'profile' => [
             'label' => 'Profile',
         ],
+    ],
+    'modals' => [
+        'change_language' => 'Do you want to switch to {locale}?'
     ],
 ];

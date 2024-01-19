@@ -121,10 +121,11 @@ class HandleInertiaRequests extends Middleware
     {
         $array = [];
 
-        foreach (LaravelLocalization::getSupportedLanguagesKeys() as $locale) {
+        foreach (LaravelLocalization::getSupportedLocales() as $key => $value) {
             $array[] = [
-                'locale' => $locale,
-                'is_current' => $locale === LaravelLocalization::getCurrentLocale(),
+                'code' => $key,
+                'is_current' => $key === LaravelLocalization::getCurrentLocale(),
+                'url' => LaravelLocalization::getLocalizedURL($key)
             ];
         }
 

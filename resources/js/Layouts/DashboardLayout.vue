@@ -6,6 +6,7 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
+import LanguageSwitcher from '@/Components/LanguageSwitcher.vue';
 
 // Set variables
 const showingNavigationDropdown = ref(false);
@@ -56,6 +57,8 @@ function logout() {
 						</div>
 
 						<div class="hidden sm:flex sm:items-center sm:ms-6">
+							<language-switcher />
+
 							<div class="ms-3 relative">
 								<!-- Teams Dropdown -->
 								<Dropdown v-if="$page.props.jetstream.hasTeamFeatures" align="right" width="60">

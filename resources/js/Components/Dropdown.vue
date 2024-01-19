@@ -1,7 +1,12 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
+import AngleDownIcon from '@/Components/AngleDownIcon.vue';
 
 const props = defineProps({
+	angle: {
+		type: Boolean,
+		default: false
+	},
 	align: {
 		type: String,
 		default: 'right'
@@ -12,7 +17,7 @@ const props = defineProps({
 	},
 	contentClasses: {
 		type: Array,
-		default: () => ['py-1', 'bg-white']
+		default: () => ['bg-white']
 	}
 });
 
@@ -29,6 +34,7 @@ onUnmounted(() => document.removeEventListener('keydown', closeOnEscape));
 
 const widthClass = computed(() => {
 	return {
+		fit: 'w-fit',
 		48: 'w-48'
 	}[props.width.toString()];
 });
@@ -48,8 +54,17 @@ const alignmentClasses = computed(() => {
 
 <template>
 	<div class="relative">
-		<div @click="open = !open">
-			<slot name="trigger" />
+		<div @click="open = !open" class="cursor-pointer">
+			<slot v-if="!angle" name="trigger" />
+
+			<div v-else class="flex justify-between items-center gap-1">
+				<slot name="trigger" />
+
+				<AngleDownIcon
+					class="h-4 w-4 transition-transform"
+					:class="{ 'rotate-180': open, 'rotate-0': !open }"
+				/>
+			</div>
 		</div>
 
 		<!-- Full Screen Dropdown Overlay -->
@@ -70,7 +85,10 @@ const alignmentClasses = computed(() => {
 				style="display: none"
 				@click="open = false"
 			>
-				<div class="rounded-md ring-1 ring-black ring-opacity-5" :class="contentClasses">
+				<div
+					class="overflow-hidden rounded-md ring-1 ring-black ring-opacity-5 cursor-pointer"
+					:class="contentClasses"
+				>
 					<slot name="content" />
 				</div>
 			</div>
