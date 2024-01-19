@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Head, router, useForm, usePage } from '@inertiajs/vue3';
 import { PencilSquareIcon, TrashIcon, ArrowUpTrayIcon, ArrowDownTrayIcon } from '@heroicons/vue/20/solid';
@@ -45,6 +45,11 @@ const importForm = useForm({
 });
 const editForm = useForm({
 	text: {}
+});
+
+// Set computed variables
+const currentLocale = computed(() => {
+	return usePage().props.locales.find((locale) => locale.is_current);
 });
 
 // Define functions
@@ -171,7 +176,7 @@ function closeEditTranslationModal() {
 								{{ t('spa.pages.translations.table.locale') + ': ' }}
 
 								<span class="uppercase">
-									{{ usePage().props.locales.currentLocale }}
+									{{ currentLocale.code }}
 								</span>
 							</p>
 						</div>
@@ -198,7 +203,7 @@ function closeEditTranslationModal() {
 							</div>
 
 							<div class="flex justify-start items-center px-3 py-5 border-b border-b-gray-100">
-								{{ languageLine.text[usePage().props.locales.currentLocale] }}
+								{{ languageLine.text[currentLocale.code] }}
 							</div>
 
 							<div class="flex justify-start items-center px-3 py-5 border-b border-b-gray-100">

@@ -1,9 +1,9 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { usePage } from '@inertiajs/vue3';
-import Dropdown from '@/Components/Dropdown.vue';
-import Modal from '@/Components/Modal.vue';
 import { useI18n } from 'vue-i18n';
+import Modal from '@/Components/Modal.vue';
+import Dropdown from '@/Components/Dropdown.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 
@@ -45,7 +45,7 @@ function reloadToRequestedLocale() {
 </script>
 
 <template>
-	<Dropdown :angle="usePage().props.locales.length > 1" :width="'fit'">
+	<Dropdown :angle="usePage().props.locales.length > 1" width="fit">
 		<template #trigger>
 			<div class="uppercase">
 				{{ currentLocale?.code }}
