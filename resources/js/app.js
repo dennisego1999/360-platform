@@ -42,7 +42,7 @@ createInertiaApp({
 	resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
 	setup({ el, App, props, plugin }) {
 		const i18n = createI18n({
-			locale: props.initialPage.props.locales.find((locale) => locale.is_current)?.locale,
+			locale: props.initialPage.props.locales.find((locale) => locale.is_current)?.code,
 			messages: props.initialPage.props.translations,
 			legacy: false,
 			warnHtmlMessage: false
