@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5cda4501d64e6c0e17ff1c95f29e7b63",
+    "content-hash": "40eabd1558f8126f7b6fd75e1aaa71a7",
     "packages": [
         {
             "name": "artcore-society/laravel-translation-import",

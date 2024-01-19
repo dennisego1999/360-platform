@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Inertia\Middleware;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -118,9 +119,16 @@ class HandleInertiaRequests extends Middleware
 
     protected function getLocales(): array
     {
-        return [
-            'currentLocale' => config('app.locale')
-        ];
+        $array = [];
+
+        foreach (LaravelLocalization::getSupportedLanguagesKeys() as $locale) {
+            $array[] = [
+                'locale' => $locale,
+                'is_current' => $locale === LaravelLocalization::getCurrentLocale(),
+            ];
+        }
+
+        return $array;
     }
 
     private function getPolicies()
