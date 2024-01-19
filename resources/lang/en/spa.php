@@ -51,7 +51,6 @@ return [
             'login' => 'Login',
             'logout' => 'Logout',
             'register' => 'Register',
-            'profile' => 'Profile',
         ],
         'translations' => [
             'label' => 'Translations',
@@ -65,6 +64,9 @@ return [
                 'updated_at' => 'Updated at',
                 'actions' => 'Actions',
             ],
+        ],
+        'profile' => [
+            'label' => 'Profile',
         ],
     ],
 ];

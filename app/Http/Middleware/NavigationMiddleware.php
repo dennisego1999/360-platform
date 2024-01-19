@@ -47,7 +47,7 @@ class NavigationMiddleware
             ],
             'profile' => [
                 'href' => route('profile.show'),
-                'label' => trans('spa.pages.users.profile'),
+                'label' => trans('spa.pages.profile.label'),
                 'active' => !!$user,
             ],
             'logout' => [

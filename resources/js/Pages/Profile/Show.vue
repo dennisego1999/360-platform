@@ -1,4 +1,6 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
+import { Head } from '@inertiajs/vue3';
 import DeleteUserForm from '@/Pages/Profile/Partials/DeleteUserForm.vue';
 import LogoutOtherBrowserSessionsForm from '@/Pages/Profile/Partials/LogoutOtherBrowserSessionsForm.vue';
 import SectionBorder from '@/Components/SectionBorder.vue';
@@ -18,10 +20,15 @@ defineProps({
 	confirmsTwoFactorAuthentication: Boolean,
 	sessions: Array
 });
+
+// Set translation
+const { t } = useI18n();
 </script>
 
 <template>
 	<div>
+		<Head :title="t('spa.pages.profile.label')" />
+
 		<div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
 			<div v-if="$page.props.jetstream.canUpdateProfileInformation">
 				<UpdateProfileInformationForm :user="$page.props.auth.user" />
