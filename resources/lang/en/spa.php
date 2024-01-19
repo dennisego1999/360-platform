@@ -70,6 +70,10 @@ return [
         'profile' => [
             'label' => 'Profile',
         ],
+        'three_sixty_generator' => [
+            'label' => '360 generator',
+            'description' => 'A list of all 360 areas',
+        ],
     ],
     'modals' => [
         'change_language' => 'Do you want to switch to {locale}?'

@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\TranslationsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ThreeSixtyGeneratorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
@@ -19,3 +20,5 @@ Route::name('translations.')->prefix('translations')->group(function () {
     Route::put('/{language_line}/update ', [TranslationsController::class, 'update'])->name('update');
     Route::delete('/{language_line}/delete', [TranslationsController::class, 'destroy'])->name('destroy');
 });
+
+Route::resource('three_sixty_generator', ThreeSixtyGeneratorController::class);

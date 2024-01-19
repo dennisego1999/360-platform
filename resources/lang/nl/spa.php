@@ -70,6 +70,10 @@ return [
         'profile' => [
             'label' => 'Profiel',
         ],
+        'three_sixty_generator' => [
+            'label' => '360 generator',
+            'description' => 'Een lijst van alle 360 omgevingen',
+        ],
     ],
     'modals' => [
         'change_language' => 'Wilt u veranderen naar {locale}?'

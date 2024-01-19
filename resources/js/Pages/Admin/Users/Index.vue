@@ -143,7 +143,7 @@ const form = useForm({
 								<div class="flex justify-start items-center gap-4 w-fit">
 									<div
 										v-if="usePage().props.policies.can.impersonate"
-										@click="router.post(route('impersonate', { user: user }))"
+										@click="router.post(route('admin.impersonate', { user: user }))"
 										class="flex shrink-0 items-center gap-1"
 									>
 										<div class="p-2 rounded-md bg-gray-300 cursor-pointer">

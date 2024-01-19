@@ -12,7 +12,6 @@ class NavigationMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        ray('haha');
         // If the user is authenticated, update navigation items for dashboard pages
         if (Auth::check() && ($request->routeIs('admin.*') || $request->routeIs('profile.show'))) {
             Inertia::share('navigationItems', static fn () => static::getDashboardItems($request));
@@ -85,6 +84,13 @@ class NavigationMiddleware
                 'label' => trans('spa.pages.translations.label'),
                 'active' => $user->can('manage-translations'),
             ],
+            'three_sixty_generator' => [
+                'href' => route('admin.three_sixty_generator.index'),
+                'current' => $request->routeIs('admin.three_sixty_generator.*'),
+                'label' => trans('spa.pages.three_sixty_generator.label'),
+                'active' => $user->can('manage-three-sixties'),
+            ],
+
         ]);
 
         return $items->filter(fn ($item) => $item['active']);
