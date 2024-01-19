@@ -36,7 +36,11 @@ class RolePermissionSeeder extends Seeder
                 'manage-three-sixties',
                 'access-dashboard',
             ]
-        ]
+        ],
+        [
+            'name' => 'visitor',
+            'permissions' => []
+        ],
     ];
 
     public function run()
