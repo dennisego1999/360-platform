@@ -11,19 +11,14 @@ class ThreeSixtyAreaPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
+    public function viewAny(): bool
     {
-        return $user->can('manage-three-sixties');
+        return true;
     }
 
-    public function view(User $user, User $model): bool
+    public function view(): bool
     {
-        // Allow the user to view himself
-        if ($user->is($model)) {
-            return true;
-        }
-
-        return $user->can('manage-three-sixties');
+        return true;
     }
 
     public function create(User $user): bool
@@ -31,23 +26,13 @@ class ThreeSixtyAreaPolicy
         return $user->can('manage-three-sixties');
     }
 
-    public function update(User $user, User $model): bool
+    public function update(User $user): bool
     {
-        // Allow the user to update himself
-        if ($user->is($model)) {
-            return true;
-        }
-
         return $user->can('manage-three-sixties');
     }
 
-    public function delete(User $user, User $model): bool
+    public function delete(User $user): bool
     {
-        // Prevent deleting yourself
-        if ($user->is($model)) {
-            return false;
-        }
-
         return $user->can('manage-three-sixties');
     }
 

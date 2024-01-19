@@ -236,7 +236,7 @@ function closeEditTranslationModal() {
 				</div>
 			</div>
 
-			<p v-else>No translations found...</p>
+			<p v-else>{{ t('spa.pages.translations.no_translations') }}</p>
 
 			<Pagination v-if="languageLines.data.length !== 0" :links="languageLines.links" />
 		</div>

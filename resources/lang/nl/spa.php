@@ -10,6 +10,9 @@ return [
             'user_deleted' => 'De gebruiker wordt verwijderd',
             'user_updated' => 'De gebruiker is bijgewerkt',
             'user_created' => 'The user is created',
+            'three_sixty_area_deleted' => 'De 360 omgeving is verwijdered',
+            'three_sixty_area_updated' => 'De 360 omgeving is bijgewerkt',
+            'three_sixty_area_created' => 'De 360 omgeving is aangemaakt',
             'error' => 'Er is iets fout gegaan',
         ],
     ],
@@ -25,6 +28,7 @@ return [
         'import' => 'Importeer',
         'export' => 'Exporteer',
         'create_user' => 'Maak een nieuwe gebruiker aan',
+        'create_360_area' => 'Maak een nieuwe 360 omgeving',
     ],
     'labels' => [
         'name' => 'Naam',
@@ -37,6 +41,7 @@ return [
         'password' => 'Wachtwoord',
         'password_confirmation' => 'Bevestig wachtwoord',
         'roles' => 'Rollen',
+        'slug' => 'Kruimelpad',
     ],
     'pages' => [
         'dashboard' => [
@@ -53,6 +58,7 @@ return [
             'login' => 'Log in',
             'logout' => 'Log uit',
             'register' => 'Registreer',
+            'no_users' => 'Geen gebruikers gevonden ...',
         ],
         'translations' => [
             'label' => 'Vertalingen',
@@ -66,13 +72,29 @@ return [
                 'updated_at' => 'Bijgewerkt op',
                 'actions' => 'Acties',
             ],
+            'no_translations' => 'Geen vertalingen gevonden...',
         ],
         'profile' => [
             'label' => 'Profiel',
         ],
         'three_sixty_generator' => [
-            'label' => '360 generator',
-            'description' => 'Een lijst van alle 360 omgevingen',
+            'index' => [
+                'label' => '360 generator',
+                'description' => 'Een lijst van alle 360 omgevingen',
+                'no_areas' => 'Geen 360 omgevingen gevonden...',
+            ],
+            'create' => [
+                'label' => '360 generator',
+                'description' => 'Maak een nieuwe 360 omgeving',
+            ],
+            'show' => [
+                'label' => '360 generator',
+                'description' => 'Bekijk de info van deze 360 omgeving',
+            ],
+            'edit' => [
+                'label' => '360 generator',
+                'description' => 'Bewerk deze 360 omgeving',
+            ],
         ],
     ],
     'modals' => [

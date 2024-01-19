@@ -188,7 +188,7 @@ const form = useForm({
 				</div>
 			</div>
 
-			<p v-else>No users found...</p>
+			<p v-else>{{ t('spa.pages.users.no_users') }}</p>
 
 			<Pagination v-if="users.data.length !== 0" :links="users.links" />
 		</div>

@@ -35,7 +35,6 @@ const form = useForm({
 
 // Define functions
 function submitForm() {
-	console.log('post');
 	form.post(route('admin.users.store'));
 }
 </script>

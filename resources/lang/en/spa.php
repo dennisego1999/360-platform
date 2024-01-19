@@ -10,6 +10,9 @@ return [
             'user_deleted' => 'The user is deleted',
             'user_updated' => 'The user is updated',
             'user_created' => 'The user is created',
+            'three_sixty_area_deleted' => 'The 360 area is deleted',
+            'three_sixty_area_updated' => 'The 360 area is updated',
+            'three_sixty_area_created' => 'The 360 area is created',
             'error' => 'Something went wrong',
         ],
     ],
@@ -25,6 +28,7 @@ return [
         'import' => 'Import',
         'export' => 'Export',
         'create_user' => 'Make new user',
+        'create_360_area' => 'Make new 360 area',
     ],
     'labels' => [
         'name' => 'Name',
@@ -37,6 +41,7 @@ return [
         'password' => 'Password',
         'password_confirmation' => 'Confirm password',
         'roles' => 'Roles',
+        'slug' => 'Slug',
     ],
     'pages' => [
         'dashboard' => [
@@ -53,6 +58,7 @@ return [
             'login' => 'Login',
             'logout' => 'Logout',
             'register' => 'Register',
+            'no_users' => 'No users found ...',
         ],
         'translations' => [
             'label' => 'Translations',
@@ -66,13 +72,29 @@ return [
                 'updated_at' => 'Updated at',
                 'actions' => 'Actions',
             ],
+            'no_translations' => 'No translations found...',
         ],
         'profile' => [
             'label' => 'Profile',
         ],
         'three_sixty_generator' => [
-            'label' => '360 generator',
-            'description' => 'A list of all 360 areas',
+            'index' => [
+                'label' => '360 generator',
+                'description' => 'A list of all 360 areas',
+                'no_areas' => 'No 360 areas found...',
+            ],
+            'create' => [
+                'label' => '360 generator',
+                'description' => 'Create new 360 area',
+            ],
+            'show' => [
+                'label' => '360 generator',
+                'description' => 'Look at the info of this 360 area',
+            ],
+            'edit' => [
+                'label' => '360 generator',
+                'description' => 'Edit this 360 area',
+            ],
         ],
     ],
     'modals' => [

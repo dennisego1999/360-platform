@@ -21,4 +21,15 @@ Route::name('translations.')->prefix('translations')->group(function () {
     Route::delete('/{language_line}/delete', [TranslationsController::class, 'destroy'])->name('destroy');
 });
 
-Route::resource('three_sixty_generator', ThreeSixtyGeneratorController::class);
+
+Route::name('three-sixty-generator.')
+    ->prefix('three-sixty-generator')
+    ->group(function () {
+        Route::get('/', [ThreeSixtyGeneratorController::class, 'index'])->name('index');
+        Route::get('/create', [ThreeSixtyGeneratorController::class, 'create'])->name('create');
+        Route::post('/store', [ThreeSixtyGeneratorController::class, 'store'])->name('store');
+        Route::get('/{three_sixty_area:slug}/edit', [ThreeSixtyGeneratorController::class, 'edit'])->name('edit');
+        Route::post('/{three_sixty_area:slug}/update', [ThreeSixtyGeneratorController::class, 'update'])->name('update');
+        Route::delete('/{three_sixty_area:slug}/destroy', [ThreeSixtyGeneratorController::class, 'destroy'])->name('destroy');
+        Route::get('/area/{three_sixty_area:slug}', [ThreeSixtyGeneratorController::class, 'show'])->name('show');
+    });
