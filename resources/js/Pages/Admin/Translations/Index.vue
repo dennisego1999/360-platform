@@ -156,22 +156,16 @@ function closeEditTranslationModal() {
 
 			<div v-if="languageLines.data.length !== 0" class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div class="inline-block min-w-full align-middle sm:px-6 lg:px-8">
-					<div class="grid w-full">
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
+					<div class="grid w-full gap-8 p-8 bg-white overflow-hidden sm:rounded-xl ring-1 ring-gray-900/5">
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">
 							{{ t('spa.pages.translations.table.group') }}
 						</div>
 
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">
 							{{ t('spa.pages.translations.table.key') }}
 						</div>
 
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">
 							<p>
 								{{ t('spa.pages.translations.table.locale') + ': ' }}
 
@@ -181,36 +175,32 @@ function closeEditTranslationModal() {
 							</p>
 						</div>
 
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">
 							{{ t('spa.pages.translations.table.updated_at') }}
 						</div>
 
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">
 							{{ t('spa.pages.translations.table.actions') }}
 						</div>
 
 						<template v-for="(languageLine, index) in languageLines.data" :key="'language-line-' + index">
-							<div class="flex justify-start items-center px-3 py-5 border-b border-b-gray-100">
+							<div class="flex justify-start items-center">
 								{{ languageLine.group }}
 							</div>
 
-							<div class="flex justify-start items-center px-3 py-5 border-b border-b-gray-100">
+							<div class="flex justify-start items-center">
 								{{ languageLine.key }}
 							</div>
 
-							<div class="flex justify-start items-center px-3 py-5 border-b border-b-gray-100">
+							<div class="flex justify-start items-center">
 								{{ languageLine.text[currentLocale.code] }}
 							</div>
 
-							<div class="flex justify-start items-center px-3 py-5 border-b border-b-gray-100">
+							<div class="flex justify-start items-center">
 								{{ languageLine.updated_at_formatted }}
 							</div>
 
-							<div class="flex justify-start items-center px-3 py-5 border-b border-b-gray-100">
+							<div class="flex justify-start items-center">
 								<div class="flex justify-start items-center gap-4 w-fit">
 									<div
 										@click="openEditTranslationModal(languageLine)"

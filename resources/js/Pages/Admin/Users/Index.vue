@@ -56,45 +56,33 @@ const form = useForm({
 
 			<div v-if="users.data.length !== 0" class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
 				<div class="inline-block min-w-full align-middle sm:px-6 lg:px-8">
-					<div class="grid grid-cols-[auto,1fr] w-full">
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
-							#
-						</div>
+					<div
+						class="grid grid-cols-[auto,1fr] w-full gap-8 p-8 bg-white overflow-hidden sm:rounded-xl ring-1 ring-gray-900/5"
+					>
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">#</div>
 
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">
 							{{ t('spa.pages.dashboard.name') }}
 						</div>
 
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">
 							{{ t('spa.pages.dashboard.status') }}
 						</div>
 
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">
 							{{ t('spa.pages.dashboard.roles') }}
 						</div>
 
-						<div
-							class="row-start-1 px-3 py-3.5 text-left text-sm font-semibold text-gray-900 border-b border-b-gray-100"
-						>
+						<div class="row-start-1 text-left text-sm font-semibold text-gray-900">
 							{{ t('spa.pages.dashboard.actions') }}
 						</div>
 
 						<template v-for="user in users.data" :key="user.email">
-							<div
-								class="flex justify-start items-center px-3 py-5 border-b border-b-gray-100 border-b border-b-gray-100"
-							>
+							<div class="flex justify-start items-center">
 								{{ user.id }}
 							</div>
 
-							<div class="flex justify-start items-center px-3 py-5 border-b border-b-gray-100">
+							<div class="flex justify-start items-center">
 								<div class="h-11 w-11 flex-shrink-0">
 									<img
 										class="h-11 w-11 rounded-full"
@@ -108,9 +96,7 @@ const form = useForm({
 								</div>
 							</div>
 
-							<div
-								class="flex justify-start items-center px-3 py-5 text-sm text-gray-500 border-b border-b-gray-100"
-							>
+							<div class="flex justify-start items-center text-sm text-gray-500">
 								<div
 									v-if="!!user.email_verified_at"
 									class="p-1 rounded-md bg-green-400 w-fit pointer-events-none"
@@ -123,9 +109,7 @@ const form = useForm({
 								</div>
 							</div>
 
-							<div
-								class="flex justify-start items-center px-3 py-5 text-sm text-gray-500 border-b border-b-gray-100"
-							>
+							<div class="flex justify-start items-center text-sm text-gray-500">
 								<div class="flex flex-wrap justify-start items-center gap-2 w-full">
 									<p
 										v-for="(role, index) in user.roles"
@@ -137,9 +121,7 @@ const form = useForm({
 								</div>
 							</div>
 
-							<div
-								class="flex justify-start items-center px-3 py-5 text-sm text-gray-500 border-b border-b-gray-100"
-							>
+							<div class="flex justify-start items-center text-sm text-gray-500">
 								<div class="flex justify-start items-center gap-4 w-fit">
 									<div
 										v-if="usePage().props.policies.can.impersonate"
