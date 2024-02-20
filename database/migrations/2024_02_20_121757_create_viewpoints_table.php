@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('viewpoints', static function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
+            $table->json('name');
+            $table->json('description');
             $table->boolean('is_default')->default(false);
             $table->foreignId('area_id')->constrained()->onDelete('cascade');
             $table->timestamps();

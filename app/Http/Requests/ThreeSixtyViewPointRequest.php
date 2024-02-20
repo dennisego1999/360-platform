@@ -2,13 +2,16 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\UniqueDefaultViewpoint;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ThreeSixtyViewPointRequest extends FormRequest
 {
     public function rules(): array
     {
+        // Get viewpoint
+        $viewpointId = $this->route('viewpoint') ? $this->route('viewpoint')->id : null;
+
         return [
             'name' => [
                 'string',
@@ -23,7 +26,7 @@ class ThreeSixtyViewPointRequest extends FormRequest
             'is_default' => [
                 'boolean',
                 'required',
-                new UniqueDefaultViewpoint,
+                Rule::unique('App\Models\Viewpoint')->ignore($viewpointId),
             ],
             'new_image' => [
                 'image',
