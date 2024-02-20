@@ -15,7 +15,7 @@ defineOptions({
 // Define props
 const props = defineProps({
 	area: Object,
-	viewPoint: Object
+	viewpoint: Object
 });
 
 // Set translation
@@ -24,19 +24,19 @@ const { t } = useI18n();
 // Set variables
 const form = useForm({
 	_method: 'put',
-	name: props.viewPoint.name ?? null,
-	description: props.viewPoint.description ?? null,
-	is_default: props.viewPoint.is_default ?? false,
-	image: props.viewPoint.image ?? null,
+	name: props.viewpoint.name ?? null,
+	description: props.viewpoint.description ?? null,
+	is_default: props.viewpoint.is_default ?? false,
+	image: props.viewpoint.image ?? null,
 	new_image: null
 });
 
 // Define functions
 function submit() {
 	form.post(
-		route('admin.three-sixty-generator.view-point.update', {
-			threeSixtyArea: props.area,
-			threeSixtyViewPoint: props.viewPoint
+		route('admin.three-sixty-generator.viewpoint.update', {
+			area: props.area,
+			viewpoint: props.viewpoint
 		})
 	);
 }
@@ -59,7 +59,7 @@ function submit() {
 				</div>
 
 				<div class="flex justify-between items-center gap-4">
-					<SecondaryButton :href="route('admin.three-sixty-generator.view-point.index', { area: area })">
+					<SecondaryButton :href="route('admin.three-sixty-generator.viewpoint.index', { area: area })">
 						{{ t('spa.buttons.go_back') }}
 					</SecondaryButton>
 

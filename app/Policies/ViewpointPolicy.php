@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\ThreeSixtyArea;
+use App\Models\Area;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Auth\Access\Response;
 
-class ThreeSixtyAreaPolicy
+class ViewpointPolicy
 {
     use HandlesAuthorization;
 

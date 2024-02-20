@@ -2,14 +2,14 @@
 
 namespace App\Actions;
 
-use App\Models\ThreeSixtyArea;
+use App\Models\Area;
 
-class ThreeSixtyAreaCreateAction
+class AreaCreateAction
 {
     public function handle(array $data): void
     {
         // Create record
-        ThreeSixtyArea::create([
+        Area::create([
             'name' => $data['name'],
         ]);
     }

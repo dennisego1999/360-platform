@@ -8,15 +8,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('three_sixty_areas', static function (Blueprint $table) {
+        Schema::create('viewpoints', static function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
+            $table->string('description');
+            $table->boolean('is_default')->default(false);
+            $table->foreignId('area_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('three_sixty_areas');
+        Schema::dropIfExists('viewpoints');
     }
 };

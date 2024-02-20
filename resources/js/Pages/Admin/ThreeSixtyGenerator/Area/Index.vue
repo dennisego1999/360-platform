@@ -61,7 +61,7 @@ const { t } = useI18n();
 					<div class="flex shrink-0 items-center gap-x-4">
 						<SecondaryButton
 							:href="
-								route('admin.three-sixty-generator.view-point.index', {
+								route('admin.three-sixty-generator.viewpoint.index', {
 									area: area
 								})
 							"

@@ -31,7 +31,7 @@ const form = useForm({
 
 // Define functions
 function submit() {
-	form.post(route('admin.three-sixty-generator.view-point.store', { area: props.area }));
+	form.post(route('admin.three-sixty-generator.viewpoint.store', { area: props.area }));
 }
 </script>
 
@@ -54,7 +54,7 @@ function submit() {
 				<div class="flex justify-between items-center gap-4">
 					<SecondaryButton
 						:href="
-							route('admin.three-sixty-generator.view-point.index', {
+							route('admin.three-sixty-generator.viewpoint.index', {
 								area: area
 							})
 						"

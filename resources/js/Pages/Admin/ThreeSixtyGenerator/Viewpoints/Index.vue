@@ -1,7 +1,7 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
 import { Head, Link, usePage } from '@inertiajs/vue3';
-import { EyeIcon, PencilSquareIcon, TrashIcon } from '@heroicons/vue/20/solid/index.js';
+import { EyeIcon, PencilSquareIcon, TrashIcon, CheckBadgeIcon } from '@heroicons/vue/20/solid/index.js';
 import Layout from '@/Layouts/Layout.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
@@ -49,7 +49,7 @@ const { t } = useI18n();
 
 					<PrimaryButton
 						:href="
-							route('admin.three-sixty-generator.view-point.create', {
+							route('admin.three-sixty-generator.viewpoint.create', {
 								area: area
 							})
 						"
@@ -69,18 +69,20 @@ const { t } = useI18n();
 					:key="viewpoint.id"
 					class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6"
 				>
-					<div class="flex items-center min-w-0">
-						<p class="text-sm font-semibold leading-6 text-gray-900">
+					<div class="flex justify-start items-center gap-2">
+						<p class="text-sm font-semibold leading-6 text-gray-900 min-w-fit">
 							{{ viewpoint.name[usePage().props.current_locale] }}
 						</p>
+
+						<CheckBadgeIcon v-if="viewpoint.is_default" class="fill-indigo-500 h-4 w-4" />
 					</div>
 
 					<div class="flex shrink-0 items-center gap-x-4">
 						<Link
 							:href="
-								route('admin.three-sixty-generator.view-point.show', {
+								route('admin.three-sixty-generator.viewpoint.show', {
 									area: area,
-									viewPoint: viewpoint
+									viewpoint: viewpoint
 								})
 							"
 							class="flex shrink-0 items-center gap-1"
@@ -93,9 +95,9 @@ const { t } = useI18n();
 						<Link
 							v-if="usePage().props.policies.can.manageThreeSixties"
 							:href="
-								route('admin.three-sixty-generator.view-point.edit', {
+								route('admin.three-sixty-generator.viewpoint.edit', {
 									area: area,
-									viewPoint: viewpoint
+									viewpoint: viewpoint
 								})
 							"
 							class="flex shrink-0 items-center gap-1"
@@ -108,9 +110,9 @@ const { t } = useI18n();
 						<Link
 							v-if="usePage().props.policies.can.manageThreeSixties"
 							:href="
-								route('admin.three-sixty-generator.view-point.destroy', {
+								route('admin.three-sixty-generator.viewpoint.destroy', {
 									area: area,
-									viewPoint: viewpoint
+									viewpoint: viewpoint
 								})
 							"
 							method="delete"

@@ -2,19 +2,19 @@
 
 namespace App\Actions;
 
-use App\Models\ThreeSixtyArea;
-use App\Models\ThreeSixtyViewPoint;
+use App\Models\Area;
+use App\Models\Viewpoint;
 
-class ThreeSixtyViewPointCreateAction
+class ViewpointCreateAction
 {
-    public function handle(array $data, ThreeSixtyArea $area): void
+    public function handle(array $data, Area $area): void
     {
         // Create record
-        $model = ThreeSixtyViewPoint::create([
+        $model = Viewpoint::create([
             'name' => $data['name'],
             'description' => $data['description'],
             'is_default' => $data['is_default'],
-            'three_sixty_area_id' => $area['id'],
+            'area_id' => $area['id'],
         ]);
 
         if($data['new_image']) {

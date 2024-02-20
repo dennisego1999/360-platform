@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImpersonateController;
-use App\Http\Controllers\ThreeSixtyGeneratorViewPointController;
+use App\Http\Controllers\ViewpointController;
 use App\Http\Controllers\TranslationsController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ThreeSixtyGeneratorAreaController;
+use App\Http\Controllers\AreaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
@@ -26,13 +26,10 @@ Route::name('translations.')->prefix('translations')->group(function () {
 Route::name('three-sixty-generator.')
     ->prefix('three-sixty-generator')
     ->group(function () {
-        Route::resource('area', ThreeSixtyGeneratorAreaController::class);
+        Route::resource('area', AreaController::class);
 
         Route::prefix('/area/{area}')
             ->group(function () {
-                Route::resource('view-point', ThreeSixtyGeneratorViewPointController::class)
-                    ->parameters([
-                        'view-point' => 'viewPoint'
-                    ]);
+                Route::resource('viewpoint', ViewpointController::class);
             });
     });

@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Rules\UniqueDefaultThreeSixtyViewPoint;
+use App\Rules\UniqueDefaultViewpoint;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ThreeSixtyViewPointRequest extends FormRequest
@@ -23,7 +23,7 @@ class ThreeSixtyViewPointRequest extends FormRequest
             'is_default' => [
                 'boolean',
                 'required',
-                new UniqueDefaultThreeSixtyViewPoint,
+                new UniqueDefaultViewpoint,
             ],
             'new_image' => [
                 'image',

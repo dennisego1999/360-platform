@@ -2,22 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Actions\ThreeSixtyAreaCreateAction;
-use App\Actions\ThreeSixtyAreaDestroyAction;
-use App\Actions\ThreeSixtyAreaUpdateAction;
+use App\Actions\AreaCreateAction;
+use App\Actions\AreaDestroyAction;
+use App\Actions\AreaUpdateAction;
 use App\Http\Requests\ThreeSixtyAreaRequest;
 use App\Http\Resources\ThreeSixtyAreaResource;
-use App\Models\ThreeSixtyArea;
+use App\Models\Area;
 use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class ThreeSixtyGeneratorAreaController extends Controller
+class AreaController extends Controller
 {
     public function index(): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Index', [
-            'threeSixtyAreas' => ThreeSixtyArea::all(),
+            'threeSixtyAreas' => Area::all(),
         ]);
     }
 
@@ -28,16 +28,16 @@ class ThreeSixtyGeneratorAreaController extends Controller
 
     public function store(
         ThreeSixtyAreaRequest $request,
-        ThreeSixtyAreaCreateAction $threeSixtyAreaCreateAction
+        AreaCreateAction $areaCreateAction
     ): RedirectResponse {
         // Authorize
-        $this->authorize('create', ThreeSixtyArea::class);
+        $this->authorize('create', Area::class);
 
         // Validate input
         $validated = $request->validated();
 
         // Handle action
-        $threeSixtyAreaCreateAction->handle($validated);
+        $areaCreateAction->handle($validated);
 
         // Return
         return redirect()
@@ -45,14 +45,14 @@ class ThreeSixtyGeneratorAreaController extends Controller
             ->with('success', trans('spa.toasts.description.three_sixty_area_created'));
     }
 
-    public function show(ThreeSixtyArea $area): Response
+    public function show(Area $area): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Show', [
             'area' => new ThreeSixtyAreaResource($area)
         ]);
     }
 
-    public function edit(ThreeSixtyArea $area): Response
+    public function edit(Area $area): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Edit', [
             'area' => new ThreeSixtyAreaResource($area)
@@ -61,8 +61,8 @@ class ThreeSixtyGeneratorAreaController extends Controller
 
     public function update(
         ThreeSixtyAreaRequest $request,
-        ThreeSixtyAreaUpdateAction $threeSixtyAreaUpdateAction,
-        ThreeSixtyArea $area
+        AreaUpdateAction      $areaUpdateAction,
+        Area                  $area
     ): RedirectResponse {
         // Authorize
         $this->authorize('update', $area);
@@ -71,7 +71,7 @@ class ThreeSixtyGeneratorAreaController extends Controller
         $validated = $request->validated();
 
         // Handle action
-        $threeSixtyAreaUpdateAction->handle($validated, $area);
+        $areaUpdateAction->handle($validated, $area);
 
         // Return
         return redirect()
@@ -80,14 +80,14 @@ class ThreeSixtyGeneratorAreaController extends Controller
     }
 
     public function destroy(
-        ThreeSixtyAreaDestroyAction $threeSixtyAreaDestroyAction,
-        ThreeSixtyArea $area
+        AreaDestroyAction $areaDestroyAction,
+        Area              $area
     ): RedirectResponse {
         // Authorize
         $this->authorize('delete', $area);
 
         // Handle action
-        $threeSixtyAreaDestroyAction->handle($area);
+        $areaDestroyAction->handle($area);
 
         // Return
         return redirect()

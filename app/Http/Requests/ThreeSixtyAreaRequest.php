@@ -17,7 +17,7 @@ class ThreeSixtyAreaRequest extends FormRequest
                 'string',
                 'required',
                 'max:255',
-                Rule::unique('App\Models\ThreeSixtyArea')->ignore($areaId),
+                Rule::unique('App\Models\Area')->ignore($areaId),
             ],
         ];
     }
