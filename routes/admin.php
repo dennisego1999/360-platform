@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImpersonateController;
+use App\Http\Controllers\ThreeSixtyGeneratorViewPointController;
 use App\Http\Controllers\TranslationsController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ThreeSixtyGeneratorController;
+use App\Http\Controllers\ThreeSixtyGeneratorAreaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
@@ -25,11 +26,16 @@ Route::name('translations.')->prefix('translations')->group(function () {
 Route::name('three-sixty-generator.')
     ->prefix('three-sixty-generator')
     ->group(function () {
-        Route::get('/', [ThreeSixtyGeneratorController::class, 'index'])->name('index');
-        Route::get('/create', [ThreeSixtyGeneratorController::class, 'create'])->name('create');
-        Route::post('/store', [ThreeSixtyGeneratorController::class, 'store'])->name('store');
-        Route::get('/{three_sixty_area:slug}/edit', [ThreeSixtyGeneratorController::class, 'edit'])->name('edit');
-        Route::put('/{three_sixty_area:slug}/update', [ThreeSixtyGeneratorController::class, 'update'])->name('update');
-        Route::delete('/{three_sixty_area:slug}/destroy', [ThreeSixtyGeneratorController::class, 'destroy'])->name('destroy');
-        Route::get('/area/{three_sixty_area:slug}', [ThreeSixtyGeneratorController::class, 'show'])->name('show');
+        Route::resource('three-sixty-area', ThreeSixtyGeneratorAreaController::class)
+            ->parameters([
+                'three-sixty-area' => 'threeSixtyArea'
+            ]);
+
+        Route::prefix('/three-sixty-area/{threeSixtyArea}')
+            ->group(function () {
+                Route::resource('three-sixty-view-point', ThreeSixtyGeneratorViewPointController::class)
+                    ->parameters([
+                        'three-sixty-view-point' => 'threeSixtyViewPoint'
+                    ]);
+            });
     });

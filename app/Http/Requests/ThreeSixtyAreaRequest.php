@@ -19,22 +19,6 @@ class ThreeSixtyAreaRequest extends FormRequest
                 'max:255',
                 Rule::unique('App\Models\ThreeSixtyArea')->ignore($areaId),
             ],
-            'slug' => [
-                'string',
-                'required',
-                'max:255',
-                Rule::unique('App\Models\ThreeSixtyArea')->ignore($areaId),
-            ],
-            'is_default' => [
-                'boolean',
-                'required',
-                Rule::unique('App\Models\ThreeSixtyArea')->ignore($areaId),
-            ],
-            'new_image' => [
-                'image',
-                'mimes:jpg,png,jpeg,gif',
-                'nullable'
-            ],
         ];
     }
 }

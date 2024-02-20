@@ -11,8 +11,6 @@ return new class extends Migration
         Schema::create('three_sixty_areas', static function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('slug')->unique();
-            $table->boolean('is_default')->default(false);
             $table->timestamps();
         });
     }

@@ -1,11 +1,11 @@
 <script setup>
-import { Head, useForm } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
+import { Head, useForm } from '@inertiajs/vue3';
 import Layout from '@/Layouts/Layout.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
-import ThreeSixtyAreaForm from '@/Components/ThreeSixtyAreaForm.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+import ThreeSixtyViewpointForm from '@/Components/ThreeSixtyViewpointForm.vue';
 
 // Define options
 defineOptions({
@@ -14,7 +14,8 @@ defineOptions({
 
 // Define props
 const props = defineProps({
-	area: Object
+	area: Object,
+	viewPoint: Object
 });
 
 // Set translation
@@ -22,15 +23,17 @@ const { t } = useI18n();
 
 // Set variables
 const form = useForm({
-	name: props.area.name ?? null,
-	is_default: props.area.is_default ?? false,
-	image: props.area.image ?? null
+	name: props.viewPoint.name ?? null,
+	description: props.viewPoint.description ?? null,
+	is_default: props.viewPoint.is_default ?? false,
+	image: props.viewPoint.image ?? null,
+	new_image: null
 });
 </script>
 
 <template>
 	<div>
-		<Head :title="t('spa.pages.three_sixty_generator.show.label')" />
+		<Head :title="t('spa.pages.three_sixty_generator.view_points.show.label')" />
 
 		<div class="flex flex-col gap-6">
 			<div class="sm:flex sm:items-center">
@@ -50,14 +53,19 @@ const form = useForm({
 					</SecondaryButton>
 
 					<PrimaryButton
-						:href="route('admin.three-sixty-generator.three-sixty-area.edit', { threeSixtyArea: area })"
+						:href="
+							route('admin.three-sixty-generator.three-sixty-view-point.edit', {
+								threeSixtyArea: area,
+								threeSixtyViewPoint: viewPoint
+							})
+						"
 					>
 						{{ t('spa.buttons.edit') }}
 					</PrimaryButton>
 				</div>
 			</div>
 
-			<ThreeSixtyAreaForm v-model:form="form" :can-edit="false" />
+			<ThreeSixtyViewpointForm v-model:form="form" :can-edit="false" />
 		</div>
 	</div>
 </template>

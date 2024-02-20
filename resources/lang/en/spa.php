@@ -13,6 +13,9 @@ return [
             'three_sixty_area_deleted' => 'The 360 area is deleted',
             'three_sixty_area_updated' => 'The 360 area is updated',
             'three_sixty_area_created' => 'The 360 area is created',
+            'three_sixty_view_point_deleted' => 'The viewpoint is deleted',
+            'three_sixty_view_point_updated' => 'The viewpoint is updated',
+            'three_sixty_view_point_created' => 'The viewpoint is created',
             'error' => 'Something went wrong',
         ],
     ],
@@ -31,6 +34,9 @@ return [
         'export' => 'Export',
         'create_user' => 'Make new user',
         'create_360_area' => 'Make new 360 area',
+        'create_view_point' => 'Make new view point',
+        'view_points' => 'View points',
+        'click_points' => 'Click points',
     ],
     'labels' => [
         'name' => 'Name',
@@ -43,7 +49,6 @@ return [
         'password' => 'Password',
         'password_confirmation' => 'Confirm password',
         'roles' => 'Roles',
-        'slug' => 'Slug',
         'image' => 'Image',
         'is_default' => 'Is default',
     ],
@@ -82,23 +87,44 @@ return [
             'label' => 'Profile',
         ],
         'three_sixty_generator' => [
-            'index' => [
-                'label' => '360 generator',
-                'description' => 'A list of all 360 areas',
-                'no_areas' => 'No 360 areas found...',
+            'areas' => [
+                'index' => [
+                    'label' => '360 generator',
+                    'description' => 'A list of all 360 areas',
+                    'no_areas' => 'No 360 areas found...',
+                ],
+                'create' => [
+                    'label' => '360 generator',
+                    'description' => 'Create new 360 area',
+                ],
+                'show' => [
+                    'label' => '360 generator',
+                    'description' => 'Look at the info of this 360 area',
+                ],
+                'edit' => [
+                    'label' => '360 generator',
+                    'description' => 'Edit this 360 area',
+                ],
             ],
-            'create' => [
-                'label' => '360 generator',
-                'description' => 'Create new 360 area',
-            ],
-            'show' => [
-                'label' => '360 generator',
-                'description' => 'Look at the info of this 360 area',
-            ],
-            'edit' => [
-                'label' => '360 generator',
-                'description' => 'Edit this 360 area',
-            ],
+            'view_points' => [
+                'index' => [
+                    'label' => 'Viewpoints in area: {name}',
+                    'description' => 'A list of all viewpoints',
+                    'no_viewpoints' => 'No view points found...',
+                ],
+                'create' => [
+                    'label' => 'Viewpoints in area: {name}',
+                    'description' => 'Create new viewpoint',
+                ],
+                'show' => [
+                    'label' => 'Viewpoints in area: {name}',
+                    'description' => 'Look at the info of this viewpoint',
+                ],
+                'edit' => [
+                    'label' => 'Viewpoints in area: {name}',
+                    'description' => 'Edit this viewpoint',
+                ],
+            ]
         ],
     ],
     'modals' => [

@@ -13,6 +13,9 @@ return [
             'three_sixty_area_deleted' => 'De 360 omgeving is verwijdered',
             'three_sixty_area_updated' => 'De 360 omgeving is bijgewerkt',
             'three_sixty_area_created' => 'De 360 omgeving is aangemaakt',
+            'three_sixty_view_point_deleted' => 'Het kijk punt is verwijderd',
+            'three_sixty_view_point_updated' => 'Het kijk punt is bijgewerkt',
+            'three_sixty_view_point_created' => 'Het kijk punt is aangemaakt',
             'error' => 'Er is iets fout gegaan',
         ],
     ],
@@ -31,6 +34,9 @@ return [
         'export' => 'Exporteer',
         'create_user' => 'Maak een nieuwe gebruiker aan',
         'create_360_area' => 'Maak een nieuwe 360 omgeving',
+        'create_view_point' => 'Maak een nieuw kijk punt',
+        'view_points' => 'Kijk punten',
+        'click_points' => 'Klik punten',
     ],
     'labels' => [
         'name' => 'Naam',
@@ -43,7 +49,6 @@ return [
         'password' => 'Wachtwoord',
         'password_confirmation' => 'Bevestig wachtwoord',
         'roles' => 'Rollen',
-        'slug' => 'Kruimelpad',
         'image' => 'Afbeelding',
         'is_default' => 'Is standaard',
     ],
@@ -82,23 +87,44 @@ return [
             'label' => 'Profiel',
         ],
         'three_sixty_generator' => [
-            'index' => [
-                'label' => '360 generator',
-                'description' => 'Een lijst van alle 360 omgevingen',
-                'no_areas' => 'Geen 360 omgevingen gevonden...',
+            'areas' => [
+                'index' => [
+                    'label' => '360 generator',
+                    'description' => 'Een lijst van alle 360 omgevingen',
+                    'no_areas' => 'Geen 360 omgevingen gevonden...',
+                ],
+                'create' => [
+                    'label' => '360 generator',
+                    'description' => 'Maak een nieuwe 360 omgeving',
+                ],
+                'show' => [
+                    'label' => '360 generator',
+                    'description' => 'Bekijk de info van deze 360 omgeving',
+                ],
+                'edit' => [
+                    'label' => '360 generator',
+                    'description' => 'Bewerk deze 360 omgeving',
+                ],
             ],
-            'create' => [
-                'label' => '360 generator',
-                'description' => 'Maak een nieuwe 360 omgeving',
-            ],
-            'show' => [
-                'label' => '360 generator',
-                'description' => 'Bekijk de info van deze 360 omgeving',
-            ],
-            'edit' => [
-                'label' => '360 generator',
-                'description' => 'Bewerk deze 360 omgeving',
-            ],
+            'view_points' => [
+                'index' => [
+                    'label' => 'Kijk punten in omgeving: {name}',
+                    'description' => 'Een lijst van alle kijk punten',
+                    'no_viewpoints' => 'Geen kijk punten gevonden...',
+                ],
+                'create' => [
+                    'label' => 'Kijk punten in omgeving: {name}',
+                    'description' => 'Maak een nieuw kijk punt',
+                ],
+                'show' => [
+                    'label' => 'Kijk punten in omgeving: {name}',
+                    'description' => 'Bekijk de info van dit kijk punt',
+                ],
+                'edit' => [
+                    'label' => 'Kijk punten in omgeving: {name}',
+                    'description' => 'Pas dit kijk punt aan',
+                ],
+            ]
         ],
     ],
     'modals' => [

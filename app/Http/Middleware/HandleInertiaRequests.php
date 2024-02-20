@@ -42,6 +42,7 @@ class HandleInertiaRequests extends Middleware
         // Get the shared data
         $data = array_merge(parent::share($request), [
             //General setup
+            'current_locale' => LaravelLocalization::getCurrentLocale(),
             'locales' => fn () => $this->getLocales(),
             'current_route_name' => $request->route()->getName(),
             'policies' => fn() => $this->getPolicies(),

@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Translatable\HasTranslations;
 
-class ThreeSixtyArea extends Model
+class ThreeSixtyViewPoint extends Model implements HasMedia
 {
-    use HasFactory;
     use HasTranslations;
+    use InteractsWithMedia;
 
     /*
     |--------------------------------------------------------------------------
@@ -20,11 +23,18 @@ class ThreeSixtyArea extends Model
 
     protected $fillable = [
         'name',
+        'description',
         'is_default',
+        'three_sixty_area_id',
     ];
 
     public $translatable = [
         'name',
+        'description',
+    ];
+
+    protected $casts = [
+        'is_default' => 'boolean',
     ];
 
     /*
@@ -33,15 +43,28 @@ class ThreeSixtyArea extends Model
     |--------------------------------------------------------------------------
     */
 
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('viewpoints')
+            ->singleFile();
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('optimized')
+            ->performOnCollections('viewpoints')
+            ->optimize();
+    }
+
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
 
-    public function viewpoints(): HasMany
+    public function area(): BelongsTo
     {
-        return $this->hasMany(ThreeSixtyViewPoint::class);
+        return $this->belongsTo(ThreeSixtyArea::class);
     }
 
     /*

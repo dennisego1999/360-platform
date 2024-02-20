@@ -9,10 +9,11 @@ use App\Http\Requests\ThreeSixtyAreaRequest;
 use App\Http\Resources\ThreeSixtyAreaResource;
 use App\Models\ThreeSixtyArea;
 use Inertia\Inertia;
+use Inertia\Response;
 
-class ThreeSixtyGeneratorController extends Controller
+class ThreeSixtyGeneratorAreaController extends Controller
 {
-    public function index()
+    public function index(): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Index', [
             'threeSixtyAreas' => ThreeSixtyArea::all(),
@@ -37,7 +38,7 @@ class ThreeSixtyGeneratorController extends Controller
 
         // Return
         return redirect()
-            ->route('admin.three-sixty-generator.index')
+            ->route('admin.three-sixty-generator.three-sixty-area.index')
             ->with('success', trans('spa.toasts.description.three_sixty_area_created'));
     }
 
@@ -55,8 +56,11 @@ class ThreeSixtyGeneratorController extends Controller
         ]);
     }
 
-    public function update(ThreeSixtyAreaRequest $request, ThreeSixtyAreaUpdateAction $threeSixtyAreaUpdateAction,ThreeSixtyArea $threeSixtyArea)
-    {
+    public function update(
+        ThreeSixtyAreaRequest $request,
+        ThreeSixtyAreaUpdateAction $threeSixtyAreaUpdateAction,
+        ThreeSixtyArea $threeSixtyArea
+    ) {
         // Authorize
         $this->authorize('update', $threeSixtyArea);
 
@@ -68,7 +72,7 @@ class ThreeSixtyGeneratorController extends Controller
 
         // Return
         return redirect()
-            ->route('admin.three-sixty-generator.index')
+            ->route('admin.three-sixty-generator.three-sixty-area.index')
             ->with('success', trans('spa.toasts.description.three_sixty_area_updated'));
     }
 
@@ -82,7 +86,7 @@ class ThreeSixtyGeneratorController extends Controller
 
         // Return
         return redirect()
-            ->route('admin.three-sixty-generator.index')
+            ->route('admin.three-sixty-generator.three-sixty-area.index')
             ->with('success', trans('spa.toasts.description.three_sixty_area_deleted'));
     }
 }

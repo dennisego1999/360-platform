@@ -85,9 +85,9 @@ class NavigationMiddleware
                 'active' => $user->can('manage-translations'),
             ],
             'three_sixty_generator' => [
-                'href' => route('admin.three-sixty-generator.index'),
-                'current' => $request->routeIs('admin.three-sixty-generator.*'),
-                'label' => trans('spa.pages.three_sixty_generator.index.label'),
+                'href' => route('admin.three-sixty-generator.three-sixty-area.index'),
+                'current' => $request->routeIs('admin.three-sixty-generator.**.*'),
+                'label' => trans('spa.pages.three_sixty_generator.areas.index.label'),
                 'active' => $user->can('manage-three-sixties'),
             ],
 

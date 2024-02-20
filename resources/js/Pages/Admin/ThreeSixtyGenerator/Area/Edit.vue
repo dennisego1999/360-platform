@@ -24,7 +24,6 @@ const { t } = useI18n();
 const form = useForm({
 	_method: 'put',
 	name: props.area.name ?? null,
-	slug: props.area.slug ?? null,
 	is_default: props.area.is_default ?? null,
 	image: props.area.image ?? null,
 	new_image: null
@@ -32,7 +31,7 @@ const form = useForm({
 
 // Define functions
 function submit() {
-	form.post(route('admin.three-sixty-generator.update', { three_sixty_area: props.area }));
+	form.post(route('admin.three-sixty-generator.three-sixty-area.update', { threeSixtyArea: props.area }));
 }
 </script>
 
@@ -44,16 +43,16 @@ function submit() {
 			<div class="sm:flex sm:items-center">
 				<div class="sm:flex-auto">
 					<h1 class="text-base font-semibold leading-6 text-gray-900">
-						{{ t('spa.pages.three_sixty_generator.edit.label') }}
+						{{ t('spa.pages.three_sixty_generator.areas.edit.label') }}
 					</h1>
 
 					<p class="mt-2 text-sm text-gray-700">
-						{{ t('spa.pages.three_sixty_generator.edit.description') }}
+						{{ t('spa.pages.three_sixty_generator.areas.edit.description') }}
 					</p>
 				</div>
 
 				<div class="flex justify-between items-center gap-4">
-					<SecondaryButton :href="route('admin.three-sixty-generator.index')">
+					<SecondaryButton :href="route('admin.three-sixty-generator.three-sixty-area.index')">
 						{{ t('spa.buttons.go_back') }}
 					</SecondaryButton>
 
