@@ -150,6 +150,7 @@ return [
     'url' => 'De :attribute moet een geldige URL zijn.',
     'ulid' => 'De :attribute moet een geldige ULID zijn.',
     'uuid' => 'De :attribute moet een geldige UUID zijn.',
+    'is_default' => 'Er kan maar één standaard omgeving zijn',
 
     /*
     |--------------------------------------------------------------------------

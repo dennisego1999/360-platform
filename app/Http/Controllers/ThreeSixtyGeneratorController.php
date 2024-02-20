@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Actions\ThreeSixtyAreaCreateAction;
 use App\Actions\ThreeSixtyAreaDestroyAction;
 use App\Actions\ThreeSixtyAreaUpdateAction;
+use App\Http\Requests\ThreeSixtyAreaRequest;
+use App\Http\Resources\ThreeSixtyAreaResource;
 use App\Models\ThreeSixtyArea;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ThreeSixtyGeneratorController extends Controller
@@ -23,13 +24,13 @@ class ThreeSixtyGeneratorController extends Controller
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Create');
     }
 
-    public function store(Request $request, ThreeSixtyAreaCreateAction $threeSixtyAreaCreateAction)
+    public function store(ThreeSixtyAreaRequest $request, ThreeSixtyAreaCreateAction $threeSixtyAreaCreateAction)
     {
+        // Authorize
+        $this->authorize('create', ThreeSixtyArea::class);
+
         // Validate input
-        $validated = $request->validate([
-            'name' => ['string', 'unique:App\Models\ThreeSixtyArea', 'required', 'max:255'],
-            'slug' => ['string', 'unique:App\Models\ThreeSixtyArea', 'required', 'max:255'],
-        ]);
+        $validated = $request->validated();
 
         // Handle action
         $threeSixtyAreaCreateAction->handle($validated);
@@ -43,27 +44,24 @@ class ThreeSixtyGeneratorController extends Controller
     public function show(ThreeSixtyArea $threeSixtyArea)
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Show', [
-            'area' => $threeSixtyArea
+            'area' => new ThreeSixtyAreaResource($threeSixtyArea)
         ]);
     }
 
     public function edit(ThreeSixtyArea $threeSixtyArea)
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Edit', [
-            'area' => $threeSixtyArea
+            'area' => new ThreeSixtyAreaResource($threeSixtyArea)
         ]);
     }
 
-    public function update(Request $request, ThreeSixtyAreaUpdateAction $threeSixtyAreaUpdateAction,ThreeSixtyArea $threeSixtyArea)
+    public function update(ThreeSixtyAreaRequest $request, ThreeSixtyAreaUpdateAction $threeSixtyAreaUpdateAction,ThreeSixtyArea $threeSixtyArea)
     {
         // Authorize
         $this->authorize('update', $threeSixtyArea);
 
         // Validate input
-        $validated = $request->validate([
-            'name' => ['string', 'unique:App\Models\ThreeSixtyArea', 'required', 'max:255'],
-            'slug' => ['string', 'unique:App\Models\ThreeSixtyArea', 'required', 'max:255'],
-        ]);
+        $validated = $request->validated();
 
         // Handle action
         $threeSixtyAreaUpdateAction->handle($validated, $threeSixtyArea);

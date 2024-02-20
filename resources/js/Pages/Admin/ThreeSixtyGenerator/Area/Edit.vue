@@ -3,11 +3,9 @@ import { Head, useForm } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import Layout from '@/Layouts/Layout.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import InputField from '@/Components/InputField.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import InputLabel from '@/Components/InputLabel.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
-import InputError from '@/Components/InputError.vue';
+import ThreeSixtyAreaForm from '@/Components/ThreeSixtyAreaForm.vue';
 
 // Define options
 defineOptions({
@@ -24,19 +22,15 @@ const { t } = useI18n();
 
 // Set variables
 const form = useForm({
+	_method: 'put',
 	name: props.area.name ?? null,
-	slug: props.area.slug ?? null
+	slug: props.area.slug ?? null,
+	is_default: props.area.is_default ?? null,
+	image: props.area.image ?? null,
+	new_image: null
 });
 
 // Define functions
-function handleNameChange(event) {
-	// Set the slug in the form
-	form.slug = event.target.value
-		.toLowerCase() // Convert to lowercase
-		.replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric characters (except numbers) with '-'
-		.replace(/^-+|-+$/g, '');
-}
-
 function submit() {
 	form.post(route('admin.three-sixty-generator.update', { three_sixty_area: props.area }));
 }
@@ -69,43 +63,7 @@ function submit() {
 				</div>
 			</div>
 
-			<div>
-				<form @submit.prevent>
-					<div class="flex flex-col gap-8">
-						<div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
-							<div class="sm:col-span-3">
-								<InputLabel for="name" :value="t('spa.labels.name')" />
-
-								<InputField
-									v-model="form.name"
-									type="text"
-									name="name"
-									id="name"
-									class="mt-1 block w-full"
-									@input="handleNameChange"
-								/>
-
-								<InputError :message="form.errors.name" class="mt-2" />
-							</div>
-
-							<div class="sm:col-span-3">
-								<InputLabel for="slug" :value="t('spa.labels.slug')" />
-
-								<InputField
-									v-model="form.slug"
-									type="text"
-									name="slug"
-									id="slug"
-									class="mt-1 block w-full"
-									:disabled="true"
-								/>
-
-								<InputError :message="form.errors.slug" class="mt-2" />
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
+			<ThreeSixtyAreaForm v-model:form="form" />
 		</div>
 	</div>
 </template>

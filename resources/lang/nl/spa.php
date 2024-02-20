@@ -21,6 +21,8 @@ return [
         'edit' => 'Pas aan',
         'cancel' => 'Annuleren',
         'save' => 'Sla op',
+        'remove' => 'Verwijder',
+        'add' => 'Voeg toe',
         'yes' => 'Ja',
         'no' => 'Neen',
         'close' => 'Sluit',
@@ -42,6 +44,8 @@ return [
         'password_confirmation' => 'Bevestig wachtwoord',
         'roles' => 'Rollen',
         'slug' => 'Kruimelpad',
+        'image' => 'Afbeelding',
+        'is_default' => 'Is standaard',
     ],
     'pages' => [
         'dashboard' => [

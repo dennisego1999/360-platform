@@ -21,6 +21,8 @@ return [
         'edit' => 'Edit',
         'cancel' => 'Cancel',
         'save' => 'Save',
+        'remove' => 'Remove',
+        'add' => 'Add',
         'yes' => 'Yes',
         'no' => 'No',
         'close' => 'Close',
@@ -42,6 +44,8 @@ return [
         'password_confirmation' => 'Confirm password',
         'roles' => 'Roles',
         'slug' => 'Slug',
+        'image' => 'Image',
+        'is_default' => 'Is default',
     ],
     'pages' => [
         'dashboard' => [

@@ -1,12 +1,11 @@
 <script setup>
-import { Head } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import Layout from '@/Layouts/Layout.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import InputField from '@/Components/InputField.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import InputLabel from '@/Components/InputLabel.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
+import ThreeSixtyAreaForm from '@/Components/ThreeSixtyAreaForm.vue';
 
 // Define options
 defineOptions({
@@ -14,12 +13,19 @@ defineOptions({
 });
 
 // Define props
-defineProps({
+const props = defineProps({
 	area: Object
 });
 
 // Set translation
 const { t } = useI18n();
+
+const form = useForm({
+	name: props.area.name ?? null,
+	slug: props.area.slug ?? null,
+	is_default: props.area.is_default ?? false,
+	image: props.area.image ?? null
+});
 </script>
 
 <template>
@@ -49,39 +55,7 @@ const { t } = useI18n();
 				</div>
 			</div>
 
-			<div>
-				<form @submit.prevent>
-					<div class="flex flex-col gap-8">
-						<div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
-							<div class="sm:col-span-3">
-								<InputLabel for="name" :value="t('spa.labels.name')" />
-
-								<InputField
-									v-model="area.name"
-									type="text"
-									name="name"
-									id="name"
-									class="mt-1 block w-full"
-									:disabled="true"
-								/>
-							</div>
-
-							<div class="sm:col-span-3">
-								<InputLabel for="slug" :value="t('spa.labels.slug')" />
-
-								<InputField
-									v-model="area.slug"
-									type="text"
-									name="slug"
-									id="slug"
-									class="mt-1 block w-full"
-									:disabled="true"
-								/>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
+			<ThreeSixtyAreaForm v-model:form="form" :can-edit="false" />
 		</div>
 	</div>
 </template>

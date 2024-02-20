@@ -29,7 +29,7 @@ Route::name('three-sixty-generator.')
         Route::get('/create', [ThreeSixtyGeneratorController::class, 'create'])->name('create');
         Route::post('/store', [ThreeSixtyGeneratorController::class, 'store'])->name('store');
         Route::get('/{three_sixty_area:slug}/edit', [ThreeSixtyGeneratorController::class, 'edit'])->name('edit');
-        Route::post('/{three_sixty_area:slug}/update', [ThreeSixtyGeneratorController::class, 'update'])->name('update');
+        Route::put('/{three_sixty_area:slug}/update', [ThreeSixtyGeneratorController::class, 'update'])->name('update');
         Route::delete('/{three_sixty_area:slug}/destroy', [ThreeSixtyGeneratorController::class, 'destroy'])->name('destroy');
         Route::get('/area/{three_sixty_area:slug}', [ThreeSixtyGeneratorController::class, 'show'])->name('show');
     });
