@@ -13,7 +13,7 @@ class UniqueDefaultThreeSixtyViewPoint implements ValidationRule
         // Count the number of records with is_default set to true
         $count = ThreeSixtyViewPoint::where($attribute, true)->count();
 
-        if($count === 1) {
+        if($count === 1 && $value) {
             // Fail
             $fail(trans('validation.is_default'));
         }

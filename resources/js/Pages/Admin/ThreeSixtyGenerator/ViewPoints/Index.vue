@@ -43,14 +43,14 @@ const { t } = useI18n();
 				</div>
 
 				<div class="flex justify-between items-center gap-4">
-					<SecondaryButton :href="route('admin.three-sixty-generator.three-sixty-area.index')">
+					<SecondaryButton :href="route('admin.three-sixty-generator.area.index')">
 						{{ t('spa.buttons.go_back') }}
 					</SecondaryButton>
 
 					<PrimaryButton
 						:href="
-							route('admin.three-sixty-generator.three-sixty-view-point.create', {
-								threeSixtyArea: area
+							route('admin.three-sixty-generator.view-point.create', {
+								area: area
 							})
 						"
 					>
@@ -78,9 +78,9 @@ const { t } = useI18n();
 					<div class="flex shrink-0 items-center gap-x-4">
 						<Link
 							:href="
-								route('admin.three-sixty-generator.three-sixty-view-point.show', {
-									threeSixtyArea: area,
-									threeSixtyViewPoint: viewpoint
+								route('admin.three-sixty-generator.view-point.show', {
+									area: area,
+									viewPoint: viewpoint
 								})
 							"
 							class="flex shrink-0 items-center gap-1"
@@ -93,9 +93,9 @@ const { t } = useI18n();
 						<Link
 							v-if="usePage().props.policies.can.manageThreeSixties"
 							:href="
-								route('admin.three-sixty-generator.three-sixty-view-point.edit', {
-									threeSixtyArea: area,
-									threeSixtyViewPoint: viewpoint
+								route('admin.three-sixty-generator.view-point.edit', {
+									area: area,
+									viewPoint: viewpoint
 								})
 							"
 							class="flex shrink-0 items-center gap-1"
@@ -108,9 +108,9 @@ const { t } = useI18n();
 						<Link
 							v-if="usePage().props.policies.can.manageThreeSixties"
 							:href="
-								route('admin.three-sixty-generator.three-sixty-view-point.destroy', {
-									threeSixtyArea: area,
-									threeSixtyViewPoint: viewpoint
+								route('admin.three-sixty-generator.view-point.destroy', {
+									area: area,
+									viewPoint: viewpoint
 								})
 							"
 							method="delete"

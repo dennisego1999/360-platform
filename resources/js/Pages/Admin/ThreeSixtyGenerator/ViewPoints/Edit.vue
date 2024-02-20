@@ -21,8 +21,6 @@ const props = defineProps({
 // Set translation
 const { t } = useI18n();
 
-console.log(props);
-
 // Set variables
 const form = useForm({
 	_method: 'put',
@@ -36,7 +34,7 @@ const form = useForm({
 // Define functions
 function submit() {
 	form.post(
-		route('admin.three-sixty-generator.three-sixty-view-point.update', {
+		route('admin.three-sixty-generator.view-point.update', {
 			threeSixtyArea: props.area,
 			threeSixtyViewPoint: props.viewPoint
 		})
@@ -61,7 +59,7 @@ function submit() {
 				</div>
 
 				<div class="flex justify-between items-center gap-4">
-					<SecondaryButton :href="route('admin.three-sixty-generator.three-sixty-area.index')">
+					<SecondaryButton :href="route('admin.three-sixty-generator.view-point.index', { area: area })">
 						{{ t('spa.buttons.go_back') }}
 					</SecondaryButton>
 

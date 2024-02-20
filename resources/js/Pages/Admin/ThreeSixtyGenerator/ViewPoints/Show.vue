@@ -48,15 +48,15 @@ const form = useForm({
 				</div>
 
 				<div class="flex justify-between items-center gap-4">
-					<SecondaryButton :href="route('admin.three-sixty-generator.three-sixty-area.index')">
+					<SecondaryButton :href="route('admin.three-sixty-generator.view-point.index', { area: area })">
 						{{ t('spa.buttons.go_back') }}
 					</SecondaryButton>
 
 					<PrimaryButton
 						:href="
-							route('admin.three-sixty-generator.three-sixty-view-point.edit', {
-								threeSixtyArea: area,
-								threeSixtyViewPoint: viewPoint
+							route('admin.three-sixty-generator.view-point.edit', {
+								area: area,
+								viewPoint: viewPoint
 							})
 						"
 					>

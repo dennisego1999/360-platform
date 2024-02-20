@@ -6,9 +6,9 @@ use App\Models\ThreeSixtyViewPoint;
 
 class ThreeSixtyViewPointDestroyAction
 {
-    public function handle(ThreeSixtyViewPoint $threeSixtyViewPoint): void
+    public function handle(ThreeSixtyViewPoint $viewPoint): void
     {
         // Delete
-        $threeSixtyViewPoint->delete();
+        $viewPoint->delete();
     }
 }

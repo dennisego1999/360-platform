@@ -37,7 +37,7 @@ const { t } = useI18n();
 					</p>
 				</div>
 
-				<PrimaryButton :href="route('admin.three-sixty-generator.three-sixty-area.create')">
+				<PrimaryButton :href="route('admin.three-sixty-generator.area.create')">
 					{{ t('spa.buttons.create_360_area') }}
 				</PrimaryButton>
 			</div>
@@ -61,8 +61,8 @@ const { t } = useI18n();
 					<div class="flex shrink-0 items-center gap-x-4">
 						<SecondaryButton
 							:href="
-								route('admin.three-sixty-generator.three-sixty-view-point.index', {
-									threeSixtyArea: area
+								route('admin.three-sixty-generator.view-point.index', {
+									area: area
 								})
 							"
 						>
@@ -70,7 +70,7 @@ const { t } = useI18n();
 						</SecondaryButton>
 
 						<Link
-							:href="route('admin.three-sixty-generator.three-sixty-area.show', { threeSixtyArea: area })"
+							:href="route('admin.three-sixty-generator.area.show', { area: area })"
 							class="flex shrink-0 items-center gap-1"
 						>
 							<div class="p-2 rounded-md bg-gray-300 cursor-pointer">
@@ -80,7 +80,7 @@ const { t } = useI18n();
 
 						<Link
 							v-if="usePage().props.policies.can.manageThreeSixties"
-							:href="route('admin.three-sixty-generator.three-sixty-area.edit', { threeSixtyArea: area })"
+							:href="route('admin.three-sixty-generator.area.edit', { area: area })"
 							class="flex shrink-0 items-center gap-1"
 						>
 							<div class="p-2 rounded-md bg-gray-300 cursor-pointer">
@@ -91,8 +91,8 @@ const { t } = useI18n();
 						<Link
 							v-if="usePage().props.policies.can.manageThreeSixties"
 							:href="
-								route('admin.three-sixty-generator.three-sixty-area.destroy', {
-									threeSixtyArea: area
+								route('admin.three-sixty-generator.area.destroy', {
+									area: area
 								})
 							"
 							method="delete"

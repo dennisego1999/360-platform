@@ -45,13 +45,11 @@ const form = useForm({
 				</div>
 
 				<div class="flex justify-between items-center gap-4">
-					<SecondaryButton :href="route('admin.three-sixty-generator.three-sixty-area.index')">
+					<SecondaryButton :href="route('admin.three-sixty-generator.area.index')">
 						{{ t('spa.buttons.go_back') }}
 					</SecondaryButton>
 
-					<PrimaryButton
-						:href="route('admin.three-sixty-generator.three-sixty-area.edit', { threeSixtyArea: area })"
-					>
+					<PrimaryButton :href="route('admin.three-sixty-generator.area.edit', { area: area })">
 						{{ t('spa.buttons.edit') }}
 					</PrimaryButton>
 				</div>

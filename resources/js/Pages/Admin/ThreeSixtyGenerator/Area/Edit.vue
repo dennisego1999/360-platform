@@ -31,7 +31,7 @@ const form = useForm({
 
 // Define functions
 function submit() {
-	form.post(route('admin.three-sixty-generator.three-sixty-area.update', { threeSixtyArea: props.area }));
+	form.post(route('admin.three-sixty-generator.area.update', { area: props.area }));
 }
 </script>
 
@@ -52,7 +52,7 @@ function submit() {
 				</div>
 
 				<div class="flex justify-between items-center gap-4">
-					<SecondaryButton :href="route('admin.three-sixty-generator.three-sixty-area.index')">
+					<SecondaryButton :href="route('admin.three-sixty-generator.area.index')">
 						{{ t('spa.buttons.go_back') }}
 					</SecondaryButton>
 

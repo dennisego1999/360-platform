@@ -26,16 +26,13 @@ Route::name('translations.')->prefix('translations')->group(function () {
 Route::name('three-sixty-generator.')
     ->prefix('three-sixty-generator')
     ->group(function () {
-        Route::resource('three-sixty-area', ThreeSixtyGeneratorAreaController::class)
-            ->parameters([
-                'three-sixty-area' => 'threeSixtyArea'
-            ]);
+        Route::resource('area', ThreeSixtyGeneratorAreaController::class);
 
-        Route::prefix('/three-sixty-area/{threeSixtyArea}')
+        Route::prefix('/area/{area}')
             ->group(function () {
-                Route::resource('three-sixty-view-point', ThreeSixtyGeneratorViewPointController::class)
+                Route::resource('view-point', ThreeSixtyGeneratorViewPointController::class)
                     ->parameters([
-                        'three-sixty-view-point' => 'threeSixtyViewPoint'
+                        'view-point' => 'viewPoint'
                     ]);
             });
     });

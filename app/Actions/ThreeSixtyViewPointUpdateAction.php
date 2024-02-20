@@ -6,10 +6,10 @@ use App\Models\ThreeSixtyViewPoint;
 
 class ThreeSixtyViewPointUpdateAction
 {
-    public function handle(array $data, ThreeSixtyViewPoint $threeSixtyViewPoint): void
+    public function handle(array $data, ThreeSixtyViewPoint $viewPoint): void
     {
         // Create record
-        $model = ThreeSixtyViewPoint::updateOrCreate(['id' => $threeSixtyViewPoint->id], [
+        $model = ThreeSixtyViewPoint::updateOrCreate(['id' => $viewPoint->id], [
             'name' => $data['name'],
             'description' => $data['description'],
             'is_default' => $data['is_default'],

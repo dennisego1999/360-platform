@@ -41,57 +41,57 @@ class ThreeSixtyGeneratorAreaController extends Controller
 
         // Return
         return redirect()
-            ->route('admin.three-sixty-generator.three-sixty-area.index')
+            ->route('admin.three-sixty-generator.area.index')
             ->with('success', trans('spa.toasts.description.three_sixty_area_created'));
     }
 
-    public function show(ThreeSixtyArea $threeSixtyArea): Response
+    public function show(ThreeSixtyArea $area): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Show', [
-            'area' => new ThreeSixtyAreaResource($threeSixtyArea)
+            'area' => new ThreeSixtyAreaResource($area)
         ]);
     }
 
-    public function edit(ThreeSixtyArea $threeSixtyArea): Response
+    public function edit(ThreeSixtyArea $area): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Edit', [
-            'area' => new ThreeSixtyAreaResource($threeSixtyArea)
+            'area' => new ThreeSixtyAreaResource($area)
         ]);
     }
 
     public function update(
         ThreeSixtyAreaRequest $request,
         ThreeSixtyAreaUpdateAction $threeSixtyAreaUpdateAction,
-        ThreeSixtyArea $threeSixtyArea
+        ThreeSixtyArea $area
     ): RedirectResponse {
         // Authorize
-        $this->authorize('update', $threeSixtyArea);
+        $this->authorize('update', $area);
 
         // Validate input
         $validated = $request->validated();
 
         // Handle action
-        $threeSixtyAreaUpdateAction->handle($validated, $threeSixtyArea);
+        $threeSixtyAreaUpdateAction->handle($validated, $area);
 
         // Return
         return redirect()
-            ->route('admin.three-sixty-generator.three-sixty-area.index')
+            ->route('admin.three-sixty-generator.area.index')
             ->with('success', trans('spa.toasts.description.three_sixty_area_updated'));
     }
 
     public function destroy(
         ThreeSixtyAreaDestroyAction $threeSixtyAreaDestroyAction,
-        ThreeSixtyArea $threeSixtyArea
+        ThreeSixtyArea $area
     ): RedirectResponse {
         // Authorize
-        $this->authorize('delete', $threeSixtyArea);
+        $this->authorize('delete', $area);
 
         // Handle action
-        $threeSixtyAreaDestroyAction->handle($threeSixtyArea);
+        $threeSixtyAreaDestroyAction->handle($area);
 
         // Return
         return redirect()
-            ->route('admin.three-sixty-generator.three-sixty-area.index')
+            ->route('admin.three-sixty-generator.area.index')
             ->with('success', trans('spa.toasts.description.three_sixty_area_deleted'));
     }
 }
