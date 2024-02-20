@@ -8,6 +8,7 @@ use App\Actions\ThreeSixtyAreaUpdateAction;
 use App\Http\Requests\ThreeSixtyAreaRequest;
 use App\Http\Resources\ThreeSixtyAreaResource;
 use App\Models\ThreeSixtyArea;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -20,13 +21,15 @@ class ThreeSixtyGeneratorAreaController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Create');
     }
 
-    public function store(ThreeSixtyAreaRequest $request, ThreeSixtyAreaCreateAction $threeSixtyAreaCreateAction)
-    {
+    public function store(
+        ThreeSixtyAreaRequest $request,
+        ThreeSixtyAreaCreateAction $threeSixtyAreaCreateAction
+    ): RedirectResponse {
         // Authorize
         $this->authorize('create', ThreeSixtyArea::class);
 
@@ -42,14 +45,14 @@ class ThreeSixtyGeneratorAreaController extends Controller
             ->with('success', trans('spa.toasts.description.three_sixty_area_created'));
     }
 
-    public function show(ThreeSixtyArea $threeSixtyArea)
+    public function show(ThreeSixtyArea $threeSixtyArea): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Show', [
             'area' => new ThreeSixtyAreaResource($threeSixtyArea)
         ]);
     }
 
-    public function edit(ThreeSixtyArea $threeSixtyArea)
+    public function edit(ThreeSixtyArea $threeSixtyArea): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Edit', [
             'area' => new ThreeSixtyAreaResource($threeSixtyArea)
@@ -60,7 +63,7 @@ class ThreeSixtyGeneratorAreaController extends Controller
         ThreeSixtyAreaRequest $request,
         ThreeSixtyAreaUpdateAction $threeSixtyAreaUpdateAction,
         ThreeSixtyArea $threeSixtyArea
-    ) {
+    ): RedirectResponse {
         // Authorize
         $this->authorize('update', $threeSixtyArea);
 
@@ -76,8 +79,10 @@ class ThreeSixtyGeneratorAreaController extends Controller
             ->with('success', trans('spa.toasts.description.three_sixty_area_updated'));
     }
 
-    public function destroy(ThreeSixtyAreaDestroyAction $threeSixtyAreaDestroyAction, ThreeSixtyArea $threeSixtyArea)
-    {
+    public function destroy(
+        ThreeSixtyAreaDestroyAction $threeSixtyAreaDestroyAction,
+        ThreeSixtyArea $threeSixtyArea
+    ): RedirectResponse {
         // Authorize
         $this->authorize('delete', $threeSixtyArea);
 

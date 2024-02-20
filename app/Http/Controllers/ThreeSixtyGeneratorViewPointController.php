@@ -11,12 +11,13 @@ use App\Http\Resources\ThreeSixtyViewpointResource;
 use App\Models\ThreeSixtyArea;
 use App\Models\ThreeSixtyViewPoint;
 use App\Models\ViewPoint;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class ThreeSixtyGeneratorViewPointController extends Controller
 {
-    public function index(ThreeSixtyArea $threeSixtyArea)
+    public function index(ThreeSixtyArea $threeSixtyArea): Response
     {
         $viewpoints = ThreeSixtyViewPoint::query()
             ->where('three_sixty_area_id', $threeSixtyArea->id)
@@ -28,15 +29,18 @@ class ThreeSixtyGeneratorViewPointController extends Controller
         ]);
     }
 
-    public function create(ThreeSixtyArea $threeSixtyArea)
+    public function create(ThreeSixtyArea $threeSixtyArea): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/ViewPoints/Create', [
             'area' => $threeSixtyArea,
         ]);
     }
 
-    public function store(ThreeSixtyViewPointRequest $request, ThreeSixtyViewPointCreateAction $threeSixtyViewPointCreateAction, ThreeSixtyArea $threeSixtyArea)
-    {
+    public function store(
+        ThreeSixtyViewPointRequest $request,
+        ThreeSixtyViewPointCreateAction $threeSixtyViewPointCreateAction,
+        ThreeSixtyArea $threeSixtyArea
+    ): RedirectResponse {
         // Authorize
         $this->authorize('create', ThreeSixtyViewPoint::class);
 
@@ -62,7 +66,7 @@ class ThreeSixtyGeneratorViewPointController extends Controller
         ]);
     }
 
-    public function edit(ThreeSixtyArea $threeSixtyArea, ThreeSixtyViewPoint $threeSixtyViewPoint)
+    public function edit(ThreeSixtyArea $threeSixtyArea, ThreeSixtyViewPoint $threeSixtyViewPoint): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/ViewPoints/Edit', [
             'area' => new ThreeSixtyAreaResource($threeSixtyArea),
@@ -75,7 +79,7 @@ class ThreeSixtyGeneratorViewPointController extends Controller
         ThreeSixtyViewPointUpdateAction $threeSixtyViewPointUpdateAction,
         ThreeSixtyArea $threeSixtyArea,
         ThreeSixtyViewPoint $threeSixtyViewPoint,
-    ) {
+    ): RedirectResponse {
         $this->authorize('update', $threeSixtyViewPoint);
 
         // Validate input
@@ -96,7 +100,7 @@ class ThreeSixtyGeneratorViewPointController extends Controller
         ThreeSixtyViewPointDestroyAction $threeSixtyViewPointDestroyAction,
         ThreeSixtyArea $threeSixtyArea,
         ThreeSixtyViewPoint $threeSixtyViewPoint,
-    ) {
+    ): RedirectResponse {
         // Authorize
         $this->authorize('delete', $threeSixtyViewPoint);
 

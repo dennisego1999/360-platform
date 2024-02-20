@@ -10,10 +10,13 @@ use ArtcoreSociety\TranslationImport\Excel\LanguageLineExport;
 use ArtcoreSociety\TranslationImport\Excel\LanguageLineImport;
 use ArtcoreSociety\TranslationImport\Models\LanguageLine;
 use ArtcoreSociety\TranslationImport\Services\TranslationService;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Inertia\Inertia;
+use Inertia\Response;
 use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class TranslationsController extends Controller
 {
@@ -24,7 +27,7 @@ class TranslationsController extends Controller
         $this->translationService = $translationService;
     }
 
-    public function index(Request $request, string $group = 'all')
+    public function index(Request $request, string $group = 'all'): Response
     {
         // Get the search term when available
         $term = $request->query('search');
@@ -34,8 +37,11 @@ class TranslationsController extends Controller
         ]);
     }
 
-    public function update(UpdateTranslationRequest $request, TranslationUpdateAction $translationUpdateAction, LanguageLine $languageLine)
-    {
+    public function update(
+        UpdateTranslationRequest $request,
+        TranslationUpdateAction $translationUpdateAction,
+        LanguageLine $languageLine
+    ): RedirectResponse {
         // Authorize
         $this->authorize('update', LanguageLine::class);
 
@@ -46,7 +52,7 @@ class TranslationsController extends Controller
         return redirect()->back()->with('success', trans('spa.toasts.description.translation_updated'));
     }
 
-    public function destroy(LanguageLine $languageLine)
+    public function destroy(LanguageLine $languageLine): RedirectResponse
     {
         // Authorize
         $this->authorize('delete', LanguageLine::class);
@@ -57,7 +63,8 @@ class TranslationsController extends Controller
         return redirect()->back()->with('success', trans('spa.toasts.description.translation_deleted'));
     }
 
-    public function scan() {
+    public function scan(): RedirectResponse
+    {
         // Authorize
         $this->authorize('scan', LanguageLine::class);
 
@@ -67,7 +74,8 @@ class TranslationsController extends Controller
         return redirect()->back()->with('success', trans('spa.toasts.description.scan_completed'));
     }
 
-    public function import(ImportTranslationsRequest $request) {
+    public function import(ImportTranslationsRequest $request): RedirectResponse
+    {
         // Authorize
         $this->authorize('import', LanguageLine::class);
 
@@ -81,7 +89,8 @@ class TranslationsController extends Controller
         return redirect()->back()->with('success', trans('spa.toasts.description.import_completed'));
     }
 
-    public function export() {
+    public function export(): BinaryFileResponse
+    {
         // Authorize
         $this->authorize('export', LanguageLine::class);
 

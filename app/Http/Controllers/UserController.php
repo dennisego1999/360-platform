@@ -7,12 +7,14 @@ use App\Actions\Fortify\UpdateUserProfileInformation;
 use App\Actions\Jetstream\DeleteUser;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class UserController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request): Response
     {
         $users = User::query()
             ->when($request->input('search'), function ($query) use ($request) {
@@ -28,14 +30,14 @@ class UserController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Admin/Users/Create', [
             'roles' => Role::all(),
         ]);
     }
 
-    public function store(Request $request, CreateNewUser $createNewUser)
+    public function store(Request $request, CreateNewUser $createNewUser): RedirectResponse
     {
         // Authorize
         $this->authorize('create', User::class);
@@ -46,14 +48,14 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', trans('spa.toasts.description.user_created'));
     }
 
-    public function show(User $user)
+    public function show(User $user): Response
     {
         return Inertia::render('Admin/Users/Show', [
             'user' => $user
         ]);
     }
 
-    public function edit(User $user)
+    public function edit(User $user): Response
     {
         return Inertia::render('Admin/Users/Edit', [
             'user' => $user->loadMissing(['roles']),
@@ -61,8 +63,11 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(Request $request, UpdateUserProfileInformation $updateUserProfileInformation, User $user)
-    {
+    public function update(
+        Request $request,
+        UpdateUserProfileInformation $updateUserProfileInformation,
+        User $user
+    ): RedirectResponse {
         // Authorize
         $this->authorize('update', $user);
 
@@ -72,7 +77,7 @@ class UserController extends Controller
         return redirect()->route('admin.users.index')->with('success', trans('spa.toasts.description.user_updated'));
     }
 
-    public function destroy(DeleteUser $deleteUserAction, User $user)
+    public function destroy(DeleteUser $deleteUserAction, User $user): RedirectResponse
     {
         // Authorize
         $this->authorize('delete', $user);
