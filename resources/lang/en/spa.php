@@ -34,9 +34,9 @@ return [
         'export' => 'Export',
         'create_user' => 'Make new user',
         'create_360_area' => 'Make new 360 area',
-        'create_view_point' => 'Make new view point',
-        'view_points' => 'View points',
-        'click_points' => 'Click points',
+        'create_view_point' => 'Make new viewpoint',
+        'view_points' => 'Viewpoints',
+        'click_points' => 'Clickpoints',
     ],
     'labels' => [
         'name' => 'Name',
