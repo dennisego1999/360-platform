@@ -5,16 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\Translatable\HasTranslations;
 
-class Viewpoint extends Model implements HasMedia
+class Clickpoint extends Model
 {
     use HasTranslations;
-    use InteractsWithMedia;
 
     /*
     |--------------------------------------------------------------------------
@@ -24,18 +19,15 @@ class Viewpoint extends Model implements HasMedia
 
     protected $fillable = [
         'name',
-        'description',
-        'is_default',
-        'area_id',
+        'coordinates',
+        'content',
+        'content_type',
+        'viewpoint_id',
     ];
 
     public $translatable = [
         'name',
-        'description',
-    ];
-
-    protected $casts = [
-        'is_default' => 'boolean',
+        'content',
     ];
 
     /*
@@ -44,33 +36,15 @@ class Viewpoint extends Model implements HasMedia
     |--------------------------------------------------------------------------
     */
 
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('viewpoints')
-            ->singleFile();
-    }
-
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('optimized')
-            ->performOnCollections('viewpoints')
-            ->optimize();
-    }
-
     /*
     |--------------------------------------------------------------------------
     | RELATIONS
     |--------------------------------------------------------------------------
     */
 
-    public function area(): BelongsTo
+    public function viewpoint(): BelongsTo
     {
-        return $this->belongsTo(Area::class);
-    }
-
-    public function clickpoints(): HasMany
-    {
-        return $this->hasMany(Clickpoint::class);
+        return $this->belongsTo(Viewpoint::class);
     }
 
     /*

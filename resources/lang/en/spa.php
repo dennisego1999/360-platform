@@ -34,9 +34,10 @@ return [
         'export' => 'Export',
         'create_user' => 'Make new user',
         'create_360_area' => 'Make new 360 area',
-        'create_view_point' => 'Make new viewpoint',
-        'view_points' => 'Viewpoints',
-        'click_points' => 'Clickpoints',
+        'create_viewpoint' => 'Make new viewpoint',
+        'create_clickpoint' => 'Make new clickpoint',
+        'viewpoints' => 'Viewpoints',
+        'clickpoints' => 'Clickpoints',
     ],
     'labels' => [
         'name' => 'Name',
@@ -106,11 +107,11 @@ return [
                     'description' => 'Edit this 360 area',
                 ],
             ],
-            'view_points' => [
+            'viewpoints' => [
                 'index' => [
                     'label' => 'Viewpoints in area: {name}',
                     'description' => 'A list of all viewpoints',
-                    'no_viewpoints' => 'No view points found...',
+                    'no_viewpoints' => 'No viewpoints found...',
                 ],
                 'create' => [
                     'label' => 'Viewpoints in area: {name}',
@@ -123,6 +124,25 @@ return [
                 'edit' => [
                     'label' => 'Viewpoints in area: {name}',
                     'description' => 'Edit this viewpoint',
+                ],
+            ],
+            'clickpoints' => [
+                'index' => [
+                    'label' => 'Clickpoints of viewpoint: {name}',
+                    'description' => 'A list of all clickpoints',
+                    'no_viewpoints' => 'No clickpoints found...',
+                ],
+                'create' => [
+                    'label' => 'Clickpoints of viewpoint: {name}',
+                    'description' => 'Create new clickpoint',
+                ],
+                'show' => [
+                    'label' => 'Clickpoints of viewpoint: {name}',
+                    'description' => 'Look at the info of this clickpoint',
+                ],
+                'edit' => [
+                    'label' => 'Clickpoints of viewpoint: {name}',
+                    'description' => 'Edit this clickpoint',
                 ],
             ]
         ],

@@ -5,7 +5,6 @@ import Layout from '@/Layouts/Layout.vue';
 import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
-import ThreeSixtyViewpointForm from '@/Components/ThreeSixtyViewpointForm.vue';
 
 // Define options
 defineOptions({
@@ -34,7 +33,7 @@ const form = useForm({
 // Define functions
 function submit() {
 	form.post(
-		route('admin.three-sixty-generator.viewpoint.update', {
+		route('admin.three-sixty-generator.clickpoint.update', {
 			area: props.area,
 			viewpoint: props.viewpoint
 		})
@@ -44,7 +43,7 @@ function submit() {
 
 <template>
 	<div>
-		<Head :title="t('spa.pages.three_sixty_generator.viewpoints.edit.label')" />
+		<Head :title="t('spa.pages.three_sixty_generator.clickpoints.edit.label')" />
 
 		<div class="flex flex-col gap-6">
 			<div class="sm:flex sm:items-center">
@@ -59,7 +58,7 @@ function submit() {
 				</div>
 
 				<div class="flex justify-between items-center gap-4">
-					<SecondaryButton :href="route('admin.three-sixty-generator.viewpoint.index', { area: area })">
+					<SecondaryButton :href="route('admin.three-sixty-generator.clickpoint.index', { area: area })">
 						{{ t('spa.buttons.go_back') }}
 					</SecondaryButton>
 
@@ -69,7 +68,7 @@ function submit() {
 				</div>
 			</div>
 
-			<ThreeSixtyViewpointForm v-model:form="form" />
+			<!--Form here-->
 		</div>
 	</div>
 </template>

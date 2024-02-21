@@ -24,21 +24,21 @@ const { t } = useI18n();
 
 <template>
 	<div>
-		<Head :title="t('spa.pages.three_sixty_generator.view_points.index.label')" />
+		<Head :title="t('spa.pages.three_sixty_generator.viewpoints.index.label')" />
 
 		<div class="flex flex-col gap-6">
 			<div class="sm:flex sm:items-center">
 				<div class="sm:flex-auto">
 					<h1 class="text-base font-semibold leading-6 text-gray-900">
 						{{
-							t('spa.pages.three_sixty_generator.view_points.index.label', {
+							t('spa.pages.three_sixty_generator.viewpoints.index.label', {
 								name: area.name[usePage().props.current_locale]
 							})
 						}}
 					</h1>
 
 					<p class="mt-2 text-sm text-gray-700">
-						{{ t('spa.pages.three_sixty_generator.view_points.index.description') }}
+						{{ t('spa.pages.three_sixty_generator.viewpoints.index.description') }}
 					</p>
 				</div>
 
@@ -54,7 +54,7 @@ const { t } = useI18n();
 							})
 						"
 					>
-						{{ t('spa.buttons.create_view_point') }}
+						{{ t('spa.buttons.create_viewpoint') }}
 					</PrimaryButton>
 				</div>
 			</div>
@@ -78,6 +78,17 @@ const { t } = useI18n();
 					</div>
 
 					<div class="flex shrink-0 items-center gap-x-4">
+						<SecondaryButton
+							:href="
+								route('admin.three-sixty-generator.clickpoint.index', {
+									area: area,
+									viewpoint: viewpoint
+								})
+							"
+						>
+							{{ t('spa.buttons.clickpoints') }}
+						</SecondaryButton>
+
 						<Link
 							:href="
 								route('admin.three-sixty-generator.viewpoint.show', {
@@ -127,7 +138,7 @@ const { t } = useI18n();
 				</li>
 			</ul>
 
-			<p v-else>{{ t('spa.pages.three_sixty_generator.view_points.index.no_viewpoints') }}</p>
+			<p v-else>{{ t('spa.pages.three_sixty_generator.viewpoints.index.no_viewpoints') }}</p>
 		</div>
 	</div>
 </template>

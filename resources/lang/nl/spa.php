@@ -34,9 +34,10 @@ return [
         'export' => 'Exporteer',
         'create_user' => 'Maak een nieuwe gebruiker aan',
         'create_360_area' => 'Maak een nieuwe 360 omgeving',
-        'create_view_point' => 'Maak een nieuw kijkpunt',
-        'view_points' => 'Kijkpunten',
-        'click_points' => 'Klikpunten',
+        'create_viewpoint' => 'Maak een nieuw kijkpunt',
+        'create_clickpoint' => 'Maak een nieuw klikpunt',
+        'viewpoints' => 'Kijkpunten',
+        'clickpoints' => 'Klikpunten',
     ],
     'labels' => [
         'name' => 'Naam',
@@ -106,23 +107,42 @@ return [
                     'description' => 'Bewerk deze 360 omgeving',
                 ],
             ],
-            'view_points' => [
+            'viewpoints' => [
                 'index' => [
-                    'label' => 'Kijk punten in omgeving: {name}',
-                    'description' => 'Een lijst van alle kijk punten',
-                    'no_viewpoints' => 'Geen kijk punten gevonden...',
+                    'label' => 'Kijkpunten in omgeving: {name}',
+                    'description' => 'Een lijst van alle kijkpunten',
+                    'no_viewpoints' => 'Geen kijkpunten gevonden...',
                 ],
                 'create' => [
-                    'label' => 'Kijk punten in omgeving: {name}',
+                    'label' => 'Kijkpunten in omgeving: {name}',
                     'description' => 'Maak een nieuw kijkpunt',
                 ],
                 'show' => [
-                    'label' => 'Kijk punten in omgeving: {name}',
+                    'label' => 'Kijkpunten in omgeving: {name}',
                     'description' => 'Bekijk de info van dit kijkpunt',
                 ],
                 'edit' => [
-                    'label' => 'Kijk punten in omgeving: {name}',
+                    'label' => 'Kijkpunten in omgeving: {name}',
                     'description' => 'Pas dit kijkpunt aan',
+                ],
+            ],
+            'clickpoints' => [
+                'index' => [
+                    'label' => 'Klikpunten van omgeving: {name}',
+                    'description' => 'Een lijst van alle klikpunten',
+                    'no_viewpoints' => 'Geen klikpunten gevonden...',
+                ],
+                'create' => [
+                    'label' => 'Klikpunten van omgeving: {name}',
+                    'description' => 'Maak een nieuw klikpunt',
+                ],
+                'show' => [
+                    'label' => 'Klikpunten van omgeving: {name}',
+                    'description' => 'Bekijk de info van dit klikpunt',
+                ],
+                'edit' => [
+                    'label' => 'Klikpunten van omgeving: {name}',
+                    'description' => 'Pas dit klikpunt aan',
                 ],
             ]
         ],

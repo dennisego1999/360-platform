@@ -37,17 +37,17 @@ function submit() {
 
 <template>
 	<div>
-		<Head :title="t('spa.pages.three_sixty_generator.view_points.create.label')" />
+		<Head :title="t('spa.pages.three_sixty_generator.viewpoints.create.label')" />
 
 		<div class="flex flex-col gap-6">
 			<div class="sm:flex sm:items-center">
 				<div class="sm:flex-auto">
 					<h1 class="text-base font-semibold leading-6 text-gray-900">
-						{{ t('spa.pages.three_sixty_generator.view_points.create.label') }}
+						{{ t('spa.pages.three_sixty_generator.viewpoints.create.label') }}
 					</h1>
 
 					<p class="mt-2 text-sm text-gray-700">
-						{{ t('spa.pages.three_sixty_generator.view_points.create.description') }}
+						{{ t('spa.pages.three_sixty_generator.viewpoints.create.description') }}
 					</p>
 				</div>
 

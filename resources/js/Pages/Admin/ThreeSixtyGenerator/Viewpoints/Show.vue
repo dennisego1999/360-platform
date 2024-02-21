@@ -33,7 +33,7 @@ const form = useForm({
 
 <template>
 	<div>
-		<Head :title="t('spa.pages.three_sixty_generator.view_points.show.label')" />
+		<Head :title="t('spa.pages.three_sixty_generator.viewpoints.show.label')" />
 
 		<div class="flex flex-col gap-6">
 			<div class="sm:flex sm:items-center">

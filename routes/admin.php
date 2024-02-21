@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClickpointController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImpersonateController;
 use App\Http\Controllers\ViewpointController;
@@ -31,5 +32,10 @@ Route::name('three-sixty-generator.')
         Route::prefix('/area/{area}')
             ->group(function () {
                 Route::resource('viewpoint', ViewpointController::class);
+
+                Route::prefix('/viewpoint/{viewpoint}')
+                    ->group(function () {
+                        Route::resource('clickpoint', ClickpointController::class);
+                    });
             });
     });
