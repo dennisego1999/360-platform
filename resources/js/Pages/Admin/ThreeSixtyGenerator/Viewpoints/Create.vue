@@ -22,8 +22,8 @@ const { t } = useI18n();
 
 // Set variables
 const form = useForm({
-	name: null,
-	description: null,
+	name: {},
+	description: {},
 	is_default: false,
 	image: null,
 	new_image: null

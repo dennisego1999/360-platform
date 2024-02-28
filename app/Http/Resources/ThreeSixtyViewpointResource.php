@@ -11,8 +11,8 @@ class ThreeSixtyViewpointResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'description' => $this->description,
+            'name' => $this->resource->getTranslations('name'),
+            'description' => $this->resource->getTranslations('description'),
             'is_default' => $this->is_default,
             'image' => new MediaResource($this->getFirstMedia('viewpoints')),
         ];

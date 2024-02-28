@@ -4,6 +4,8 @@ import { computed } from 'vue';
 import InputField from '@/Components/InputField.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
+import ChooseEditingLanguage from '@/Components/ChooseEditingLanguage.vue';
+import useLanguage from '@/Composables/useLanguage.js';
 
 // Define emits
 const emit = defineEmits(['update:form']);
@@ -32,6 +34,9 @@ const threeSixtyAreaForm = computed({
 		emit('update:form', value);
 	}
 });
+
+// Get language composable
+const { editingLanguage, setEditingLanguage } = useLanguage();
 </script>
 
 <template>
@@ -39,10 +44,14 @@ const threeSixtyAreaForm = computed({
 		<div class="flex flex-col gap-8">
 			<div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
 				<div class="sm:col-span-6">
+					<ChooseEditingLanguage @language="setEditingLanguage" />
+				</div>
+
+				<div class="sm:col-span-6">
 					<InputLabel for="name" :value="t('spa.labels.name')" />
 
 					<InputField
-						v-model="threeSixtyAreaForm.name"
+						v-model="threeSixtyAreaForm.name[editingLanguage]"
 						type="text"
 						name="name"
 						id="name"

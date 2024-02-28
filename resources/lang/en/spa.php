@@ -52,6 +52,7 @@ return [
         'roles' => 'Roles',
         'image' => 'Image',
         'is_default' => 'Is default',
+        'choose_language' => 'Choose a language to edit'
     ],
     'pages' => [
         'dashboard' => [

@@ -22,7 +22,7 @@ const { t } = useI18n();
 
 // Set variables
 const form = useForm({
-	name: props.area.name ?? null,
+	name: props.area.name ?? {},
 	is_default: props.area.is_default ?? false,
 	image: props.area.image ?? null
 });

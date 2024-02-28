@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class ThreeSixtyAreaRequest extends FormRequest
 {
@@ -11,6 +10,10 @@ class ThreeSixtyAreaRequest extends FormRequest
     {
         return [
             'name' => [
+                'array',
+                'required',
+            ],
+            'name.*' => [
                 'string',
                 'required',
                 'max:255',

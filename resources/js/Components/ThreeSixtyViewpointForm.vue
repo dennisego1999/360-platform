@@ -2,12 +2,14 @@
 import { useI18n } from 'vue-i18n';
 import { computed, ref } from 'vue';
 import { PhotoIcon } from '@heroicons/vue/24/outline';
+import useLanguage from '@/Composables/useLanguage.js';
 import InputField from '@/Components/InputField.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import TextAreaField from '@/Components/TextAreaField.vue';
+import ChooseEditingLanguage from '@/Components/ChooseEditingLanguage.vue';
 
 // Define emits
 const emit = defineEmits(['update:form']);
@@ -40,6 +42,9 @@ const threeSixtyAreaForm = computed({
 		emit('update:form', value);
 	}
 });
+
+// Get language composable
+const { editingLanguage, setEditingLanguage } = useLanguage();
 
 // Define functions
 function updatePhotoPreview() {
@@ -87,11 +92,15 @@ function clearThreeSixtyInput() {
 	<form @submit.prevent>
 		<div class="flex flex-col gap-8">
 			<div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+				<div class="sm:col-span-6">
+					<ChooseEditingLanguage @language="setEditingLanguage" />
+				</div>
+
 				<div class="sm:col-span-3">
 					<InputLabel for="name" :value="t('spa.labels.name')" />
 
 					<InputField
-						v-model="threeSixtyAreaForm.name"
+						v-model="threeSixtyAreaForm.name[editingLanguage]"
 						type="text"
 						name="name"
 						id="name"
@@ -121,7 +130,7 @@ function clearThreeSixtyInput() {
 					<InputLabel for="description" :value="t('spa.labels.description')" />
 
 					<TextAreaField
-						v-model="threeSixtyAreaForm.description"
+						v-model="threeSixtyAreaForm.description[editingLanguage]"
 						type="text"
 						name="description"
 						id="description"

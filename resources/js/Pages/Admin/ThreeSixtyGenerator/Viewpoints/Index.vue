@@ -71,7 +71,7 @@ const { t } = useI18n();
 				>
 					<div class="flex justify-start items-center gap-2">
 						<p class="text-sm font-semibold leading-6 text-gray-900 min-w-fit">
-							{{ viewpoint.name[usePage().props.current_locale] }}
+							{{ viewpoint.name }}
 						</p>
 
 						<CheckBadgeIcon v-if="viewpoint.is_default" class="fill-indigo-500 h-4 w-4" />

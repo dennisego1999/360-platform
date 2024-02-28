@@ -15,6 +15,7 @@ const props = defineProps({
 		type: String,
 		default: '48'
 	},
+	containerClasses: Array,
 	contentClasses: {
 		type: Array,
 		default: () => ['bg-white']
@@ -34,6 +35,7 @@ onUnmounted(() => document.removeEventListener('keydown', closeOnEscape));
 
 const widthClass = computed(() => {
 	return {
+		full: 'w-full',
 		fit: 'w-fit',
 		48: 'w-48'
 	}[props.width.toString()];
@@ -53,7 +55,7 @@ const alignmentClasses = computed(() => {
 </script>
 
 <template>
-	<div class="relative">
+	<div class="relative" :class="containerClasses">
 		<div @click="open = !open" class="cursor-pointer">
 			<slot v-if="!angle" name="trigger" />
 
@@ -80,7 +82,7 @@ const alignmentClasses = computed(() => {
 		>
 			<div
 				v-show="open"
-				class="absolute z-50 mt-2 rounded-md shadow-lg"
+				class="absolute z-50 mt-3 rounded-md shadow-lg"
 				:class="[widthClass, alignmentClasses]"
 				style="display: none"
 				@click="open = false"

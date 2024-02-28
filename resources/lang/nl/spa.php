@@ -52,6 +52,7 @@ return [
         'roles' => 'Rollen',
         'image' => 'Afbeelding',
         'is_default' => 'Is standaard',
+        'choose_language' => 'Kies een taal om aan te passen'
     ],
     'pages' => [
         'dashboard' => [

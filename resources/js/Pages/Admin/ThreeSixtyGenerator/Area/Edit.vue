@@ -23,7 +23,7 @@ const { t } = useI18n();
 // Set variables
 const form = useForm({
 	_method: 'put',
-	name: props.area.name ?? null,
+	name: props.area.name ?? {},
 	is_default: props.area.is_default ?? null,
 	image: props.area.image ?? null,
 	new_image: null

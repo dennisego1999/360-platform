@@ -17,7 +17,7 @@ const { t } = useI18n();
 
 // Set variables
 const form = useForm({
-	name: null
+	name: {}
 });
 
 // Define functions

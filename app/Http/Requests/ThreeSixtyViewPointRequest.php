@@ -14,11 +14,19 @@ class ThreeSixtyViewPointRequest extends FormRequest
 
         return [
             'name' => [
+                'array',
+                'required',
+            ],
+            'name.*' => [
                 'string',
                 'required',
                 'max:255',
             ],
             'description' => [
+                'array',
+                'required',
+            ],
+            'description.*' => [
                 'string',
                 'required',
                 'max:255',

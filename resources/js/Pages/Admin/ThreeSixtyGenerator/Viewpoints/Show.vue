@@ -23,8 +23,8 @@ const { t } = useI18n();
 
 // Set variables
 const form = useForm({
-	name: props.viewpoint.name ?? null,
-	description: props.viewpoint.description ?? null,
+	name: props.viewpoint.name ?? {},
+	description: props.viewpoint.description ?? {},
 	is_default: props.viewpoint.is_default ?? false,
 	image: props.viewpoint.image ?? null,
 	new_image: null

@@ -54,7 +54,7 @@ const { t } = useI18n();
 				>
 					<div class="flex items-center min-w-0">
 						<p class="text-sm font-semibold leading-6 text-gray-900">
-							{{ area.name[usePage().props.current_locale] }}
+							{{ area.name }}
 						</p>
 					</div>
 
