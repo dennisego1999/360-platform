@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ContentTypeEnum;
 use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -27,6 +28,10 @@ class Clickpoint extends Model
     public $translatable = [
         'name',
         'content',
+    ];
+
+    protected $casts = [
+        'content_type' => ContentTypeEnum::class.':nullable'
     ];
 
     /*

@@ -5,6 +5,7 @@ import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import Layout from '@/Layouts/Layout.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import ThreeSixtyClickpointForm from '@/Components/ThreeSixtyClickpointForm.vue';
 
 // Define options
 defineOptions({
@@ -13,7 +14,9 @@ defineOptions({
 
 // Define props
 const props = defineProps({
-	area: Object
+	area: Object,
+	viewpoint: Object,
+	contentTypes: Array
 });
 
 // Set translation
@@ -21,32 +24,31 @@ const { t } = useI18n();
 
 // Set variables
 const form = useForm({
-	name: null,
-	description: null,
-	is_default: false,
-	image: null,
-	new_image: null
+	name: {},
+	coordinates: {},
+	content: {},
+	content_type: props.contentTypes[0]
 });
 
 // Define functions
 function submit() {
-	form.post(route('admin.three-sixty-generator.viewpoint.store', { area: props.area }));
+	form.post(route('admin.three-sixty-generator.clickpoint.store', { area: props.area }));
 }
 </script>
 
 <template>
 	<div>
-		<Head :title="t('spa.pages.three_sixty_generator.viewpoints.create.label')" />
+		<Head :title="t('spa.pages.three_sixty_generator.clickpoints.create.label')" />
 
 		<div class="flex flex-col gap-6">
 			<div class="sm:flex sm:items-center">
 				<div class="sm:flex-auto">
 					<h1 class="text-base font-semibold leading-6 text-gray-900">
-						{{ t('spa.pages.three_sixty_generator.viewpoints.create.label') }}
+						{{ t('spa.pages.three_sixty_generator.clickpoints.create.label') }}
 					</h1>
 
 					<p class="mt-2 text-sm text-gray-700">
-						{{ t('spa.pages.three_sixty_generator.viewpoints.create.description') }}
+						{{ t('spa.pages.three_sixty_generator.clickpoints.create.description') }}
 					</p>
 				</div>
 
@@ -67,7 +69,11 @@ function submit() {
 				</div>
 			</div>
 
-			<!--Form here-->
+			<ThreeSixtyClickpointForm
+				v-model:form="form"
+				:content-types="contentTypes"
+				:src="props.viewpoint.image.original_url"
+			/>
 		</div>
 	</div>
 </template>

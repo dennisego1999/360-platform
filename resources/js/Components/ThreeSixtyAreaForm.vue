@@ -42,7 +42,7 @@ const { editingLanguage, setEditingLanguage } = useLanguage();
 <template>
 	<form @submit.prevent>
 		<div class="flex flex-col gap-8">
-			<div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+			<div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
 				<div class="sm:col-span-6">
 					<ChooseEditingLanguage @language="setEditingLanguage" />
 				</div>

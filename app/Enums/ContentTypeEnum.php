@@ -2,6 +2,7 @@
 
 namespace App\Enums;
 
+use Closure;
 use Spatie\Enum\Laravel\Enum;
 
 /**
@@ -13,4 +14,8 @@ use Spatie\Enum\Laravel\Enum;
  */
 final class ContentTypeEnum extends Enum
 {
+    protected static function labels(): Closure
+    {
+        return fn (string $name) => ucwords(strtolower(str_replace('_', ' ', $name)));
+    }
 }

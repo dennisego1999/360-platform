@@ -33,7 +33,7 @@ const { t } = useI18n();
 					<h1 class="text-base font-semibold leading-6 text-gray-900">
 						{{
 							t('spa.pages.three_sixty_generator.clickpoints.index.label', {
-								name: viewpoint.name[usePage().props.current_locale]
+								name: viewpoint.name
 							})
 						}}
 					</h1>

@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\ClickpointCreateAction;
+use App\Actions\ClickpointDestroyAction;
+use App\Actions\ClickpointUpdateAction;
+use App\Enums\ContentTypeEnum;
+use App\Http\Requests\ThreeSixtyClickpointRequest;
+use App\Http\Resources\ThreeSixtyAreaResource;
+use App\Http\Resources\ThreeSixtyClickpointResource;
+use App\Http\Resources\ThreeSixtyViewpointResource;
 use App\Models\Area;
 use App\Models\Clickpoint;
 use App\Models\Viewpoint;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ClickpointController extends Controller
 {
@@ -23,33 +31,103 @@ class ClickpointController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Area $area, Viewpoint $viewpoint): Response
     {
-        //
+        return Inertia::render('Admin/ThreeSixtyGenerator/Clickpoints/Create', [
+            'area' => new ThreeSixtyAreaResource($area),
+            'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
+            'contentTypes' => ContentTypeEnum::toLabels(),
+        ]);
     }
 
-    public function store(Request $request)
+    public function store(
+        ThreeSixtyClickpointRequest $request,
+        ClickpointCreateAction $clickpointCreateAction,
+        Area $area,
+        Viewpoint $viewpoint,
+    )
     {
-        //
+        // Authorize
+        $this->authorize('create', Clickpoint::class);
+
+        // Validate input
+        $validated = $request->validated();
+
+        // Handle action
+        $clickpointCreateAction->handle($validated, $viewpoint);
+
+        // Return
+        return redirect()
+            ->route('admin.three-sixty-generator.clickpoint.index', [
+                'area' => $area,
+                'viewpoint' => $viewpoint
+            ])
+            ->with('success', trans('spa.toasts.description.three_sixty_clickpoint_created'));
     }
 
-    public function show(Clickpoint $clickpoint)
+    public function show(Area $area, Viewpoint $viewpoint, Clickpoint $clickpoint): Response
     {
-        //
+        return Inertia::render('Admin/ThreeSixtyGenerator/Viewpoints/Show', [
+            'area' => new ThreeSixtyAreaResource($area),
+            'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
+            'clickpoint' => new ThreeSixtyClickpointResource($clickpoint)
+        ]);
     }
 
-    public function edit(Clickpoint $clickpoint)
+    public function edit(Area $area, Viewpoint $viewpoint, Clickpoint $clickpoint): Response
     {
-        //
+        return Inertia::render('Admin/ThreeSixtyGenerator/Clickpoints/Edit', [
+            'area' => new ThreeSixtyAreaResource($area),
+            'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
+            'clickpoint' => new ThreeSixtyClickpointResource($clickpoint)
+        ]);
     }
 
-    public function update(Request $request, Clickpoint $clickpoint)
+    public function update(
+        ThreeSixtyClickpointRequest $request,
+        ClickpointUpdateAction $clickpointUpdateAction,
+        Area $area,
+        Viewpoint $viewpoint,
+        Clickpoint $clickpoint
+    )
     {
-        //
+        // Authorize
+        $this->authorize('update', $clickpoint);
+
+        // Validate input
+        $validated = $request->validated();
+
+        // Handle action
+        $clickpointUpdateAction->handle($validated, $clickpoint);
+
+        // Return
+        return redirect()
+            ->route('admin.three-sixty-generator.clickpoint.index', [
+                'area' => $area,
+                'viewpoint' => $viewpoint,
+            ])
+            ->with('success', trans('spa.toasts.description.three_sixty_viewpoint_updated'));
     }
 
-    public function destroy(Clickpoint $clickpoint)
+    public function destroy(
+        ClickpointDestroyAction $clickpointDestroyAction,
+        Area $area,
+        Viewpoint $viewpoint,
+        Clickpoint $clickpoint
+    )
     {
-        //
+        // Authorize
+        $this->authorize('delete', $clickpoint);
+
+        // Handle action
+        $clickpointDestroyAction->handle($clickpoint);
+
+        // Return
+        return redirect()
+            ->route('admin.three-sixty-generator.clickpoint.index', [
+                'area' => $area,
+                'viewpoint' => $viewpoint
+            ])
+            ->with('success', trans('spa.toasts.description.three_sixty_clickpoint_deleted'));
     }
 }

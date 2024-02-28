@@ -13,9 +13,12 @@ return [
             'three_sixty_area_deleted' => 'The 360 area is deleted',
             'three_sixty_area_updated' => 'The 360 area is updated',
             'three_sixty_area_created' => 'The 360 area is created',
-            'three_sixty_view_point_deleted' => 'The viewpoint is deleted',
-            'three_sixty_view_point_updated' => 'The viewpoint is updated',
-            'three_sixty_view_point_created' => 'The viewpoint is created',
+            'three_sixty_viewpoint_deleted' => 'The viewpoint is deleted',
+            'three_sixty_viewpoint_updated' => 'The viewpoint is updated',
+            'three_sixty_viewpoint_created' => 'The viewpoint is created',
+            'three_sixty_clickpoint_deleted' => 'The clickpoint is deleted',
+            'three_sixty_clickpoint_updated' => 'The clickpoint is updated',
+            'three_sixty_clickpoint_created' => 'The clickpoint is created',
             'error' => 'Something went wrong',
         ],
     ],
@@ -52,7 +55,10 @@ return [
         'roles' => 'Roles',
         'image' => 'Image',
         'is_default' => 'Is default',
-        'choose_language' => 'Choose a language to edit'
+        'choose_language' => 'Choose a language to edit',
+        'coordinates' => 'Place a clickpoint on specific coordinates by clicking on the container',
+        'content_type' => 'Choose a content type',
+        'content' => 'Content'
     ],
     'pages' => [
         'dashboard' => [

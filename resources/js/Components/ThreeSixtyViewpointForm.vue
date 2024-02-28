@@ -34,7 +34,7 @@ const threeSixtyInput = ref(null);
 const ThreeSixtyPreview = ref(null);
 
 // Define computed variables
-const threeSixtyAreaForm = computed({
+const threeSixtyViewpointForm = computed({
 	get() {
 		return props.form;
 	},
@@ -56,29 +56,29 @@ function updatePhotoPreview() {
 
 	reader.onload = (e) => {
 		ThreeSixtyPreview.value = e.target.result;
-		threeSixtyAreaForm.value.new_image = photoFile;
-		emit('update:form', threeSixtyAreaForm.value);
+		threeSixtyViewpointForm.value.new_image = photoFile;
+		emit('update:form', threeSixtyViewpointForm.value);
 	};
 
 	reader.readAsDataURL(photoFile);
 }
 
 function selectNewThreeSixty() {
-	threeSixtyAreaForm.value.image = null;
+	threeSixtyViewpointForm.value.image = null;
 	threeSixtyInput.value.$el.click();
 }
 
 function deleteThreeSixty() {
 	// Reset
 	ThreeSixtyPreview.value = null;
-	threeSixtyAreaForm.value.image = null;
-	threeSixtyAreaForm.value.new_image = null;
+	threeSixtyViewpointForm.value.image = null;
+	threeSixtyViewpointForm.value.new_image = null;
 
 	// Clear three sixty input
 	clearThreeSixtyInput();
 
 	// Update form in parent
-	emit('update:form', threeSixtyAreaForm.value);
+	emit('update:form', threeSixtyViewpointForm.value);
 }
 
 function clearThreeSixtyInput() {
@@ -91,7 +91,7 @@ function clearThreeSixtyInput() {
 <template>
 	<form @submit.prevent>
 		<div class="flex flex-col gap-8">
-			<div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+			<div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
 				<div class="sm:col-span-6">
 					<ChooseEditingLanguage @language="setEditingLanguage" />
 				</div>
@@ -100,7 +100,7 @@ function clearThreeSixtyInput() {
 					<InputLabel for="name" :value="t('spa.labels.name')" />
 
 					<InputField
-						v-model="threeSixtyAreaForm.name[editingLanguage]"
+						v-model="threeSixtyViewpointForm.name[editingLanguage]"
 						type="text"
 						name="name"
 						id="name"
@@ -108,14 +108,14 @@ function clearThreeSixtyInput() {
 						:disabled="!canEdit"
 					/>
 
-					<InputError :message="threeSixtyAreaForm.errors.name" class="mt-2" />
+					<InputError :message="threeSixtyViewpointForm.errors.name" class="mt-2" />
 				</div>
 
 				<div class="sm:col-span-3">
 					<InputLabel for="is_default" :value="t('spa.labels.is_default')" />
 
 					<InputField
-						v-model="threeSixtyAreaForm.is_default"
+						v-model="threeSixtyViewpointForm.is_default"
 						type="checkbox"
 						name="is_default"
 						id="is_default"
@@ -123,14 +123,14 @@ function clearThreeSixtyInput() {
 						:disabled="!canEdit"
 					/>
 
-					<InputError :message="threeSixtyAreaForm.errors.is_default" class="mt-2" />
+					<InputError :message="threeSixtyViewpointForm.errors.is_default" class="mt-2" />
 				</div>
 
 				<div class="sm:col-span-6">
 					<InputLabel for="description" :value="t('spa.labels.description')" />
 
 					<TextAreaField
-						v-model="threeSixtyAreaForm.description[editingLanguage]"
+						v-model="threeSixtyViewpointForm.description[editingLanguage]"
 						type="text"
 						name="description"
 						id="description"
@@ -138,7 +138,7 @@ function clearThreeSixtyInput() {
 						:disabled="!canEdit"
 					/>
 
-					<InputError :message="threeSixtyAreaForm.errors.description" class="mt-2" />
+					<InputError :message="threeSixtyViewpointForm.errors.description" class="mt-2" />
 				</div>
 
 				<div class="sm:col-span-3">
@@ -155,9 +155,9 @@ function clearThreeSixtyInput() {
 							@change="updatePhotoPreview"
 						/>
 
-						<div v-if="threeSixtyAreaForm.image && threeSixtyAreaForm.image.original_url">
+						<div v-if="threeSixtyViewpointForm.image && threeSixtyViewpointForm.image.original_url">
 							<img
-								:src="threeSixtyAreaForm.image.original_url"
+								:src="threeSixtyViewpointForm.image.original_url"
 								alt="three sixty image"
 								class="w-full aspect-video object-cover"
 							/>
@@ -176,11 +176,11 @@ function clearThreeSixtyInput() {
 							/>
 						</div>
 
-						<InputError :message="threeSixtyAreaForm.errors.new_image" class="mt-2" />
+						<InputError :message="threeSixtyViewpointForm.errors.new_image" class="mt-2" />
 
 						<div v-if="canEdit" class="flex justify-start items-center gap-3">
 							<SecondaryButton
-								v-if="threeSixtyAreaForm.image || ThreeSixtyPreview"
+								v-if="threeSixtyViewpointForm.image || ThreeSixtyPreview"
 								type="button"
 								class="w-fit"
 								@click="deleteThreeSixty"

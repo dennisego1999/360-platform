@@ -13,9 +13,12 @@ return [
             'three_sixty_area_deleted' => 'De 360 omgeving is verwijdered',
             'three_sixty_area_updated' => 'De 360 omgeving is bijgewerkt',
             'three_sixty_area_created' => 'De 360 omgeving is aangemaakt',
-            'three_sixty_view_point_deleted' => 'Het kijkpunt is verwijderd',
-            'three_sixty_view_point_updated' => 'Het kijkpunt is bijgewerkt',
-            'three_sixty_view_point_created' => 'Het kijkpunt is aangemaakt',
+            'three_sixty_viewpoint_deleted' => 'Het kijkpunt is verwijderd',
+            'three_sixty_viewpoint_updated' => 'Het kijkpunt is bijgewerkt',
+            'three_sixty_viewpoint_created' => 'Het kijkpunt is aangemaakt',
+            'three_sixty_clickpoint_deleted' => 'The clickpoint is deleted',
+            'three_sixty_clickpoint_updated' => 'The clickpoint is updated',
+            'three_sixty_clickpoint_created' => 'The clickpoint is created',
             'error' => 'Er is iets fout gegaan',
         ],
     ],
@@ -52,7 +55,10 @@ return [
         'roles' => 'Rollen',
         'image' => 'Afbeelding',
         'is_default' => 'Is standaard',
-        'choose_language' => 'Kies een taal om aan te passen'
+        'choose_language' => 'Kies een taal om aan te passen',
+        'coordinates' => 'Plaats een klikpunt op specifieke coördinaten door te klikken op de container',
+        'content_type' => 'Kies een content type',
+        'content' => 'Content'
     ],
     'pages' => [
         'dashboard' => [

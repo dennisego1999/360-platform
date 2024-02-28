@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\ViewpointCreateAction;
 use App\Actions\ViewpointDestroyAction;
 use App\Actions\ViewpointUpdateAction;
-use App\Http\Requests\ThreeSixtyViewPointRequest;
+use App\Http\Requests\ThreeSixtyViewpointRequest;
 use App\Http\Resources\ThreeSixtyAreaResource;
 use App\Http\Resources\ThreeSixtyViewpointResource;
 use App\Models\Area;
@@ -36,7 +36,7 @@ class ViewpointController extends Controller
     }
 
     public function store(
-        ThreeSixtyViewPointRequest $request,
+        ThreeSixtyViewpointRequest $request,
         ViewpointCreateAction      $viewpointCreateAction,
         Area                       $area
     ): RedirectResponse {
@@ -54,14 +54,14 @@ class ViewpointController extends Controller
             ->route('admin.three-sixty-generator.viewpoint.index', [
                 'area' => $area
             ])
-            ->with('success', trans('spa.toasts.description.three_sixty_view_point_created'));
+            ->with('success', trans('spa.toasts.description.three_sixty_viewpoint_created'));
     }
 
     public function show(Area $area, Viewpoint $viewpoint): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Viewpoints/Show', [
             'area' => new ThreeSixtyAreaResource($area),
-            'viewpoint' => new ThreeSixtyViewPointResource($viewpoint)
+            'viewpoint' => new ThreeSixtyViewpointResource($viewpoint)
         ]);
     }
 
@@ -69,16 +69,17 @@ class ViewpointController extends Controller
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Viewpoints/Edit', [
             'area' => new ThreeSixtyAreaResource($area),
-            'viewpoint' => new ThreeSixtyViewPointResource($viewpoint)
+            'viewpoint' => new ThreeSixtyViewpointResource($viewpoint)
         ]);
     }
 
     public function update(
-        ThreeSixtyViewPointRequest $request,
+        ThreeSixtyViewpointRequest $request,
         ViewpointUpdateAction      $viewpointUpdateAction,
         Area                       $area,
         Viewpoint                  $viewpoint,
     ): RedirectResponse {
+        // Authorize
         $this->authorize('update', $viewpoint);
 
         // Validate input
@@ -92,7 +93,7 @@ class ViewpointController extends Controller
             ->route('admin.three-sixty-generator.viewpoint.index', [
                 'area' => $area,
             ])
-            ->with('success', trans('spa.toasts.description.three_sixty_view_point_updated'));
+            ->with('success', trans('spa.toasts.description.three_sixty_viewpoint_updated'));
     }
 
     public function destroy(
@@ -111,6 +112,6 @@ class ViewpointController extends Controller
             ->route('admin.three-sixty-generator.viewpoint.index', [
                 'area' => $area,
             ])
-            ->with('success', trans('spa.toasts.description.three_sixty_view_point_deleted'));
+            ->with('success', trans('spa.toasts.description.three_sixty_viewpoint_deleted'));
     }
 }
