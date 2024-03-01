@@ -4,16 +4,12 @@ namespace App\Http\Requests;
 
 use App\Enums\ContentTypeEnum;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 use Spatie\Enum\Laravel\Rules\EnumRule;
 
 class ThreeSixtyClickpointRequest extends FormRequest
 {
     public function rules(): array
     {
-        // Get viewpoint
-        $viewpointId = $this->route('viewpoint') ? $this->route('viewpoint')->id : null;
-
         return [
             'name' => [
                 'array',
@@ -30,16 +26,35 @@ class ThreeSixtyClickpointRequest extends FormRequest
             ],
             'coordinates.*' => [
                 'required',
-                'integer',
+                'numeric',
             ],
             'content' => [
+                'required',
                 'array',
-                'required',
             ],
-            'content.*' => [
+            'content.*.inertia_route' => [
+                'nullable',
                 'string',
-                'required',
                 'max:255',
+            ],
+            'content.*.external_url' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'content.*.video' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'content.*.info' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'content.*.viewpoint_id' => [
+                'nullable',
+                'integer',
             ],
             'content_type' => [
                 ['nullable', new EnumRule(ContentTypeEnum::class)]

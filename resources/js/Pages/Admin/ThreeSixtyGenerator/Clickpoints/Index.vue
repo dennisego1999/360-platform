@@ -73,7 +73,7 @@ const { t } = useI18n();
 				>
 					<div class="flex justify-start items-center gap-2">
 						<p class="text-sm font-semibold leading-6 text-gray-900 min-w-fit">
-							{{ clickpoint.name[usePage().props.current_locale] }}
+							{{ clickpoint.name }}
 						</p>
 
 						<CheckBadgeIcon v-if="clickpoint.is_default" class="fill-indigo-500 h-4 w-4" />
@@ -84,7 +84,8 @@ const { t } = useI18n();
 							:href="
 								route('admin.three-sixty-generator.clickpoint.show', {
 									area: area,
-									viewpoint: viewpoint
+									viewpoint: viewpoint,
+									clickpoint: clickpoint
 								})
 							"
 							class="flex shrink-0 items-center gap-1"
@@ -99,7 +100,8 @@ const { t } = useI18n();
 							:href="
 								route('admin.three-sixty-generator.clickpoint.edit', {
 									area: area,
-									viewpoint: viewpoint
+									viewpoint: viewpoint,
+									clickpoint: clickpoint
 								})
 							"
 							class="flex shrink-0 items-center gap-1"
@@ -114,7 +116,8 @@ const { t } = useI18n();
 							:href="
 								route('admin.three-sixty-generator.clickpoint.destroy', {
 									area: area,
-									viewpoint: viewpoint
+									viewpoint: viewpoint,
+									clickpoint: clickpoint
 								})
 							"
 							method="delete"

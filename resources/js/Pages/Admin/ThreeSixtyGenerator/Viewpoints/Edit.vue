@@ -37,7 +37,12 @@ function submit() {
 		route('admin.three-sixty-generator.viewpoint.update', {
 			area: props.area,
 			viewpoint: props.viewpoint
-		})
+		}),
+		{
+			onError: (error) => {
+				console.error(error);
+			}
+		}
 	);
 }
 </script>

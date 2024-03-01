@@ -5,6 +5,9 @@
 // Import styles
 @import "components/transitions";
 
+// Import package styles
+@import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
 // Add global styles
 html {
     scroll-behavior: smooth;

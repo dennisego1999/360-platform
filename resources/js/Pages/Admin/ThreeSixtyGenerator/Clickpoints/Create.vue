@@ -16,7 +16,8 @@ defineOptions({
 const props = defineProps({
 	area: Object,
 	viewpoint: Object,
-	contentTypes: Array
+	contentTypes: Array,
+	viewpoints: Array
 });
 
 // Set translation
@@ -32,7 +33,11 @@ const form = useForm({
 
 // Define functions
 function submit() {
-	form.post(route('admin.three-sixty-generator.clickpoint.store', { area: props.area }));
+	form.post(route('admin.three-sixty-generator.clickpoint.store', { area: props.area, viewpoint: props.viewpoint }), {
+		onError: (error) => {
+			console.error(error);
+		}
+	});
 }
 </script>
 
@@ -72,6 +77,7 @@ function submit() {
 			<ThreeSixtyClickpointForm
 				v-model:form="form"
 				:content-types="contentTypes"
+				:viewpoints="viewpoints"
 				:src="props.viewpoint.image.original_url"
 			/>
 		</div>

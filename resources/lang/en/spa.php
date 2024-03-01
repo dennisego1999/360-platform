@@ -58,7 +58,17 @@ return [
         'choose_language' => 'Choose a language to edit',
         'coordinates' => 'Place a clickpoint on specific coordinates by clicking on the container',
         'content_type' => 'Choose a content type',
-        'content' => 'Content'
+        'content' => 'Content',
+        'make_selection' => 'Make a selection',
+        'delete_selection' => 'Delete selection',
+        'no_items_found' => 'No items found...',
+        'instructions' => [
+            'viewpoints' => 'Select a viewpoint here',
+            'inertia_route' => 'Add a inertia route here',
+            'external_url' => 'Add an extern url here',
+            'video' => 'Add an embedded share link here',
+            'info' => 'Add your html content here'
+        ],
     ],
     'pages' => [
         'dashboard' => [

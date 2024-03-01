@@ -31,6 +31,7 @@ class Clickpoint extends Model
     ];
 
     protected $casts = [
+        'coordinates' => 'json',
         'content_type' => ContentTypeEnum::class.':nullable'
     ];
 

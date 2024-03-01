@@ -22,7 +22,11 @@ const form = useForm({
 
 // Define functions
 function submit() {
-	form.post(route('admin.three-sixty-generator.area.store'));
+	form.post(route('admin.three-sixty-generator.area.store'), {
+		onError: (error) => {
+			console.error(error);
+		}
+	});
 }
 </script>
 

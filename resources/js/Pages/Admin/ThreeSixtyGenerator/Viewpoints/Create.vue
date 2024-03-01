@@ -31,7 +31,11 @@ const form = useForm({
 
 // Define functions
 function submit() {
-	form.post(route('admin.three-sixty-generator.viewpoint.store', { area: props.area }));
+	form.post(route('admin.three-sixty-generator.viewpoint.store', { area: props.area }), {
+		onError: (error) => {
+			console.error(error);
+		}
+	});
 }
 </script>
 

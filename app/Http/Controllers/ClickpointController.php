@@ -36,7 +36,8 @@ class ClickpointController extends Controller
         return Inertia::render('Admin/ThreeSixtyGenerator/Clickpoints/Create', [
             'area' => new ThreeSixtyAreaResource($area),
             'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
-            'contentTypes' => ContentTypeEnum::toLabels(),
+            'contentTypes' => ContentTypeEnum::toValues(),
+            'viewpoints' => ThreeSixtyViewpointResource::collection($area->viewpoints),
         ]);
     }
 
@@ -79,7 +80,9 @@ class ClickpointController extends Controller
         return Inertia::render('Admin/ThreeSixtyGenerator/Clickpoints/Edit', [
             'area' => new ThreeSixtyAreaResource($area),
             'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
-            'clickpoint' => new ThreeSixtyClickpointResource($clickpoint)
+            'clickpoint' => new ThreeSixtyClickpointResource($clickpoint),
+            'contentTypes' => ContentTypeEnum::toValues(),
+            'viewpoints' => ThreeSixtyViewpointResource::collection($area->viewpoints),
         ]);
     }
 
@@ -98,7 +101,7 @@ class ClickpointController extends Controller
         $validated = $request->validated();
 
         // Handle action
-        $clickpointUpdateAction->handle($validated, $clickpoint);
+        $clickpointUpdateAction->handle($validated, $viewpoint, $clickpoint);
 
         // Return
         return redirect()

@@ -58,7 +58,17 @@ return [
         'choose_language' => 'Kies een taal om aan te passen',
         'coordinates' => 'Plaats een klikpunt op specifieke coördinaten door te klikken op de container',
         'content_type' => 'Kies een content type',
-        'content' => 'Content'
+        'content' => 'Content',
+        'make_selection' => 'Maak een selectie',
+        'delete_selection' => 'Verwijder selectie',
+        'no_items_found' => 'Geen items gevonden...',
+        'instructions' => [
+            'viewpoints' => 'Selecteer een kijkpunt hier',
+            'inertia_route' => 'Voeg een inertia route hier toe',
+            'external_url' => 'Voeg een externe url hier toe',
+            'video' => 'Voeg je embedded share link hier toe',
+            'info' => 'Voeg je html content hier toe'
+        ],
     ],
     'pages' => [
         'dashboard' => [

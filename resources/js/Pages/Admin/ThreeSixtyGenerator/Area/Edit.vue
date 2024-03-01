@@ -31,7 +31,11 @@ const form = useForm({
 
 // Define functions
 function submit() {
-	form.post(route('admin.three-sixty-generator.area.update', { area: props.area }));
+	form.post(route('admin.three-sixty-generator.area.update', { area: props.area }), {
+		onError: (error) => {
+			console.error(error);
+		}
+	});
 }
 </script>
 

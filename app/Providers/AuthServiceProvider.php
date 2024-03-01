@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Clickpoint;
 use App\Models\Team;
 use App\Models\Area;
 use App\Models\Viewpoint;
 use App\Models\User;
+use App\Policies\ClickpointPolicy;
 use App\Policies\LanguageLinePolicy;
 use App\Policies\TeamPolicy;
 use App\Policies\AreaPolicy;
@@ -27,7 +29,8 @@ class AuthServiceProvider extends ServiceProvider
         Team::class => TeamPolicy::class,
         User::class => UserPolicy::class,
         Area::class => AreaPolicy::class,
-        Viewpoint::class => ViewpointPolicy::class
+        Viewpoint::class => ViewpointPolicy::class,
+        ClickpointPolicy::class => Clickpoint::class
     ];
 
     /**

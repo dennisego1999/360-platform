@@ -108,7 +108,7 @@ function clearThreeSixtyInput() {
 						:disabled="!canEdit"
 					/>
 
-					<InputError :message="threeSixtyViewpointForm.errors.name" class="mt-2" />
+					<InputError :message="threeSixtyViewpointForm.errors['name.' + editingLanguage]" class="mt-2" />
 				</div>
 
 				<div class="sm:col-span-3">
@@ -138,7 +138,10 @@ function clearThreeSixtyInput() {
 						:disabled="!canEdit"
 					/>
 
-					<InputError :message="threeSixtyViewpointForm.errors.description" class="mt-2" />
+					<InputError
+						:message="threeSixtyViewpointForm.errors['description.' + editingLanguage]"
+						class="mt-2"
+					/>
 				</div>
 
 				<div class="sm:col-span-3">

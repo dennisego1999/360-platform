@@ -1,6 +1,7 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-import { computed, ref, watch } from 'vue';
+import { QuillEditor } from '@vueup/vue-quill';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import useLanguage from '@/Composables/useLanguage.js';
 import InputField from '@/Components/InputField.vue';
 import InputError from '@/Components/InputError.vue';
@@ -8,13 +9,15 @@ import InputLabel from '@/Components/InputLabel.vue';
 import ChooseEditingLanguage from '@/Components/ChooseEditingLanguage.vue';
 import VuePannellum from '@/Components/VuePannellum.vue';
 import Dropdown from '@/Components/Dropdown.vue';
+import { usePage } from '@inertiajs/vue3';
 
 // Define emits
-const emit = defineEmits(['update:form']);
+const emit = defineEmits(['update:form', 'ready']);
 
 // Define props
 const props = defineProps({
 	contentTypes: Array,
+	viewpoints: Array,
 	src: String,
 	form: {
 		type: Object,
@@ -29,9 +32,8 @@ const props = defineProps({
 // Set translation
 const { t } = useI18n();
 
-// Set variables
-const isLoaded = ref(null);
-const pannellum = ref(null);
+// Get language composable
+const { editingLanguage, setEditingLanguage } = useLanguage();
 
 // Define computed variables
 const threeSixtyClickpointForm = computed({
@@ -43,10 +45,53 @@ const threeSixtyClickpointForm = computed({
 	}
 });
 
-// Get language composable
-const { editingLanguage, setEditingLanguage } = useLanguage();
+const filteredViewpoints = computed(() => {
+	return props.viewpoints.filter((viewpoint) => viewpoint !== selectedViewpoint.value);
+});
+
+// Set variables
+const isLoaded = ref(null);
+const pannellum = ref(null);
+const selectedContentType = ref(threeSixtyClickpointForm.value.content_type ?? props.contentTypes[0]);
+const selectedViewpoint = ref(
+	threeSixtyClickpointForm.value.content_type === 'LINK_TO_VIEWPOINT' &&
+		threeSixtyClickpointForm.value.content[editingLanguage.value] &&
+		threeSixtyClickpointForm.value.content[editingLanguage.value].viewpoint_id
+		? getSpecificViewpointFromProps(threeSixtyClickpointForm.value.content[editingLanguage.value].viewpoint_id)
+		: null
+);
+const quillOptions = ref({
+	modules: {
+		toolbar: [
+			[{ header: 1 }],
+			[{ header: 2 }],
+			[{ list: 'ordered' }],
+			[{ list: 'bullet' }],
+			[{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }],
+			['bold', 'italic', 'underline', 'blockquote', 'link']
+		]
+	}
+});
 
 // Define functions
+function initContentObject() {
+	const locales = usePage().props.locales;
+
+	locales.forEach((locale) => {
+		threeSixtyClickpointForm.value.content[locale.code] = {
+			info: null,
+			video: null,
+			viewpoint_id: null,
+			inertia_route: null,
+			external_url: null
+		};
+	});
+}
+
+function getSpecificViewpointFromProps(id) {
+	return props.viewpoints.find((viewpoint) => viewpoint.id === id);
+}
+
 function setupViewerEvents() {
 	const viewer = pannellum.value.viewer;
 
@@ -90,14 +135,63 @@ function setupViewerEvents() {
 }
 
 function selectContentType(type) {
-	threeSixtyClickpointForm.value.content_type = type;
+	selectedContentType.value = type;
+	initContentObject();
 }
+
+function selectViewpoint(viewpoint) {
+	// Set reactive
+	selectedViewpoint.value = viewpoint;
+}
+
+function deleteViewpointSelection() {
+	selectedViewpoint.value = null;
+}
+
+function handleInfoUpdate(content) {
+	// Set embedded video share link content data in form
+	threeSixtyClickpointForm.value.content[editingLanguage.value].info = content;
+}
+
+async function setHotSpotProgrammatically(pitch, yaw) {
+	await nextTick();
+
+	let viewer = pannellum.value.viewer;
+	let oldHotSpot = {
+		pitch: pitch,
+		yaw: yaw
+	};
+
+	oldHotSpot.id = 1;
+	oldHotSpot.type = 'info';
+	oldHotSpot.text = 'Selected Clickpoint';
+	viewer.lookAt(oldHotSpot.pitch, oldHotSpot.yaw);
+	viewer.addHotSpot(oldHotSpot);
+}
+
+// Expose
+defineExpose({ setHotSpotProgrammatically });
 
 // Watch
 watch(isLoaded, (value) => {
 	if (value) {
 		setupViewerEvents();
 	}
+});
+
+watch(selectedContentType, (value) => {
+	// Update form content type
+	threeSixtyClickpointForm.value.content_type = value;
+});
+
+onMounted(() => {
+	// Init form object
+	initContentObject();
+
+	console.log(threeSixtyClickpointForm.value.content);
+
+	// Let parent component is ready
+	emit('ready');
 });
 </script>
 
@@ -122,6 +216,7 @@ watch(isLoaded, (value) => {
 					/>
 
 					<InputError :message="threeSixtyClickpointForm.errors.name" class="mt-2" />
+					<InputError :message="threeSixtyClickpointForm.errors['name.' + editingLanguage]" class="mt-2" />
 				</div>
 
 				<div class="sm:col-span-3">
@@ -146,7 +241,7 @@ watch(isLoaded, (value) => {
 					>
 						<template #trigger>
 							<div>
-								{{ threeSixtyClickpointForm.content_type }}
+								{{ selectedContentType }}
 							</div>
 						</template>
 
@@ -205,6 +300,120 @@ watch(isLoaded, (value) => {
 
 				<div class="sm:col-span-3">
 					<InputLabel for="content" :value="t('spa.labels.content')" />
+
+					<div v-if="selectedContentType === 'LINK_TO_VIEWPOINT'">
+						<Dropdown
+							width="full"
+							align="left"
+							:angle="true"
+							:container-classes="[
+								'bg-white',
+								'p-2',
+								'border-gray-300',
+								'focus:border-indigo-500',
+								'focus:ring-indigo-500',
+								'rounded-md',
+								'shadow-sm',
+								'mt-1',
+								'block',
+								'w-full'
+							]"
+						>
+							<template #trigger>
+								<div v-if="selectedViewpoint">
+									{{ selectedViewpoint.name[editingLanguage] }}
+								</div>
+
+								<div v-else>
+									{{ t('spa.labels.make_selection') }}
+								</div>
+							</template>
+
+							<template #content>
+								<div
+									v-for="(viewpoint, index) in filteredViewpoints"
+									:key="'viewpoint-' + index"
+									class="transition-all hover:bg-gray-50 p-2"
+									@click="selectViewpoint(viewpoint)"
+								>
+									{{ viewpoint.name[editingLanguage] }}
+								</div>
+
+								<div
+									v-if="selectedViewpoint"
+									class="transition-colors p-2"
+									:class="{ 'hover:bg-red-500 hover:text-white': filteredViewpoints.length === 0 }"
+									@click="deleteViewpointSelection"
+								>
+									{{ t('spa.labels.delete_selection') }}
+								</div>
+							</template>
+						</Dropdown>
+
+						<small class="block font-medium text-xs text-gray-700 mt-1">
+							{{ t('spa.labels.instructions.viewpoints') }}
+						</small>
+					</div>
+
+					<div v-if="selectedContentType === 'INERTIA_ROUTE'">
+						<InputField
+							v-model="threeSixtyClickpointForm.content[editingLanguage].inertia_route"
+							type="text"
+							name="inertia-route"
+							id="inertia-route"
+							class="mt-1 block w-full"
+							:disabled="!canEdit"
+						/>
+
+						<small class="block font-medium text-xs text-gray-700 mt-1">
+							{{ t('spa.labels.instructions.inertia_route') }}
+						</small>
+					</div>
+
+					<div v-if="selectedContentType === 'EXTERNAL_URL'">
+						<InputField
+							v-model="threeSixtyClickpointForm.content[editingLanguage].external_url"
+							type="text"
+							name="external-url"
+							id="external-url"
+							class="mt-1 block w-full"
+							:disabled="!canEdit"
+						/>
+
+						<small class="block font-medium text-xs text-gray-700 mt-1">
+							{{ t('spa.labels.instructions.external_url') }}
+						</small>
+					</div>
+
+					<div v-if="selectedContentType === 'VIDEO'">
+						<InputField
+							v-model="threeSixtyClickpointForm.content[editingLanguage].video"
+							type="text"
+							name="embedded-video-share-link"
+							id="embedded-video-share-link"
+							class="mt-1 block w-full"
+							:disabled="!canEdit"
+						/>
+
+						<small class="block font-medium text-xs text-gray-700 mt-1">
+							{{ t('spa.labels.instructions.video') }}
+						</small>
+					</div>
+
+					<div v-if="selectedContentType === 'INFO'">
+						<QuillEditor
+							theme="snow"
+							scrollingcontainer="true"
+							content-type="html"
+							:options="quillOptions"
+							:content="threeSixtyClickpointForm.content[editingLanguage].info"
+							@update:content="handleInfoUpdate"
+						/>
+
+						<small class="block font-medium text-xs text-gray-700 mt-1">
+							{{ t('spa.labels.instructions.info') }}
+						</small>
+					</div>
 
 					<InputError :message="threeSixtyClickpointForm.errors.content" class="mt-2" />
 				</div>
