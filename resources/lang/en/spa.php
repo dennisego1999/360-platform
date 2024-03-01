@@ -62,13 +62,16 @@ return [
         'make_selection' => 'Make a selection',
         'delete_selection' => 'Delete selection',
         'no_items_found' => 'No items found...',
-        'instructions' => [
-            'viewpoints' => 'Select a viewpoint here',
-            'inertia_route' => 'Add a inertia route here',
-            'external_url' => 'Add an extern url here',
-            'video' => 'Add an embedded share link here',
-            'info' => 'Add your html content here'
-        ],
+    ],
+    'instructions' => [
+        'viewpoints' => 'Select a viewpoint here',
+        'inertia_route' => 'Add a inertia route here',
+        'external_url' => 'Add an extern url here',
+        'video' => 'Add an embedded share link here',
+        'info' => 'Add your html content here'
+    ],
+    'issues' => [
+        'no_translated_viewpoint' => 'Untranslated viewpoint. Can\'t select until translation is created',
     ],
     'pages' => [
         'dashboard' => [

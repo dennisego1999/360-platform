@@ -62,13 +62,16 @@ return [
         'make_selection' => 'Maak een selectie',
         'delete_selection' => 'Verwijder selectie',
         'no_items_found' => 'Geen items gevonden...',
-        'instructions' => [
-            'viewpoints' => 'Selecteer een kijkpunt hier',
-            'inertia_route' => 'Voeg een inertia route hier toe',
-            'external_url' => 'Voeg een externe url hier toe',
-            'video' => 'Voeg je embedded share link hier toe',
-            'info' => 'Voeg je html content hier toe'
-        ],
+    ],
+    'instructions' => [
+        'viewpoints' => 'Selecteer een kijkpunt hier',
+        'inertia_route' => 'Voeg een inertia route hier toe',
+        'external_url' => 'Voeg een externe url hier toe',
+        'video' => 'Voeg je embedded share link hier toe',
+        'info' => 'Voeg je html content hier toe'
+    ],
+    'issues' => [
+        'no_translated_viewpoint' => 'Niet vertaald kijkpunt. Kan niet selecteren tot dat de vertaling is aangemaakt',
     ],
     'pages' => [
         'dashboard' => [

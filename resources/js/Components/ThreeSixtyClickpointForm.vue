@@ -46,6 +46,10 @@ const threeSixtyClickpointForm = computed({
 });
 
 const filteredViewpoints = computed(() => {
+	if (!selectedViewpoint.value) {
+		return props.viewpoints;
+	}
+
 	return props.viewpoints.filter((viewpoint) => viewpoint !== selectedViewpoint.value);
 });
 
@@ -79,11 +83,11 @@ function initContentObject() {
 
 	locales.forEach((locale) => {
 		threeSixtyClickpointForm.value.content[locale.code] = {
-			info: null,
-			video: null,
-			viewpoint_id: null,
-			inertia_route: null,
-			external_url: null
+			info: threeSixtyClickpointForm.value.content[locale.code]?.info ?? null,
+			video: threeSixtyClickpointForm.value.content[locale.code]?.video ?? null,
+			viewpoint_id: threeSixtyClickpointForm.value.content[locale.code]?.viewpoint_id ?? null,
+			inertia_route: threeSixtyClickpointForm.value.content[locale.code]?.inertia_route ?? null,
+			external_url: threeSixtyClickpointForm.value.content[locale.code]?.external_url ?? null
 		};
 	});
 }
@@ -182,13 +186,30 @@ watch(isLoaded, (value) => {
 watch(selectedContentType, (value) => {
 	// Update form content type
 	threeSixtyClickpointForm.value.content_type = value;
+
+	if (value === 'LINK_TO_VIEWPOINT') {
+		selectedViewpoint.value = getSpecificViewpointFromProps(
+			threeSixtyClickpointForm.value.content[editingLanguage.value].viewpoint_id
+		);
+	}
+});
+
+watch(selectedViewpoint, (value) => {
+	threeSixtyClickpointForm.value.content[editingLanguage.value].viewpoint_id = value ? value.id : null;
+});
+
+watch(editingLanguage, (newValue, oldValue) => {
+	if (newValue !== oldValue && selectedContentType.value === 'LINK_TO_VIEWPOINT') {
+		// Update form data
+		selectedViewpoint.value = getSpecificViewpointFromProps(
+			threeSixtyClickpointForm.value.content[editingLanguage.value].viewpoint_id
+		);
+	}
 });
 
 onMounted(() => {
 	// Init form object
 	initContentObject();
-
-	console.log(threeSixtyClickpointForm.value.content);
 
 	// Let parent component is ready
 	emit('ready');
@@ -334,9 +355,12 @@ onMounted(() => {
 									v-for="(viewpoint, index) in filteredViewpoints"
 									:key="'viewpoint-' + index"
 									class="transition-all hover:bg-gray-50 p-2"
-									@click="selectViewpoint(viewpoint)"
 								>
-									{{ viewpoint.name[editingLanguage] }}
+									<div v-if="viewpoint.name[editingLanguage]" @click="selectViewpoint(viewpoint)">
+										{{ viewpoint.name[editingLanguage] }}
+									</div>
+
+									<p v-else>{{ t('spa.issues.no_translated_viewpoint') }}</p>
 								</div>
 
 								<div
@@ -351,7 +375,7 @@ onMounted(() => {
 						</Dropdown>
 
 						<small class="block font-medium text-xs text-gray-700 mt-1">
-							{{ t('spa.labels.instructions.viewpoints') }}
+							{{ t('spa.instructions.viewpoints') }}
 						</small>
 					</div>
 
@@ -366,7 +390,7 @@ onMounted(() => {
 						/>
 
 						<small class="block font-medium text-xs text-gray-700 mt-1">
-							{{ t('spa.labels.instructions.inertia_route') }}
+							{{ t('spa.instructions.inertia_route') }}
 						</small>
 					</div>
 
@@ -381,7 +405,7 @@ onMounted(() => {
 						/>
 
 						<small class="block font-medium text-xs text-gray-700 mt-1">
-							{{ t('spa.labels.instructions.external_url') }}
+							{{ t('spa.instructions.external_url') }}
 						</small>
 					</div>
 
@@ -396,7 +420,7 @@ onMounted(() => {
 						/>
 
 						<small class="block font-medium text-xs text-gray-700 mt-1">
-							{{ t('spa.labels.instructions.video') }}
+							{{ t('spa.instructions.video') }}
 						</small>
 					</div>
 
@@ -411,7 +435,7 @@ onMounted(() => {
 						/>
 
 						<small class="block font-medium text-xs text-gray-700 mt-1">
-							{{ t('spa.labels.instructions.info') }}
+							{{ t('spa.instructions.info') }}
 						</small>
 					</div>
 

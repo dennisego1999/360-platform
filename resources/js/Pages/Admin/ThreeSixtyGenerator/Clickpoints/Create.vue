@@ -60,8 +60,9 @@ function submit() {
 				<div class="flex justify-between items-center gap-4">
 					<SecondaryButton
 						:href="
-							route('admin.three-sixty-generator.viewpoint.index', {
-								area: area
+							route('admin.three-sixty-generator.clickpoint.index', {
+								area: area,
+								viewpoint: viewpoint
 							})
 						"
 					>
