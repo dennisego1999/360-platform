@@ -11,6 +11,8 @@ class ThreeSixtyViewpointRequest extends FormRequest
     {
         // Get viewpoint
         $viewpointId = $this->route('viewpoint') ? $this->route('viewpoint')->id : null;
+        $areaId = $this->route('area') ? $this->route('area')->id : null;
+
 
         return [
             'name' => [
@@ -34,7 +36,14 @@ class ThreeSixtyViewpointRequest extends FormRequest
             'is_default' => [
                 'boolean',
                 'required',
-                Rule::unique('App\Models\Viewpoint')->ignore($viewpointId),
+                Rule::unique('viewpoints')
+                    ->where('area_id', $areaId)
+                    ->where('is_default', true)
+                    ->where(function ($query) use ($viewpointId) {
+                        if ($viewpointId !== null) {
+                            $query->where('id', '!=', $viewpointId);
+                        }
+                    }),
             ],
             'new_image' => [
                 'image',
