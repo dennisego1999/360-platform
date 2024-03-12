@@ -1,5 +1,5 @@
 <script setup>
-import { nextTick } from 'vue';
+import { nextTick, ref } from 'vue';
 import { router } from '@inertiajs/vue3';
 import Layout from '@/Layouts/Layout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
@@ -13,8 +13,12 @@ defineOptions({
 // Define props
 const props = defineProps({
 	area: Object,
-	startingViewpoint: Object
+	startingViewpoint: Object,
+	startingClickpoints: Array
 });
+
+// Set variables
+const hotSpots = ref([]);
 
 // Define functions
 function setHistory(viewpointId) {
@@ -31,9 +35,36 @@ function setHistory(viewpointId) {
 	);
 }
 
+function initHotspotsList() {
+	if (props.startingClickpoints.length === 0) {
+		return;
+	}
+
+	props.startingClickpoints.forEach((clickpoint) => {
+		hotSpots.value.push({
+			pitch: clickpoint.coordinates.pitch,
+			yaw: clickpoint.coordinates.yaw,
+			clickHandlerArgs: clickpoint,
+			clickHandlerFunc: onHotSpotClick,
+			createTooltipFunc: createHotSpotIcon
+		});
+	});
+}
+
+function onHotSpotClick(event, clickpoint) {
+	console.log('click', clickpoint);
+}
+
+function createHotSpotIcon(container) {
+	console.log('creating clickpoint ', container);
+}
+
 nextTick(() => {
 	// Set initial history
 	setHistory(props.startingViewpoint.id);
+
+	// Init hotspots
+	initHotspotsList();
 });
 </script>
 
@@ -46,5 +77,6 @@ nextTick(() => {
 		:showFullscreen="false"
 		:mouse-zoom="false"
 		:double-click-zoom="false"
+		:hot-spots="hotSpots"
 	/>
 </template>
