@@ -6,6 +6,7 @@ use App\Actions\AreaCreateAction;
 use App\Actions\AreaDestroyAction;
 use App\Actions\AreaUpdateAction;
 use App\Http\Requests\ThreeSixtyAreaRequest;
+use App\Http\Resources\ThreeSixtyAreaCollection;
 use App\Http\Resources\ThreeSixtyAreaResource;
 use App\Models\Area;
 use Illuminate\Http\RedirectResponse;
@@ -16,8 +17,10 @@ class AreaController extends Controller
 {
     public function index(): Response
     {
+        $areas = Area::all();
+
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Index', [
-            'threeSixtyAreas' => Area::all(),
+            'areas' => new ThreeSixtyAreaCollection($areas, false),
         ]);
     }
 
@@ -48,21 +51,21 @@ class AreaController extends Controller
     public function show(Area $area): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Show', [
-            'area' => new ThreeSixtyAreaResource($area)
+            'area' => new ThreeSixtyAreaResource($area, true),
         ]);
     }
 
     public function edit(Area $area): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Edit', [
-            'area' => new ThreeSixtyAreaResource($area)
+            'area' => new ThreeSixtyAreaResource($area, true),
         ]);
     }
 
     public function update(
         ThreeSixtyAreaRequest $request,
-        AreaUpdateAction      $areaUpdateAction,
-        Area                  $area
+        AreaUpdateAction $areaUpdateAction,
+        Area $area
     ): RedirectResponse {
         // Authorize
         $this->authorize('update', $area);
@@ -81,7 +84,7 @@ class AreaController extends Controller
 
     public function destroy(
         AreaDestroyAction $areaDestroyAction,
-        Area              $area
+        Area $area
     ): RedirectResponse {
         // Authorize
         $this->authorize('delete', $area);

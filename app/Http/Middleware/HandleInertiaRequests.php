@@ -45,12 +45,12 @@ class HandleInertiaRequests extends Middleware
             'current_locale' => LaravelLocalization::getCurrentLocale(),
             'locales' => fn () => $this->getLocales(),
             'current_route_name' => $request->route()->getName(),
-            'policies' => fn() => $this->getPolicies(),
+            'policies' => fn () => $this->getPolicies(),
             'flash' => $this->getSessionFlashing($request),
         ]);
 
         // Only on the initial load
-        if (!$request->header('X-Inertia')) {
+        if (! $request->header('X-Inertia')) {
             $data['app_name'] = config('app.name');
             $data['translations'] = $this->getTranslations();
         }
@@ -64,26 +64,26 @@ class HandleInertiaRequests extends Middleware
         $flash = [
             'uuid' => (string) Str::uuid(),
             'success' => Session::get('success'),
-            'error' => Session::get('error')
+            'error' => Session::get('error'),
         ];
 
         // Run additional checks when logged-in
         if ($user = $request->user()) {
             // The user has no two-factor authentication
-            if (!$user->hasEnabledTwoFactorAuthentication()) {
+            if (! $user->hasEnabledTwoFactorAuthentication()) {
                 // The user has still a valid grace period
                 if ($user->is_unlocked) {
                     $flash['bannerType'] = 'warning';
                     $flash['bannerMessage'] = trans('auth.two_factor.time_remaining', [
-                        'time' => $user->two_factor_grace_remaining
+                        'time' => $user->two_factor_grace_remaining,
                     ]);
                 }
 
                 // The user his grace period is overdue
-                if (!$user->is_unlocked) {
+                if (! $user->is_unlocked) {
                     $flash['bannerType'] = 'danger';
                     $flash['bannerMessage'] = trans('auth.two_factor.time_overdue', [
-                        'time' => $user->two_factor_grace_remaining
+                        'time' => $user->two_factor_grace_remaining,
                     ]);
                 }
             }
@@ -127,7 +127,7 @@ class HandleInertiaRequests extends Middleware
             $array[] = [
                 'code' => $key,
                 'is_current' => $key === LaravelLocalization::getCurrentLocale(),
-                'url' => LaravelLocalization::getLocalizedURL($key)
+                'url' => LaravelLocalization::getLocalizedURL($key),
             ];
         }
 
@@ -144,7 +144,7 @@ class HandleInertiaRequests extends Middleware
                 'manageThreeSixties' => auth()->check() ? auth()->user()->can('manage-three-sixties', User::class) : false,
                 'accessDashboard' => auth()->check() ? auth()->user()->can('access-dashboard', User::class) : false,
                 'impersonate' => auth()->check() ? auth()->user()->can('impersonate', User::class) : false,
-            ]
+            ],
         ];
     }
 }

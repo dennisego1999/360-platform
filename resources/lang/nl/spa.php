@@ -68,7 +68,7 @@ return [
         'inertia_route' => 'Voeg een inertia route hier toe',
         'external_url' => 'Voeg een externe url hier toe',
         'video' => 'Voeg je embedded share link hier toe',
-        'info' => 'Voeg je html content hier toe'
+        'info' => 'Voeg je html content hier toe',
     ],
     'issues' => [
         'no_translated_viewpoint' => 'Niet vertaald kijkpunt. Kan niet selecteren tot dat de vertaling is aangemaakt',
@@ -164,10 +164,10 @@ return [
                     'label' => 'Klikpunten van omgeving: {name}',
                     'description' => 'Pas dit klikpunt aan',
                 ],
-            ]
+            ],
         ],
     ],
     'modals' => [
-        'change_language' => 'Wilt u veranderen naar {locale}?'
+        'change_language' => 'Wilt u veranderen naar {locale}?',
     ],
 ];

@@ -1,5 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
+import { usePage } from '@inertiajs/vue3';
 import { QuillEditor } from '@vueup/vue-quill';
 import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import useLanguage from '@/Composables/useLanguage.js';
@@ -9,7 +10,6 @@ import InputLabel from '@/Components/InputLabel.vue';
 import ChooseEditingLanguage from '@/Components/ChooseEditingLanguage.vue';
 import VuePannellum from '@/Components/VuePannellum.vue';
 import Dropdown from '@/Components/Dropdown.vue';
-import { usePage } from '@inertiajs/vue3';
 
 // Define emits
 const emit = defineEmits(['update:form', 'ready']);
@@ -99,7 +99,7 @@ function getSpecificViewpointFromProps(id) {
 function setupViewerEvents() {
 	const viewer = pannellum.value.viewer;
 
-	if (!viewer) {
+	if (!viewer || !props.canEdit) {
 		return;
 	}
 
@@ -246,6 +246,7 @@ onMounted(() => {
 					<Dropdown
 						width="full"
 						align="left"
+						:disabled="!canEdit"
 						:angle="contentTypes.length > 1"
 						:container-classes="[
 							'bg-white',
@@ -326,6 +327,7 @@ onMounted(() => {
 						<Dropdown
 							width="full"
 							align="left"
+							:disabled="!canEdit"
 							:angle="true"
 							:container-classes="[
 								'bg-white',
@@ -426,12 +428,13 @@ onMounted(() => {
 
 					<div v-if="selectedContentType === 'INFO'">
 						<QuillEditor
+							v-model:content="threeSixtyClickpointForm.content[editingLanguage].info"
 							theme="snow"
 							scrollingcontainer="true"
 							content-type="html"
 							:options="quillOptions"
 							:content="threeSixtyClickpointForm.content[editingLanguage].info"
-							@update:content="handleInfoUpdate"
+							:read-only="!canEdit"
 						/>
 
 						<small class="block font-medium text-xs text-gray-700 mt-1">

@@ -39,7 +39,7 @@ class ThreeSixtyViewpointRequest extends FormRequest
             'new_image' => [
                 'image',
                 'mimes:jpg,png,jpeg,gif',
-                'nullable'
+                'nullable',
             ],
         ];
     }

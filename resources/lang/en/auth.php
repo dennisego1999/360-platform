@@ -18,6 +18,6 @@ return [
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'two_factor' => [
         'time_remaining' => 'Two-factor authentication is required for your account. Please enable it in your profile before <strong>:time</strong>!',
-        'time_overdue' => 'Your two-factor authentication grace period expired <strong>:time</strong>. Enable it to regain access.'
-    ]
+        'time_overdue' => 'Your two-factor authentication grace period expired <strong>:time</strong>. Enable it to regain access.',
+    ],
 ];

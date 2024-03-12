@@ -196,7 +196,7 @@ return [
         'error' => 'Whoops, something went wrong on our servers. Verify you\'re using the correct region.',
         'expired' => 'The page expired, please try again.',
         'missing' => 'Sorry, the page you are looking for could not be found.',
-        'forbidden' => 'Sorry, you are forbidden from accessing this page.'
-    ]
+        'forbidden' => 'Sorry, you are forbidden from accessing this page.',
+    ],
 
 ];

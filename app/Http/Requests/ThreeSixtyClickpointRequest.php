@@ -57,7 +57,7 @@ class ThreeSixtyClickpointRequest extends FormRequest
                 'integer',
             ],
             'content_type' => [
-                ['nullable', new EnumRule(ContentTypeEnum::class)]
+                ['nullable', new EnumRule(ContentTypeEnum::class)],
             ],
         ];
     }

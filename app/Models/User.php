@@ -18,11 +18,11 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
+    use HasRoles;
     use HasTeams;
+    use Impersonate;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use HasRoles;
-    use Impersonate;
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +65,6 @@ class User extends Authenticatable implements MustVerifyEmail
     |--------------------------------------------------------------------------
     */
 
-
     /*
     |--------------------------------------------------------------------------
     | SCOPES
@@ -80,12 +79,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getFullNameAttribute(): string
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
 
     protected function defaultProfilePhotoUrl(): string
     {
-        return 'https://ui-avatars.com/api/?name=' . urlencode($this->full_name) . '&color=569FB2&background=EBF4FF';
+        return 'https://ui-avatars.com/api/?name='.urlencode($this->full_name).'&color=569FB2&background=EBF4FF';
     }
 
     public function canBeImpersonated()

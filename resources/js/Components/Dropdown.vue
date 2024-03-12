@@ -3,6 +3,10 @@ import { computed, onMounted, onUnmounted, ref } from 'vue';
 import AngleDownIcon from '@/Components/AngleDownIcon.vue';
 
 const props = defineProps({
+	disabled: {
+		type: Boolean,
+		default: false
+	},
 	angle: {
 		type: Boolean,
 		default: false
@@ -52,17 +56,30 @@ const alignmentClasses = computed(() => {
 
 	return 'origin-top';
 });
+
+function toggleOpenState() {
+	if (props.disabled) {
+		return;
+	}
+
+	open.value = !open.value;
+}
+
+function close() {
+	open.value = false;
+}
 </script>
 
 <template>
 	<div class="relative" :class="containerClasses">
-		<div @click="open = !open" class="cursor-pointer">
+		<div @click="toggleOpenState" :class="{ 'cursor-pointer': !disabled }">
 			<slot v-if="!angle" name="trigger" />
 
 			<div v-else class="flex justify-between items-center gap-1">
 				<slot name="trigger" />
 
 				<AngleDownIcon
+					v-if="!disabled"
 					class="h-4 w-4 transition-transform"
 					:class="{ 'rotate-180': open, 'rotate-0': !open }"
 				/>
@@ -70,7 +87,7 @@ const alignmentClasses = computed(() => {
 		</div>
 
 		<!-- Full Screen Dropdown Overlay -->
-		<div v-show="open" class="fixed inset-0 z-40" @click="open = false" />
+		<div v-show="open" class="fixed inset-0 z-40" @click="close" />
 
 		<transition
 			enter-active-class="transition ease-out duration-200"
@@ -85,7 +102,7 @@ const alignmentClasses = computed(() => {
 				class="absolute z-50 mt-3 rounded-md shadow-lg"
 				:class="[widthClass, alignmentClasses]"
 				style="display: none"
-				@click="open = false"
+				@click="close"
 			>
 				<div
 					class="overflow-hidden rounded-md ring-1 ring-black ring-opacity-5 cursor-pointer"

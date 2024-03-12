@@ -18,7 +18,7 @@ class RolePermissionSeeder extends Seeder
                 'manage-translations',
                 'manage-three-sixties',
                 'access-dashboard',
-            ]
+            ],
         ],
         [
             'name' => 'admin',
@@ -28,18 +28,18 @@ class RolePermissionSeeder extends Seeder
                 'manage-translations',
                 'manage-three-sixties',
                 'access-dashboard',
-            ]
+            ],
         ],
         [
             'name' => 'editor',
             'permissions' => [
                 'manage-three-sixties',
                 'access-dashboard',
-            ]
+            ],
         ],
         [
             'name' => 'visitor',
-            'permissions' => []
+            'permissions' => [],
         ],
     ];
 

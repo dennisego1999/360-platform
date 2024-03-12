@@ -17,7 +17,7 @@ class Role extends SpatieRole
     ];
 
     protected $appends = [
-        'label'
+        'label',
     ];
 
     /*

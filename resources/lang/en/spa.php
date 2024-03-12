@@ -68,7 +68,7 @@ return [
         'inertia_route' => 'Add a inertia route here',
         'external_url' => 'Add an extern url here',
         'video' => 'Add an embedded share link here',
-        'info' => 'Add your html content here'
+        'info' => 'Add your html content here',
     ],
     'issues' => [
         'no_translated_viewpoint' => 'Untranslated viewpoint. Can\'t select until translation is created',
@@ -164,10 +164,10 @@ return [
                     'label' => 'Clickpoints of viewpoint: {name}',
                     'description' => 'Edit this clickpoint',
                 ],
-            ]
+            ],
         ],
     ],
     'modals' => [
-        'change_language' => 'Do you want to switch to {locale}?'
+        'change_language' => 'Do you want to switch to {locale}?',
     ],
 ];

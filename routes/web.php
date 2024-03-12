@@ -17,7 +17,7 @@ use Inertia\Inertia;
 */
 Route::get('/', HomeController::class)->name('home');
 
-Route::fallback(fn() => Inertia::render('Errors/404'));
+Route::fallback(fn () => Inertia::render('Errors/404'));
 
 $verificationLimiter = config('fortify.limiters.verification', '6,1');
 Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)

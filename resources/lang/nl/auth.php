@@ -18,6 +18,6 @@ return [
     'throttle' => 'Te veel inlogpogingen. Probeer opnieuw in :seconds seconden.',
     'two_factor' => [
         'time_remaining' => 'Voor uw account is tweefactorauthenticatie vereist. Schakel het eerst in uw profiel voor <strong>:time</strong>!',
-        'time_overdue' => 'De respijtperiode voor tweefactorauthenticatie is verstreken <strong>:time</strong>. Schakel het in om weer toegang te krijgen.'
-    ]
+        'time_overdue' => 'De respijtperiode voor tweefactorauthenticatie is verstreken <strong>:time</strong>. Schakel het in om weer toegang te krijgen.',
+    ],
 ];

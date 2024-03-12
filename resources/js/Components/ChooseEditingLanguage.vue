@@ -8,6 +8,14 @@ import Dropdown from '@/Components/Dropdown.vue';
 // Define emits
 const emit = defineEmits(['language']);
 
+// Define props
+defineProps({
+	disabled: {
+		type: Boolean,
+		default: false
+	}
+});
+
 // Set translation
 const { t } = useI18n();
 
@@ -31,6 +39,7 @@ watch(editingLanguage, (value) => {
 	<Dropdown
 		width="full"
 		align="left"
+		:disabled="disabled"
 		:angle="usePage().props.locales.length > 1"
 		:container-classes="[
 			'bg-white',

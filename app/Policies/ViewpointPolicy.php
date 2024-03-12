@@ -2,10 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Area;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Auth\Access\Response;
 
 class ViewpointPolicy
 {

@@ -13,12 +13,13 @@ use App\Http\Resources\ThreeSixtyViewpointResource;
 use App\Models\Area;
 use App\Models\Clickpoint;
 use App\Models\Viewpoint;
+use Illuminate\Http\RedirectResponse;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class ClickpointController extends Controller
 {
-    public function index(Area $area, Viewpoint $viewpoint)
+    public function index(Area $area, Viewpoint $viewpoint): Response
     {
         $clickpoints = Clickpoint::query()
             ->where('viewpoint_id', $viewpoint->id)
@@ -27,14 +28,14 @@ class ClickpointController extends Controller
         return Inertia::render('Admin/ThreeSixtyGenerator/Clickpoints/Index', [
             'area' => $area,
             'viewpoint' => $viewpoint,
-            'clickpoints' => $clickpoints
+            'clickpoints' => $clickpoints,
         ]);
     }
 
     public function create(Area $area, Viewpoint $viewpoint): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Clickpoints/Create', [
-            'area' => new ThreeSixtyAreaResource($area),
+            'area' => new ThreeSixtyAreaResource($area, true),
             'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
             'contentTypes' => ContentTypeEnum::toValues(),
             'viewpoints' => ThreeSixtyViewpointResource::collection($area->viewpoints),
@@ -46,8 +47,7 @@ class ClickpointController extends Controller
         ClickpointCreateAction $clickpointCreateAction,
         Area $area,
         Viewpoint $viewpoint,
-    )
-    {
+    ): RedirectResponse {
         // Authorize
         $this->authorize('create', Clickpoint::class);
 
@@ -61,24 +61,26 @@ class ClickpointController extends Controller
         return redirect()
             ->route('admin.three-sixty-generator.clickpoint.index', [
                 'area' => $area,
-                'viewpoint' => $viewpoint
+                'viewpoint' => $viewpoint,
             ])
             ->with('success', trans('spa.toasts.description.three_sixty_clickpoint_created'));
     }
 
     public function show(Area $area, Viewpoint $viewpoint, Clickpoint $clickpoint): Response
     {
-        return Inertia::render('Admin/ThreeSixtyGenerator/Viewpoints/Show', [
-            'area' => new ThreeSixtyAreaResource($area),
+        return Inertia::render('Admin/ThreeSixtyGenerator/Clickpoints/Show', [
+            'area' => new ThreeSixtyAreaResource($area, true),
             'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
-            'clickpoint' => new ThreeSixtyClickpointResource($clickpoint)
+            'clickpoint' => new ThreeSixtyClickpointResource($clickpoint),
+            'contentTypes' => ContentTypeEnum::toValues(),
+            'viewpoints' => ThreeSixtyViewpointResource::collection($area->viewpoints),
         ]);
     }
 
     public function edit(Area $area, Viewpoint $viewpoint, Clickpoint $clickpoint): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Clickpoints/Edit', [
-            'area' => new ThreeSixtyAreaResource($area),
+            'area' => new ThreeSixtyAreaResource($area, true),
             'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
             'clickpoint' => new ThreeSixtyClickpointResource($clickpoint),
             'contentTypes' => ContentTypeEnum::toValues(),
@@ -92,8 +94,7 @@ class ClickpointController extends Controller
         Area $area,
         Viewpoint $viewpoint,
         Clickpoint $clickpoint
-    )
-    {
+    ): RedirectResponse {
         // Authorize
         $this->authorize('update', $clickpoint);
 
@@ -117,8 +118,7 @@ class ClickpointController extends Controller
         Area $area,
         Viewpoint $viewpoint,
         Clickpoint $clickpoint
-    )
-    {
+    ): RedirectResponse {
         // Authorize
         $this->authorize('delete', $clickpoint);
 
@@ -129,7 +129,7 @@ class ClickpointController extends Controller
         return redirect()
             ->route('admin.three-sixty-generator.clickpoint.index', [
                 'area' => $area,
-                'viewpoint' => $viewpoint
+                'viewpoint' => $viewpoint,
             ])
             ->with('success', trans('spa.toasts.description.three_sixty_clickpoint_deleted'));
     }

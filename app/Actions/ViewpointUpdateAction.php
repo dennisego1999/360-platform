@@ -15,7 +15,7 @@ class ViewpointUpdateAction
             'is_default' => $data['is_default'],
         ]);
 
-        if($data['new_image']) {
+        if ($data['new_image']) {
             // Remove previous media
             $model
                 ->getFirstMedia('viewpoints')

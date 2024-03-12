@@ -16,7 +16,7 @@ class MediaResource extends JsonResource
             'uuid' => $this->uuid,
             'mime_type' => $this->mime_type,
             'original_url' => $this->getAvailableUrl(['optimized']),
-            'size' => $this->size
+            'size' => $this->size,
         ];
     }
 }

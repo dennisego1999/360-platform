@@ -23,7 +23,7 @@ class Handler extends ExceptionHandler
         }
 
         // Abort outside Inertia requests or without a route
-        if (! $request->inertia() || !$request->route()) {
+        if (! $request->inertia() || ! $request->route()) {
             return $response;
         }
 

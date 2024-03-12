@@ -36,7 +36,7 @@ class CreateNewUser implements CreatesNewUsers
                 'last_name' => $input['last_name'],
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
-            ]), function (User $user) use($input) {
+            ]), function (User $user) use ($input) {
                 // Sync roles
                 $user->syncRoles(collect($input['roles'])->pluck('name') ?? []);
 
@@ -53,7 +53,7 @@ class CreateNewUser implements CreatesNewUsers
     {
         $user->ownedTeams()->save(Team::forceCreate([
             'user_id' => $user->id,
-            'name' => $user->full_name . "'s Team",
+            'name' => $user->full_name."'s Team",
             'personal_team' => true,
         ]));
     }

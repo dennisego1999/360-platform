@@ -17,11 +17,11 @@ class HandleInertiaGuestRequests extends HandleInertiaRequests
         // Get the shared data
         $data = [
             ...parent::share($request),
-            'locales' => fn() => $this->getLocales()
+            'locales' => fn () => $this->getLocales(),
         ];
 
         // Only on the initial load
-        if (!$request->inertia()) {
+        if (! $request->inertia()) {
             $data['app_name'] = config('app.name');
             $data['translations'] = $this->getTranslations();
         }

@@ -24,7 +24,7 @@ class ViewpointController extends Controller
 
         return Inertia::render('Admin/ThreeSixtyGenerator/Viewpoints/Index', [
             'area' => $area,
-            'viewpoints' => $viewpoints
+            'viewpoints' => $viewpoints,
         ]);
     }
 
@@ -37,8 +37,8 @@ class ViewpointController extends Controller
 
     public function store(
         ThreeSixtyViewpointRequest $request,
-        ViewpointCreateAction      $viewpointCreateAction,
-        Area                       $area
+        ViewpointCreateAction $viewpointCreateAction,
+        Area $area
     ): RedirectResponse {
         // Authorize
         $this->authorize('create', Viewpoint::class);
@@ -52,7 +52,7 @@ class ViewpointController extends Controller
         // Return
         return redirect()
             ->route('admin.three-sixty-generator.viewpoint.index', [
-                'area' => $area
+                'area' => $area,
             ])
             ->with('success', trans('spa.toasts.description.three_sixty_viewpoint_created'));
     }
@@ -60,24 +60,24 @@ class ViewpointController extends Controller
     public function show(Area $area, Viewpoint $viewpoint): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Viewpoints/Show', [
-            'area' => new ThreeSixtyAreaResource($area),
-            'viewpoint' => new ThreeSixtyViewpointResource($viewpoint)
+            'area' => new ThreeSixtyAreaResource($area, true),
+            'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
         ]);
     }
 
     public function edit(Area $area, Viewpoint $viewpoint): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Viewpoints/Edit', [
-            'area' => new ThreeSixtyAreaResource($area),
-            'viewpoint' => new ThreeSixtyViewpointResource($viewpoint)
+            'area' => new ThreeSixtyAreaResource($area, true),
+            'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
         ]);
     }
 
     public function update(
         ThreeSixtyViewpointRequest $request,
-        ViewpointUpdateAction      $viewpointUpdateAction,
-        Area                       $area,
-        Viewpoint                  $viewpoint,
+        ViewpointUpdateAction $viewpointUpdateAction,
+        Area $area,
+        Viewpoint $viewpoint,
     ): RedirectResponse {
         // Authorize
         $this->authorize('update', $viewpoint);
@@ -98,8 +98,8 @@ class ViewpointController extends Controller
 
     public function destroy(
         ViewpointDestroyAction $viewpointDestroyAction,
-        Area                   $area,
-        Viewpoint              $viewpoint,
+        Area $area,
+        Viewpoint $viewpoint,
     ): RedirectResponse {
         // Authorize
         $this->authorize('delete', $viewpoint);

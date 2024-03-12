@@ -10,9 +10,6 @@ trait HasTranslations
 
     private bool $replaceTranslations = true;
 
-    /**
-     * @param bool $replaceTranslations
-     */
     public function setReplaceTranslations(bool $replaceTranslations): void
     {
         $this->replaceTranslations = $replaceTranslations;
@@ -21,8 +18,6 @@ trait HasTranslations
     /**
      * Get the translatable fields.
      * This is used inside the syncing of models.
-     *
-     * @return mixed
      */
     public static function getTranslatableFields(): mixed
     {
@@ -33,8 +28,6 @@ trait HasTranslations
     /**
      * Convert the model instance to an array.
      * This will ensure the correct translation is returned instead of all translations.
-     *
-     * @return array
      */
     public function toArray(): array
     {
@@ -47,9 +40,9 @@ trait HasTranslations
         // Return the attributes as-if when disabled
         if (! $this->replaceTranslations) {
             // Loop over the attributes
-            foreach($attributes as $attribute => &$value) {
+            foreach ($attributes as $attribute => &$value) {
                 // Skip if the attribute is not translatable
-                if (!in_array($attribute, $translatableAttributes, true)) {
+                if (! in_array($attribute, $translatableAttributes, true)) {
                     continue;
                 }
 
@@ -68,7 +61,7 @@ trait HasTranslations
             $translation = $this->getTranslation($field, \App::getLocale());
 
             // No translation was found
-            if (!$translation) {
+            if (! $translation) {
                 // Get the supported locales
                 $locales = config('localization.supported-locales');
 

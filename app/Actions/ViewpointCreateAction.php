@@ -17,7 +17,7 @@ class ViewpointCreateAction
             'area_id' => $area['id'],
         ]);
 
-        if($data['new_image']) {
+        if ($data['new_image']) {
             $model
                 ->addMedia($data['new_image'])
                 ->toMediaCollection('viewpoints', 'assets');

@@ -15,6 +15,7 @@ class NavigationMiddleware
         // If the user is authenticated, update navigation items for dashboard pages
         if (Auth::check() && ($request->routeIs('admin.*') || $request->routeIs('profile.show'))) {
             Inertia::share('navigationItems', static fn () => static::getDashboardItems($request));
+
             return $next($request);
         }
 
@@ -32,27 +33,27 @@ class NavigationMiddleware
             'login' => [
                 'href' => route('login'),
                 'label' => trans('spa.pages.users.login'),
-                'active' => !$user,
+                'active' => ! $user,
             ],
             'register' => [
                 'href' => route('register'),
                 'label' => trans('spa.pages.users.register'),
-                'active' => !$user,
+                'active' => ! $user,
             ],
             'dashboard' => [
                 'href' => route('admin.dashboard'),
                 'label' => trans('spa.pages.dashboard.label'),
-                'active' => !!$user && $user->can('access-dashboard'),
+                'active' => (bool) $user && $user->can('access-dashboard'),
             ],
             'profile' => [
                 'href' => route('profile.show'),
                 'label' => trans('spa.pages.profile.label'),
-                'active' => !!$user,
+                'active' => (bool) $user,
             ],
             'logout' => [
                 'href' => route('logout'),
                 'label' => trans('spa.pages.users.logout'),
-                'active' => !!$user,
+                'active' => (bool) $user,
                 'method' => 'post',
             ],
         ]);

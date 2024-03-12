@@ -9,7 +9,7 @@ class ImpersonateController extends Controller
 {
     public function __invoke(User $user)
     {
-        if(auth()->check()) {
+        if (auth()->check()) {
             //Impersonate user
             auth()->user()->impersonate($user);
         }

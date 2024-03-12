@@ -10,15 +10,15 @@ class ClickpointCreateAction
 {
     private ClickpointProcessContentAction $clickpointProcessContentAction;
 
-    public function __construct(ClickpointProcessContentAction $clickpointProcessContentAction) {
+    public function __construct(ClickpointProcessContentAction $clickpointProcessContentAction)
+    {
         $this->clickpointProcessContentAction = $clickpointProcessContentAction;
     }
 
     public function handle(
         array $data,
         Viewpoint $viewpoint,
-    ): void
-    {
+    ): void {
         foreach (LaravelLocalization::getSupportedLanguagesKeys() as $locale) {
             // Process clickpoint content
             $data['content'][$locale] = $this->clickpointProcessContentAction->handle(
@@ -33,7 +33,7 @@ class ClickpointCreateAction
             'coordinates' => $data['coordinates'],
             'content' => $data['content'] ?? null,
             'content_type' => $data['content_type'],
-            'viewpoint_id' => $viewpoint->id
+            'viewpoint_id' => $viewpoint->id,
         ]);
     }
 }

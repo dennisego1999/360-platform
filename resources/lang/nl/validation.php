@@ -196,8 +196,7 @@ return [
         'error' => 'Oeps, er is iets misgegaan op onze servers. Controleer of je de juiste regio gebruikt.',
         'expired' => 'De pagina is verlopen, probeer het opnieuw.',
         'missing' => 'Sorry, de pagina die je zoekt, kon niet worden gevonden.',
-        'forbidden' => 'Sorry, je hebt geen toestemming om toegang te krijgen tot deze pagina.'
-    ]
+        'forbidden' => 'Sorry, je hebt geen toestemming om toegang te krijgen tot deze pagina.',
+    ],
 
 ];
-

@@ -19,8 +19,8 @@ class UserController extends Controller
         $users = User::query()
             ->when($request->input('search'), function ($query) use ($request) {
                 $query
-                    ->where('first_name', 'like', $request->input('search') . '%')
-                    ->orWhere('last_name', 'like', $request->input('search') . '%');
+                    ->where('first_name', 'like', $request->input('search').'%')
+                    ->orWhere('last_name', 'like', $request->input('search').'%');
             })
             ->with(['roles'])
             ->paginate(10);
@@ -51,7 +51,7 @@ class UserController extends Controller
     public function show(User $user): Response
     {
         return Inertia::render('Admin/Users/Show', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 

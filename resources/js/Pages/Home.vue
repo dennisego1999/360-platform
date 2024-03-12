@@ -1,15 +1,23 @@
 <script setup>
 import Layout from '@/Layouts/Layout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 // Define options
 defineOptions({
 	layout: [Layout, AppLayout]
 });
+
+// Define props
+defineProps({
+	areas: Array
+});
 </script>
 
 <template>
-	<div class="flex-1 p-4">
-		<p>Home</p>
+	<div class="flex justify-center items-center gap-4 flex-1 p-4">
+		<PrimaryButton v-for="area in areas" :key="area.id">
+			{{ area.name }}
+		</PrimaryButton>
 	</div>
 </template>

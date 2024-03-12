@@ -3,17 +3,17 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Area;
 use App\Models\Clickpoint;
 use App\Models\Team;
-use App\Models\Area;
-use App\Models\Viewpoint;
 use App\Models\User;
+use App\Models\Viewpoint;
+use App\Policies\AreaPolicy;
 use App\Policies\ClickpointPolicy;
 use App\Policies\LanguageLinePolicy;
 use App\Policies\TeamPolicy;
-use App\Policies\AreaPolicy;
-use App\Policies\ViewpointPolicy;
 use App\Policies\UserPolicy;
+use App\Policies\ViewpointPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Spatie\TranslationLoader\LanguageLine;
 
@@ -30,7 +30,7 @@ class AuthServiceProvider extends ServiceProvider
         User::class => UserPolicy::class,
         Area::class => AreaPolicy::class,
         Viewpoint::class => ViewpointPolicy::class,
-        ClickpointPolicy::class => Clickpoint::class
+        ClickpointPolicy::class => Clickpoint::class,
     ];
 
     /**

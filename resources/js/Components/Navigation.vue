@@ -4,8 +4,8 @@ import LanguageSwitcher from '@/Components/LanguageSwitcher.vue';
 </script>
 
 <template>
-	<div class="flex justify-between items-center h-fit w-full p-4 bg-gray-100">
-		<div></div>
+	<div class="flex justify-between items-center w-full p-4 bg-gray-100">
+		<Link :href="route('home')">LOGO</Link>
 
 		<div class="flex justify-between items-center gap-12">
 			<div class="flex justify-end items-center gap-8">

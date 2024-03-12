@@ -9,7 +9,7 @@ class ImportTranslationsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'file' => ['file']
+            'file' => ['file'],
         ];
     }
 }
