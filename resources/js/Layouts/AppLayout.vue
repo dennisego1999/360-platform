@@ -3,7 +3,7 @@ import Navigation from '@/Components/Navigation.vue';
 </script>
 
 <template>
-	<div class="flex flex-col justify-start items-stretch">
+	<div class="relative flex flex-col justify-start items-stretch min-h-screen">
 		<navigation />
 
 		<transition name="fade" mode="out-in" appear>

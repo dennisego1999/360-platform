@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\ViewpointCreateAction;
 use App\Actions\ViewpointDestroyAction;
 use App\Actions\ViewpointUpdateAction;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreeSixtyViewpointRequest;
 use App\Http\Resources\ThreeSixtyAreaResource;
 use App\Http\Resources\ThreeSixtyViewpointResource;

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\TranslationUpdateAction;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ImportTranslationsRequest;
 use App\Http\Requests\UpdateTranslationRequest;
 use ArtcoreSociety\TranslationImport\Commands\ImportTranslationsCommand;

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\AreaCreateAction;
 use App\Actions\AreaDestroyAction;
 use App\Actions\AreaUpdateAction;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreeSixtyAreaRequest;
 use App\Http\Resources\ThreeSixtyAreaCollection;
 use App\Http\Resources\ThreeSixtyAreaResource;

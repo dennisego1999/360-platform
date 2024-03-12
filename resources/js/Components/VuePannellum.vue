@@ -2,7 +2,7 @@
 import 'pannellum';
 import 'pannellum/build/pannellum.css';
 import _debounce from 'lodash.debounce';
-import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue';
+import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 // Define emits
 const emit = defineEmits(['load', 'error', 'update:hfov', 'update:yaw', 'update:pitch']);
@@ -236,7 +236,9 @@ watch(
 	}
 );
 
-nextTick(() => {
+onMounted(async () => {
+	await nextTick();
+
 	// Load
 	load();
 
@@ -265,6 +267,10 @@ onBeforeUnmount(() => {
 <style lang="scss">
 .vue-pannellum {
 	position: relative;
+}
+
+.pnlm-container {
+	position: absolute;
 }
 
 .info {

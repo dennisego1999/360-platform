@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Actions\ClickpointCreateAction;
 use App\Actions\ClickpointDestroyAction;
 use App\Actions\ClickpointUpdateAction;
 use App\Enums\ContentTypeEnum;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreeSixtyClickpointRequest;
 use App\Http\Resources\ThreeSixtyAreaResource;
 use App\Http\Resources\ThreeSixtyClickpointResource;

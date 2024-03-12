@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\AreaController;
-use App\Http\Controllers\ClickpointController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ImpersonateController;
-use App\Http\Controllers\TranslationsController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ViewpointController;
+use App\Http\Controllers\Admin\AreaController;
+use App\Http\Controllers\Admin\ClickpointController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ImpersonateController;
+use App\Http\Controllers\Admin\TranslationsController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ViewpointController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');

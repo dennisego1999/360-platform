@@ -16,7 +16,7 @@ defineProps({
 
 <template>
 	<div class="flex justify-center items-center gap-4 flex-1 p-4">
-		<PrimaryButton v-for="area in areas" :key="area.id">
+		<PrimaryButton v-for="area in areas" :key="area.id" :href="route('three-sixty-generator', { area: area })">
 			{{ area.name }}
 		</PrimaryButton>
 	</div>
