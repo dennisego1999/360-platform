@@ -20,7 +20,7 @@ class ThreeSixtyAreaResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->allTranslations ? $this->resource->getTranslations('name') : $this->name,
-            'viewpoints' => ThreeSixtyViewpointResource::collection($this->viewpoints)
+            'viewpoints' => ThreeSixtyViewpointResource::collection($this->viewpoints),
         ];
     }
 }
