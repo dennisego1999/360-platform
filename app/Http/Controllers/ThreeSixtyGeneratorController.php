@@ -14,8 +14,14 @@ class ThreeSixtyGeneratorController extends Controller
 {
     public function __invoke(Request $request, Area $area, ?Viewpoint $viewpoint = null)
     {
+        // Get the default viewpoint
         if (! $viewpoint) {
             $viewpoint = $area->viewpoints->firstWhere('is_default', true);
+
+            // If there is no default set then just use the first viewpoint
+            if (! $viewpoint) {
+                $viewpoint = $area->viewpoints->first();
+            }
         }
 
         return Inertia::render('ThreeSixtyArea', [

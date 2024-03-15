@@ -12,7 +12,8 @@ class HomeController extends Controller
 {
     public function __invoke(Request $request): Response
     {
-        $areas = Area::all();
+        // Retrieve only the areas that have viewpoints associated with them
+        $areas = Area::has('viewpoints')->get();
 
         return Inertia::render('Home', [
             'areas' => new ThreeSixtyAreaCollection($areas),
