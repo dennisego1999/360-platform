@@ -80,6 +80,12 @@ const { t } = useI18n();
 					</div>
 
 					<div class="flex shrink-0 items-center gap-x-4">
+						<small
+							class="text-white grid place-content-center min-w-fit p-2 font-bold rounded bg-indigo-500"
+						>
+							{{ clickpoint.content_type }}
+						</small>
+
 						<Link
 							:href="
 								route('admin.three-sixty-generator.clickpoint.show', {

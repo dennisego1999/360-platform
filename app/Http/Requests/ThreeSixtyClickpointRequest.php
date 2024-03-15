@@ -48,6 +48,7 @@ class ThreeSixtyClickpointRequest extends FormRequest
             'content.*.video' => [
                 'nullable',
                 'string',
+                'url',
                 'max:255',
             ],
             'content.*.info' => [

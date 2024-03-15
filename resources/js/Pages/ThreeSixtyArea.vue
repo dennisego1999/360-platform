@@ -1,12 +1,14 @@
 <script setup>
 import { router } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 import Layout from '@/Layouts/Layout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import VuePannellum from '@/Components/VuePannellum.vue';
 import Modal from '@/Components/Modal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import ThreeSixtyContentTypeInfo from '@/Components/ThreeSixtyContentTypeInfo.vue';
+import ThreeSixtyContentTypeVideo from '@/Components/ThreeSixtyContentTypeVideo.vue';
 
 // Define options
 defineOptions({
@@ -175,9 +177,15 @@ nextTick(() => {
 	<div class="relative flex-1">
 		<Modal :show="isContentVisible" @close="closeContent">
 			<div class="flex flex-col items-start justify-center gap-2.5">
-				<template v-if="activeClickpoint.content_type === 'INFO'">
-					<div v-html="activeClickpoint.content.info"></div>
-				</template>
+				<ThreeSixtyContentTypeInfo
+					v-if="activeClickpoint.content_type === 'INFO'"
+					:content="activeClickpoint.content.info"
+				/>
+
+				<ThreeSixtyContentTypeVideo
+					v-if="activeClickpoint.content_type === 'VIDEO'"
+					:src="activeClickpoint.content.video"
+				/>
 
 				<PrimaryButton @click="closeContent">
 					{{ t('spa.buttons.close') }}
@@ -196,6 +204,7 @@ nextTick(() => {
 			:mouse-zoom="false"
 			:double-click-zoom="false"
 			:hot-spots="hotSpots"
+			:hfov="hfov"
 			:yaw="startingPannellumScene.pitch"
 			:pitch="startingPannellumScene.yaw"
 		/>
