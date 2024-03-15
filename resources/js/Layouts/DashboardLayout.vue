@@ -191,8 +191,7 @@ function logout() {
 									</template>
 
 									<template #content>
-										<!-- Account Management -->
-										<div class="block px-4 py-2 text-xs text-gray-400">Manage Account</div>
+										<DropdownLink :href="route('home')"> Home </DropdownLink>
 
 										<DropdownLink :href="route('profile.show')"> Profile </DropdownLink>
 
@@ -202,8 +201,6 @@ function logout() {
 										>
 											API Tokens
 										</DropdownLink>
-
-										<div class="border-t border-gray-200" />
 
 										<!-- Authentication -->
 										<form @submit.prevent="logout">
@@ -285,6 +282,10 @@ function logout() {
 						</div>
 
 						<div class="mt-3 space-y-1">
+							<ResponsiveNavLink :href="route('home')" :active="route().current('home')">
+								Home
+							</ResponsiveNavLink>
+
 							<ResponsiveNavLink :href="route('profile.show')" :active="route().current('profile.show')">
 								Profile
 							</ResponsiveNavLink>
