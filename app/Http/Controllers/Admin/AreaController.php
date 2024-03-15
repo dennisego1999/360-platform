@@ -21,7 +21,7 @@ class AreaController extends Controller
         $areas = Area::all();
 
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Index', [
-            'areas' => new ThreeSixtyAreaCollection($areas, false),
+            'areas' => new ThreeSixtyAreaCollection($areas),
         ]);
     }
 
@@ -52,14 +52,14 @@ class AreaController extends Controller
     public function show(Area $area): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Show', [
-            'area' => new ThreeSixtyAreaResource($area, true),
+            'area' => new ThreeSixtyAreaResource($area, false, true),
         ]);
     }
 
     public function edit(Area $area): Response
     {
         return Inertia::render('Admin/ThreeSixtyGenerator/Area/Edit', [
-            'area' => new ThreeSixtyAreaResource($area, true),
+            'area' => new ThreeSixtyAreaResource($area, false, true),
         ]);
     }
 
