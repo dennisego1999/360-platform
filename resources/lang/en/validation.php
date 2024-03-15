@@ -151,6 +151,7 @@ return [
     'ulid' => 'The :attribute must be a valid ULID.',
     'uuid' => 'The :attribute must be a valid UUID.',
     'is_default' => 'There can only be one default area',
+    'invalid_inertia_route' => 'Inertia route must be valid',
 
     /*
     |--------------------------------------------------------------------------

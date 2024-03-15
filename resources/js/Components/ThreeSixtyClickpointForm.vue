@@ -78,16 +78,16 @@ const quillOptions = ref({
 });
 
 // Define functions
-function initContentObject() {
+function initContentObject(reset = false) {
 	const locales = usePage().props.locales;
 
 	locales.forEach((locale) => {
 		threeSixtyClickpointForm.value.content[locale.code] = {
-			info: threeSixtyClickpointForm.value.content[locale.code]?.info ?? null,
-			video: threeSixtyClickpointForm.value.content[locale.code]?.video ?? null,
-			viewpoint_id: threeSixtyClickpointForm.value.content[locale.code]?.viewpoint_id ?? null,
-			inertia_route: threeSixtyClickpointForm.value.content[locale.code]?.inertia_route ?? null,
-			external_url: threeSixtyClickpointForm.value.content[locale.code]?.external_url ?? null
+			info: !reset ? threeSixtyClickpointForm.value.content[locale.code]?.info ?? null : null,
+			video: !reset ? threeSixtyClickpointForm.value.content[locale.code]?.video ?? null : null,
+			viewpoint_id: !reset ? threeSixtyClickpointForm.value.content[locale.code]?.viewpoint_id ?? null : null,
+			inertia_route: !reset ? threeSixtyClickpointForm.value.content[locale.code]?.inertia_route ?? null : null,
+			external_url: !reset ? threeSixtyClickpointForm.value.content[locale.code]?.external_url ?? null : null
 		};
 	});
 }
@@ -152,11 +152,6 @@ function deleteViewpointSelection() {
 	selectedViewpoint.value = null;
 }
 
-function handleInfoUpdate(content) {
-	// Set embedded video share link content data in form
-	threeSixtyClickpointForm.value.content[editingLanguage.value].info = content;
-}
-
 async function setHotSpotProgrammatically(pitch, yaw) {
 	await nextTick();
 
@@ -186,6 +181,9 @@ watch(isLoaded, (value) => {
 watch(selectedContentType, (value) => {
 	// Update form content type
 	threeSixtyClickpointForm.value.content_type = value;
+
+	// Reset content object
+	initContentObject(true);
 
 	if (value === 'LINK_TO_VIEWPOINT') {
 		selectedViewpoint.value = getSpecificViewpointFromProps(
@@ -367,8 +365,7 @@ onMounted(() => {
 
 								<div
 									v-if="selectedViewpoint"
-									class="transition-colors p-2"
-									:class="{ 'hover:bg-red-500 hover:text-white': filteredViewpoints.length === 0 }"
+									class="transition-colors p-2 hover:bg-red-500 hover:text-white"
 									@click="deleteViewpointSelection"
 								>
 									{{ t('spa.labels.delete_selection') }}
@@ -394,6 +391,11 @@ onMounted(() => {
 						<small class="block font-medium text-xs text-gray-700 mt-1">
 							{{ t('spa.instructions.inertia_route') }}
 						</small>
+
+						<InputError
+							:message="threeSixtyClickpointForm.errors['content.' + editingLanguage + '.inertia_route']"
+							class="mt-2"
+						/>
 					</div>
 
 					<div v-if="selectedContentType === 'EXTERNAL_URL'">
@@ -409,6 +411,11 @@ onMounted(() => {
 						<small class="block font-medium text-xs text-gray-700 mt-1">
 							{{ t('spa.instructions.external_url') }}
 						</small>
+
+						<InputError
+							:message="threeSixtyClickpointForm.errors['content.' + editingLanguage + '.external_url']"
+							class="mt-2"
+						/>
 					</div>
 
 					<div v-if="selectedContentType === 'VIDEO'">
@@ -424,6 +431,11 @@ onMounted(() => {
 						<small class="block font-medium text-xs text-gray-700 mt-1">
 							{{ t('spa.instructions.video') }}
 						</small>
+
+						<InputError
+							:message="threeSixtyClickpointForm.errors['content.' + editingLanguage + '.video']"
+							class="mt-2"
+						/>
 					</div>
 
 					<div v-if="selectedContentType === 'INFO'">
@@ -440,9 +452,12 @@ onMounted(() => {
 						<small class="block font-medium text-xs text-gray-700 mt-1">
 							{{ t('spa.instructions.info') }}
 						</small>
-					</div>
 
-					<InputError :message="threeSixtyClickpointForm.errors.content" class="mt-2" />
+						<InputError
+							:message="threeSixtyClickpointForm.errors['content.' + editingLanguage + '.info']"
+							class="mt-2"
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

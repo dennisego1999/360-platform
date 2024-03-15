@@ -151,6 +151,7 @@ return [
     'ulid' => 'De :attribute moet een geldige ULID zijn.',
     'uuid' => 'De :attribute moet een geldige UUID zijn.',
     'is_default' => 'Er kan maar één standaard omgeving zijn',
+    'invalid_inertia_route' => 'Inertia route moet geldig zijn',
 
     /*
     |--------------------------------------------------------------------------

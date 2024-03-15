@@ -1,7 +1,7 @@
 <script setup>
 import { router } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import { nextTick, ref } from 'vue';
+import { computed, nextTick, ref } from 'vue';
 import Layout from '@/Layouts/Layout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import VuePannellum from '@/Components/VuePannellum.vue';
@@ -16,7 +16,8 @@ defineOptions({
 // Define props
 const props = defineProps({
 	area: Object,
-	startingViewpoint: Object,
+	startingViewpointId: Number,
+	viewpoints: Array,
 	startingClickpoints: Array
 });
 
@@ -24,10 +25,23 @@ const props = defineProps({
 const { t } = useI18n();
 
 // Set variables
+const hfov = ref(105);
 const pannellum = ref(null);
 const hotSpots = ref([]);
 const activeClickpoint = ref(null);
 const isContentVisible = ref(false);
+const pannellumSrc = ref({
+	default: {
+		firstScene: props.startingViewpointId,
+		sceneFadeDuration: 1200
+	},
+	scenes: {}
+});
+
+// Set computed variables
+const startingViewpoint = computed(() => {
+	return props.viewpoints.find((viewpoint) => viewpoint.id === props.startingViewpointId);
+});
 
 // Define functions
 function setHistory(viewpointId) {
@@ -44,20 +58,32 @@ function setHistory(viewpointId) {
 	);
 }
 
-function initHotspotsList() {
-	if (props.startingClickpoints.length === 0) {
-		return;
-	}
+function initPannellumScenes() {
+	props.viewpoints.forEach((viewpoint) => {
+		const hotSpotsList = [];
 
-	props.startingClickpoints.forEach((clickpoint) => {
-		hotSpots.value.push({
-			pitch: clickpoint.coordinates.pitch,
-			yaw: clickpoint.coordinates.yaw,
-			clickHandlerArgs: clickpoint,
-			clickHandlerFunc: onHotSpotClick,
-			createTooltipFunc: createHotSpotIcon
+		viewpoint.clickpoints.forEach((clickpoint) => {
+			hotSpotsList.push({
+				pitch: clickpoint.coordinates.pitch,
+				yaw: clickpoint.coordinates.yaw,
+				clickHandlerArgs: clickpoint,
+				clickHandlerFunc: onHotSpotClick,
+				createTooltipFunc: createHotSpotIcon
+			});
 		});
+
+		pannellumSrc.value.scenes[viewpoint.id] = {
+			hfov: hfov.value,
+			pitch: 0,
+			yaw: 0,
+			type: 'equirectangular',
+			panorama: viewpoint.image.original_url,
+			hotSpots: hotSpotsList,
+			showControls: false
+		};
 	});
+
+	console.log(pannellumSrc.value);
 }
 
 function onHotSpotClick(event, clickpoint) {
@@ -65,16 +91,33 @@ function onHotSpotClick(event, clickpoint) {
 	activeClickpoint.value = clickpoint;
 
 	// Look at the click point
-	pannellum.value.viewer.lookAt(
-		clickpoint.coordinates.pitch,
-		clickpoint.coordinates.yaw,
-		pannellum.value.viewer.hfov,
-		1000,
-		() => {
-			// Open content
-			openContent();
+	pannellum.value.viewer.lookAt(clickpoint.coordinates.pitch, clickpoint.coordinates.yaw, hfov.value, 1200, () => {
+		if (activeClickpoint.value.content_type === 'EXTERNAL_URL') {
+			window.open(activeClickpoint.value.content.external_url);
+
+			return;
 		}
-	);
+
+		if (activeClickpoint.value.content_type === 'INERTIA_ROUTE') {
+			router.visit(route(activeClickpoint.value.content.inertia_route));
+
+			return;
+		}
+
+		if (activeClickpoint.value.content_type === 'LINK_TO_VIEWPOINT') {
+			pannellum.value.viewer.loadScene(
+				clickpoint.content.viewpoint_id,
+				clickpoint.coordinates.pitch,
+				clickpoint.coordinates.yaw,
+				hfov.value
+			);
+
+			return;
+		}
+
+		// Open content
+		openContent();
+	});
 }
 
 function createHotSpotIcon(container) {
@@ -96,10 +139,10 @@ function closeContent() {
 
 nextTick(() => {
 	// Set initial history
-	setHistory(props.startingViewpoint.id);
+	setHistory(startingViewpoint.value.id);
 
-	// Init hotspots
-	initHotspotsList();
+	// Init scenes
+	initPannellumScenes();
 });
 </script>
 
@@ -118,10 +161,10 @@ nextTick(() => {
 		</Modal>
 
 		<VuePannellum
-			v-if="startingViewpoint.image.original_url"
+			v-if="pannellumSrc"
 			ref="pannellum"
 			class="!absolute h-full w-full"
-			:src="startingViewpoint.image.original_url"
+			:src="pannellumSrc"
 			:fade-duration="1200"
 			:showFullscreen="false"
 			:mouse-zoom="false"

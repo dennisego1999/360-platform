@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\ContentTypeEnum;
+use App\Rules\ValidInertiaRoute;
 use Illuminate\Foundation\Http\FormRequest;
 use Spatie\Enum\Laravel\Rules\EnumRule;
 
@@ -35,11 +36,13 @@ class ThreeSixtyClickpointRequest extends FormRequest
             'content.*.inertia_route' => [
                 'nullable',
                 'string',
+                new ValidInertiaRoute,
                 'max:255',
             ],
             'content.*.external_url' => [
                 'nullable',
                 'string',
+                'url',
                 'max:255',
             ],
             'content.*.video' => [

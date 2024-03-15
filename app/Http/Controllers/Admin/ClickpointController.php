@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ThreeSixtyClickpointRequest;
 use App\Http\Resources\ThreeSixtyAreaResource;
 use App\Http\Resources\ThreeSixtyClickpointResource;
+use App\Http\Resources\ThreeSixtyViewpointCollection;
 use App\Http\Resources\ThreeSixtyViewpointResource;
 use App\Models\Area;
 use App\Models\Clickpoint;
@@ -39,7 +40,7 @@ class ClickpointController extends Controller
             'area' => new ThreeSixtyAreaResource($area, true),
             'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
             'contentTypes' => ContentTypeEnum::toValues(),
-            'viewpoints' => ThreeSixtyViewpointResource::collection($area->viewpoints),
+            'viewpoints' => new ThreeSixtyViewpointCollection($area->viewpoints),
         ]);
     }
 
@@ -74,7 +75,7 @@ class ClickpointController extends Controller
             'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
             'clickpoint' => new ThreeSixtyClickpointResource($clickpoint, true),
             'contentTypes' => ContentTypeEnum::toValues(),
-            'viewpoints' => ThreeSixtyViewpointResource::collection($area->viewpoints),
+            'viewpoints' => new ThreeSixtyViewpointCollection($area->viewpoints),
         ]);
     }
 
@@ -85,7 +86,7 @@ class ClickpointController extends Controller
             'viewpoint' => new ThreeSixtyViewpointResource($viewpoint),
             'clickpoint' => new ThreeSixtyClickpointResource($clickpoint, true),
             'contentTypes' => ContentTypeEnum::toValues(),
-            'viewpoints' => ThreeSixtyViewpointResource::collection($area->viewpoints),
+            'viewpoints' => new ThreeSixtyViewpointCollection($area->viewpoints),
         ]);
     }
 

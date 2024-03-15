@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ThreeSixtyAreaResource;
 use App\Http\Resources\ThreeSixtyClickpointCollection;
-use App\Http\Resources\ThreeSixtyViewpointResource;
+use App\Http\Resources\ThreeSixtyViewpointCollection;
 use App\Models\Area;
 use App\Models\Viewpoint;
 use Illuminate\Http\Request;
@@ -20,7 +20,8 @@ class ThreeSixtyGeneratorController extends Controller
 
         return Inertia::render('ThreeSixtyArea', [
             'area' => new ThreeSixtyAreaResource($area),
-            'startingViewpoint' => new ThreeSixtyViewpointResource($viewpoint),
+            'viewpoints' => new ThreeSixtyViewpointCollection($area->viewpoints, true, false),
+            'startingViewpointId' => $viewpoint->id,
             'startingClickpoints' => new ThreeSixtyClickpointCollection($viewpoint->clickpoints, false),
         ]);
     }
