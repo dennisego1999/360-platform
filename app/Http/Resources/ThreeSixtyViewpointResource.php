@@ -24,6 +24,7 @@ class ThreeSixtyViewpointResource extends JsonResource
                 'id' => $this->id,
                 'name' => $this->resource->getTranslations('name'),
                 'description' => $this->resource->getTranslations('description'),
+                'initial_view' => $this->initial_view,
                 'is_default' => $this->is_default,
                 'image' => new MediaResource($this->getFirstMedia('viewpoints')),
             ];
@@ -33,6 +34,7 @@ class ThreeSixtyViewpointResource extends JsonResource
             'id' => $this->id,
             'name' => $this->resource->getTranslations('name'),
             'description' => $this->resource->getTranslations('description'),
+            'initial_view' => $this->initial_view,
             'is_default' => $this->is_default,
             'image' => new MediaResource($this->getFirstMedia('viewpoints')),
             'clickpoints' => new ThreeSixtyClickpointCollection($this->clickpoints, $this->allTranslations),

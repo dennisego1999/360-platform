@@ -12,6 +12,7 @@ class ViewpointUpdateAction
         $model = Viewpoint::updateOrCreate(['id' => $viewpoint->id], [
             'name' => $data['name'],
             'description' => $data['description'],
+            'initial_view' => $data['initial_view'],
             'is_default' => $data['is_default'],
         ]);
 

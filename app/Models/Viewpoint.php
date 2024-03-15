@@ -24,6 +24,7 @@ class Viewpoint extends Model implements HasMedia
     protected $fillable = [
         'name',
         'description',
+        'initial_view',
         'is_default',
         'area_id',
     ];
@@ -35,6 +36,7 @@ class Viewpoint extends Model implements HasMedia
 
     protected $casts = [
         'is_default' => 'boolean',
+        'initial_view' => 'json',
     ];
 
     /*

@@ -62,6 +62,11 @@ return [
         'make_selection' => 'Maak een selectie',
         'delete_selection' => 'Verwijder selectie',
         'no_items_found' => 'Geen items gevonden...',
+        'initial_view' => [
+            'label' => 'Eerste weergave',
+            'pitch' => 'Pitch',
+            'yaw' => 'Yaw'
+        ],
     ],
     'instructions' => [
         'viewpoints' => 'Selecteer een kijkpunt hier',

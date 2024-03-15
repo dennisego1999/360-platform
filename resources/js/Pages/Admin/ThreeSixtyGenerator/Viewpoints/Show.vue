@@ -25,6 +25,7 @@ const { t } = useI18n();
 const form = useForm({
 	name: props.viewpoint.name ?? {},
 	description: props.viewpoint.description ?? {},
+	initial_view: props.viewpoint.initial_view ?? { pitch: null, yaw: null },
 	is_default: props.viewpoint.is_default ?? false,
 	image: props.viewpoint.image ?? null,
 	new_image: null

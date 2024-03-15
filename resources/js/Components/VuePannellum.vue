@@ -5,7 +5,7 @@ import _debounce from 'lodash.debounce';
 import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 
 // Define emits
-const emit = defineEmits(['load', 'error', 'update:hfov', 'update:yaw', 'update:pitch']);
+const emit = defineEmits(['ready', 'load', 'error', 'update:hfov', 'update:yaw', 'update:pitch']);
 
 // Define props
 const props = defineProps({
@@ -115,6 +115,9 @@ function load() {
 		let el = container.value.querySelector('.pnlm-fullscreen-toggle-button');
 		if (el) el.style.display = 'none';
 	}
+
+	// Emit ready
+	emit('ready');
 }
 
 function loop() {

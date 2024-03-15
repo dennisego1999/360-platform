@@ -197,6 +197,40 @@ function clearThreeSixtyInput() {
 						</div>
 					</div>
 				</div>
+
+				<div class="sm:col-span-3 flex flex-col gap-2.5">
+					<p>{{ t('spa.labels.initial_view.label') }}</p>
+
+					<div>
+						<InputLabel for="pitch" :value="t('spa.labels.initial_view.pitch')" />
+
+						<InputField
+							v-model="threeSixtyViewpointForm.initial_view.pitch"
+							type="text"
+							name="pitch"
+							id="pitch"
+							class="mt-1 block"
+							:disabled="!canEdit"
+						/>
+
+						<InputError :message="threeSixtyViewpointForm.errors['initial_view.pitch']" class="mt-2" />
+					</div>
+
+					<div>
+						<InputLabel for="yaw" :value="t('spa.labels.initial_view.yaw')" />
+
+						<InputField
+							v-model="threeSixtyViewpointForm.initial_view.yaw"
+							type="text"
+							name="yaw"
+							id="yaw"
+							class="mt-1 block"
+							:disabled="!canEdit"
+						/>
+
+						<InputError :message="threeSixtyViewpointForm.errors['initial_view.yaw']" class="mt-2" />
+					</div>
+				</div>
 			</div>
 		</div>
 	</form>

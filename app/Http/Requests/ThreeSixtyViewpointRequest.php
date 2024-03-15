@@ -33,6 +33,18 @@ class ThreeSixtyViewpointRequest extends FormRequest
                 'required',
                 'max:255',
             ],
+            'initial_view' => [
+                'array',
+                'required',
+            ],
+            'initial_view.pitch' => [
+                'integer',
+                'required',
+            ],
+            'initial_view.yaw' => [
+                'required',
+                'integer',
+            ],
             'is_default' => [
                 'boolean',
                 'required',

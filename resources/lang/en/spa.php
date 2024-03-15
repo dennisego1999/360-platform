@@ -62,6 +62,11 @@ return [
         'make_selection' => 'Make a selection',
         'delete_selection' => 'Delete selection',
         'no_items_found' => 'No items found...',
+        'initial_view' => [
+            'label' => 'Initial view',
+            'pitch' => 'Pitch',
+            'yaw' => 'Yaw'
+        ],
     ],
     'instructions' => [
         'viewpoints' => 'Select a viewpoint here',

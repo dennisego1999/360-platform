@@ -13,6 +13,7 @@ class ViewpointCreateAction
         $model = Viewpoint::create([
             'name' => $data['name'],
             'description' => $data['description'],
+            'initial_view' => $data['initial_view'],
             'is_default' => $data['is_default'],
             'area_id' => $area['id'],
         ]);

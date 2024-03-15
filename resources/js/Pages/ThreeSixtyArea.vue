@@ -1,7 +1,7 @@
 <script setup>
 import { router } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import { computed, nextTick, ref } from 'vue';
+import { computed, nextTick, onMounted, ref, watch } from 'vue';
 import Layout from '@/Layouts/Layout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import VuePannellum from '@/Components/VuePannellum.vue';
@@ -30,6 +30,7 @@ const pannellum = ref(null);
 const hotSpots = ref([]);
 const activeClickpoint = ref(null);
 const isContentVisible = ref(false);
+const startingPannellumScene = ref(null);
 const pannellumSrc = ref({
 	default: {
 		firstScene: props.startingViewpointId,
@@ -74,8 +75,8 @@ function initPannellumScenes() {
 
 		pannellumSrc.value.scenes[viewpoint.id] = {
 			hfov: hfov.value,
-			pitch: 0,
-			yaw: 0,
+			pitch: parseInt(viewpoint.initial_view.pitch),
+			yaw: parseInt(viewpoint.initial_view.yaw),
 			type: 'equirectangular',
 			panorama: viewpoint.image.original_url,
 			hotSpots: hotSpotsList,
@@ -83,7 +84,18 @@ function initPannellumScenes() {
 		};
 	});
 
-	console.log(pannellumSrc.value);
+	// Set starting scene
+	startingPannellumScene.value = pannellumSrc.value.scenes[props.startingViewpointId];
+}
+
+function initPannellumEvents() {
+	pannellum.value.viewer.on('load', () => {
+		//Get new viewpoint id
+		const newViewpointId = pannellum.value.viewer.getScene();
+
+		//Set history
+		setHistory(newViewpointId);
+	});
 }
 
 function onHotSpotClick(event, clickpoint) {
@@ -105,10 +117,18 @@ function onHotSpotClick(event, clickpoint) {
 		}
 
 		if (activeClickpoint.value.content_type === 'LINK_TO_VIEWPOINT') {
+			const targetViewpoint = props.viewpoints.find(
+				(viewpoint) => viewpoint.id === clickpoint.content.viewpoint_id
+			);
+
+			if (!targetViewpoint) {
+				return;
+			}
+
 			pannellum.value.viewer.loadScene(
-				clickpoint.content.viewpoint_id,
-				clickpoint.coordinates.pitch,
-				clickpoint.coordinates.yaw,
+				targetViewpoint.id,
+				parseInt(targetViewpoint.initial_view.pitch),
+				parseInt(targetViewpoint.initial_view.yaw),
 				hfov.value
 			);
 
@@ -137,6 +157,11 @@ function closeContent() {
 	activeClickpoint.value = null;
 }
 
+function handleReady() {
+	// Init events
+	initPannellumEvents();
+}
+
 nextTick(() => {
 	// Set initial history
 	setHistory(startingViewpoint.value.id);
@@ -161,15 +186,18 @@ nextTick(() => {
 		</Modal>
 
 		<VuePannellum
-			v-if="pannellumSrc"
+			v-if="startingPannellumScene && pannellumSrc"
 			ref="pannellum"
 			class="!absolute h-full w-full"
+			@ready="handleReady"
 			:src="pannellumSrc"
 			:fade-duration="1200"
 			:showFullscreen="false"
 			:mouse-zoom="false"
 			:double-click-zoom="false"
 			:hot-spots="hotSpots"
+			:yaw="startingPannellumScene.pitch"
+			:pitch="startingPannellumScene.yaw"
 		/>
 	</div>
 </template>

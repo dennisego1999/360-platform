@@ -24,6 +24,7 @@ const { t } = useI18n();
 const form = useForm({
 	name: {},
 	description: {},
+	initial_view: { pitch: null, yaw: null },
 	is_default: false,
 	image: null,
 	new_image: null
