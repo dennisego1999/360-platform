@@ -1,15 +1,14 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
 import { Head, useForm } from '@inertiajs/vue3';
-import DashboardLayout from '@/Layouts/DashboardLayout.vue';
-import Layout from '@/Layouts/Layout.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import ThreeSixtyViewpointForm from '@/Components/ThreeSixtyViewpointForm.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 // Define options
 defineOptions({
-	layout: [Layout, DashboardLayout]
+	layout: AppLayout
 });
 
 // Define props

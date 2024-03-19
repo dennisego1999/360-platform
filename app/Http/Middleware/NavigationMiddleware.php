@@ -45,17 +45,6 @@ class NavigationMiddleware
                 'label' => trans('spa.pages.dashboard.label'),
                 'active' => (bool) $user && $user->can('access-dashboard'),
             ],
-            'profile' => [
-                'href' => route('profile.show'),
-                'label' => trans('spa.pages.profile.label'),
-                'active' => (bool) $user,
-            ],
-            'logout' => [
-                'href' => route('logout'),
-                'label' => trans('spa.pages.users.logout'),
-                'active' => (bool) $user,
-                'method' => 'post',
-            ],
         ]);
 
         return $items->filter(fn ($item) => $item['active']);

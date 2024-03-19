@@ -2,7 +2,6 @@
 import { router } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import { computed, nextTick, ref } from 'vue';
-import Layout from '@/Layouts/Layout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import VuePannellum from '@/Components/VuePannellum.vue';
 import Modal from '@/Components/Modal.vue';
@@ -12,7 +11,7 @@ import ThreeSixtyContentTypeVideo from '@/Components/ThreeSixtyContentTypeVideo.
 
 // Define options
 defineOptions({
-	layout: [Layout, AppLayout]
+	layout: AppLayout
 });
 
 // Define props

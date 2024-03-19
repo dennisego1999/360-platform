@@ -75,6 +75,9 @@ return [
         'video' => 'Add an embedded share link here',
         'info' => 'Add your html content here',
     ],
+    'notifications' => [
+        'mark_as_read' => 'Notification has been marked as read.',
+    ],
     'issues' => [
         'no_translated_viewpoint' => 'Untranslated viewpoint. Can\'t select until translation is created',
     ],

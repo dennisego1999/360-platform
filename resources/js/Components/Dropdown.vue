@@ -80,7 +80,7 @@ function close() {
 
 				<AngleDownIcon
 					v-if="!disabled"
-					class="h-4 w-4 transition-transform"
+					class="h-4 w-4 transition-transform fill-white"
 					:class="{ 'rotate-180': open, 'rotate-0': !open }"
 				/>
 			</div>
@@ -99,13 +99,13 @@ function close() {
 		>
 			<div
 				v-show="open"
-				class="absolute z-50 mt-3 rounded-md shadow-lg"
+				class="absolute z-50 mt-3 rounded-md shadow-xl"
 				:class="[widthClass, alignmentClasses]"
 				style="display: none"
 				@click="close"
 			>
 				<div
-					class="overflow-hidden rounded-md ring-1 ring-black ring-opacity-5 cursor-pointer"
+					class="overflow-hidden rounded-md ring-1 ring-black ring-opacity-5 cursor-pointer text-gray-800"
 					:class="contentClasses"
 				>
 					<slot name="content" />

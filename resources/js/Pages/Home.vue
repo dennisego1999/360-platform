@@ -1,11 +1,10 @@
 <script setup>
-import Layout from '@/Layouts/Layout.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 
 // Define options
 defineOptions({
-	layout: [Layout, AppLayout]
+	layout: AppLayout
 });
 
 // Define props
@@ -15,7 +14,7 @@ defineProps({
 </script>
 
 <template>
-	<div class="flex justify-center items-center gap-4 flex-1 p-4">
+	<div class="flex justify-center items-center gap-4 flex-1 h-full w-full p-4">
 		<PrimaryButton v-for="area in areas" :key="area.id" :href="route('three-sixty-generator', { area: area })">
 			{{ area.name }}
 		</PrimaryButton>

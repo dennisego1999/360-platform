@@ -1,16 +1,15 @@
 <script setup>
-import { nextTick, ref } from 'vue';
+import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Head, useForm } from '@inertiajs/vue3';
-import Layout from '@/Layouts/Layout.vue';
-import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import ThreeSixtyClickpointForm from '@/Components/ThreeSixtyClickpointForm.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 // Define options
 defineOptions({
-	layout: [Layout, DashboardLayout]
+	layout: AppLayout
 });
 
 // Define props

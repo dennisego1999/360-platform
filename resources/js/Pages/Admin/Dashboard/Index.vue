@@ -1,13 +1,12 @@
 <script setup>
 import { Head } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
-import Layout from '@/Layouts/Layout.vue';
-import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 // Define options
 defineOptions({
-	layout: [Layout, DashboardLayout]
+	layout: AppLayout
 });
 
 // Set translation

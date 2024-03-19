@@ -5,12 +5,11 @@ import { Head, Link, router, useForm, usePage } from '@inertiajs/vue3';
 import Pagination from '@/Components/Pagination.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SearchBar from '@/Components/SearchBar.vue';
-import Layout from '@/Layouts/Layout.vue';
-import DashboardLayout from '@/Layouts/DashboardLayout.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 // Define options
 defineOptions({
-	layout: [Layout, DashboardLayout]
+	layout: AppLayout
 });
 
 // Define props

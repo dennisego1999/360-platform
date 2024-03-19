@@ -75,6 +75,9 @@ return [
         'video' => 'Voeg je embedded share link hier toe',
         'info' => 'Voeg je html content hier toe',
     ],
+    'notifications' => [
+        'mark_as_read' => 'Bericht is gemarkeerd als gelezen.',
+    ],
     'issues' => [
         'no_translated_viewpoint' => 'Niet vertaald kijkpunt. Kan niet selecteren tot dat de vertaling is aangemaakt',
     ],

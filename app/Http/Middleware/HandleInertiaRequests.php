@@ -47,6 +47,7 @@ class HandleInertiaRequests extends Middleware
             'current_route_name' => $request->route()->getName(),
             'policies' => fn () => $this->getPolicies(),
             'flash' => $this->getSessionFlashing($request),
+            'is_dashboard' => $request->routeIs('admin.*') || $request->routeIs('profile.show'),
         ]);
 
         // Only on the initial load

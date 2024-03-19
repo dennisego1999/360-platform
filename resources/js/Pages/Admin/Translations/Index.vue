@@ -12,12 +12,11 @@ import Modal from '@/Components/Modal.vue';
 import InputField from '@/Components/InputField.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import InputError from '@/Components/InputError.vue';
-import Layout from '@/Layouts/Layout.vue';
-import DashboardLayout from '@/Layouts/DashboardLayout.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
 
 // Define options
 defineOptions({
-	layout: [Layout, DashboardLayout]
+	layout: AppLayout
 });
 
 // Define props
