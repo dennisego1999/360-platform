@@ -3,6 +3,7 @@ import { computed, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { Head, router, useForm, usePage } from '@inertiajs/vue3';
 import { PencilSquareIcon, TrashIcon, ArrowUpTrayIcon, ArrowDownTrayIcon } from '@heroicons/vue/20/solid';
+import useLanguage from '@/Composables/useLanguage.js';
 import Pagination from '@/Components/Pagination.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SearchBar from '@/Components/SearchBar.vue';
@@ -26,6 +27,9 @@ defineProps({
 
 // Set translation
 const { t } = useI18n();
+
+// Get language composable
+const { editingLanguage } = useLanguage();
 
 // Get url params
 const queryString = window.location.search;
@@ -94,6 +98,8 @@ function closeImportTranslationsModal() {
 }
 
 function openEditTranslationModal(translation) {
+	console.log('opening:', translation);
+
 	// Set reactive
 	editModalTranslation.value = translation;
 
@@ -267,7 +273,7 @@ function closeEditTranslationModal() {
 						type="text"
 						name="text"
 						class="text w-full"
-						:value="editModalTranslation.text[usePage().props.locales.currentLocale]"
+						:value="editModalTranslation.original_text[editingLanguage]"
 						disabled
 					/>
 				</div>
@@ -276,7 +282,7 @@ function closeEditTranslationModal() {
 					<InputLabel for="text" :value="t('spa.pages.translations.table.new_translation')" />
 
 					<InputField
-						v-model="editForm.text[usePage().props.locales.currentLocale]"
+						v-model="editForm.text[editingLanguage]"
 						id="text"
 						type="text"
 						name="text"
