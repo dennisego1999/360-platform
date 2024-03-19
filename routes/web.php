@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\VerifyEmailController;
+use App\Http\Controllers\FallbackController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ThreeSixtyGeneratorController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +22,7 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('/three-sixty-generator/area/{area}/viewpoint/{viewpoint?}', ThreeSixtyGeneratorController::class)
     ->name('three-sixty-generator');
 
-Route::fallback(fn () => Inertia::render('Errors/404'));
+Route::fallback(FallbackController::class);
 
 $verificationLimiter = config('fortify.limiters.verification', '6,1');
 Route::get('/email/verify/{id}/{hash}', VerifyEmailController::class)
