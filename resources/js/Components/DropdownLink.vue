@@ -3,7 +3,11 @@ import { Link } from '@inertiajs/vue3';
 
 defineProps({
 	href: String,
-	as: String
+	as: String,
+	method: {
+		type: String,
+		default: 'get'
+	}
 });
 </script>
 
@@ -29,6 +33,7 @@ defineProps({
 			v-else
 			:href="href"
 			class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-teal-500 hover:text-white focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+			:method="method"
 		>
 			<slot />
 		</Link>
