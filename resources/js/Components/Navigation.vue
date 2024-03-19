@@ -10,15 +10,15 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 		<Link :href="route('home')">LOGO</Link>
 
 		<div class="flex justify-between items-center gap-4">
-			<Dropdown align="right" width="48">
+			<Dropdown v-if="usePage().props.auth.user" align="right" width="48">
 				<template #trigger>
 					<button
 						class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition"
 					>
 						<img
 							class="h-8 w-8 rounded-full object-cover"
-							:src="$page.props.auth.user.profile_photo_url"
-							:alt="$page.props.auth.user.name"
+							:src="usePage().props.auth.user.profile_photo_url"
+							:alt="usePage().props.auth.user.name"
 						/>
 					</button>
 				</template>
@@ -36,6 +36,18 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 					</div>
 				</template>
 			</Dropdown>
+
+			<div v-else class="flex justify-end items-center gap-8">
+				<Link
+					v-for="(item, index) in usePage().props.navigationItems"
+					:key="'responsive-menu-item-' + index"
+					:href="item.href"
+					:method="item.method"
+					as="button"
+				>
+					{{ item.label }}
+				</Link>
+			</div>
 
 			<language-switcher />
 		</div>
