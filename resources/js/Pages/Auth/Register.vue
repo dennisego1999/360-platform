@@ -7,6 +7,17 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
+import Layout from '@/Layouts/Layout.vue';
+import { useI18n } from 'vue-i18n';
+
+// Define options
+defineOptions({
+	layout: [Layout, AppLayout]
+});
+
+// Set translation
+const { t } = useI18n();
 
 const form = useForm({
 	name: '',
@@ -24,9 +35,9 @@ const submit = () => {
 </script>
 
 <template>
-	<Head title="Register" />
-
 	<AuthenticationCard>
+		<Head :title="t('spa.pages.register.label')" />
+
 		<template #logo>
 			<AuthenticationCardLogo />
 		</template>

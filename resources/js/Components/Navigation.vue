@@ -1,6 +1,6 @@
 <script setup>
 import { useI18n } from 'vue-i18n';
-import { Link, usePage } from '@inertiajs/vue3';
+import { Link, router, usePage } from '@inertiajs/vue3';
 import { BellIcon } from '@heroicons/vue/16/solid';
 import LanguageSwitcher from '@/Components/LanguageSwitcher.vue';
 import Dropdown from '@/Components/Dropdown.vue';
@@ -16,6 +16,10 @@ const { t } = useI18n();
 // Define functions
 function openNotificationsOverlay() {
 	emit('open-notifications-overlay');
+}
+
+function logout() {
+	router.post(route('logout'));
 }
 </script>
 
@@ -67,16 +71,15 @@ function openNotificationsOverlay() {
 									v-for="(item, index) in usePage().props.navigationItems"
 									:key="'responsive-menu-item-' + index"
 									:href="item.href"
-									:method="item.method"
 								>
 									{{ item.label }}
 								</DropdownLink>
 
-								<DropdownLink :href="route('profile.show')" method="post">
+								<DropdownLink :href="route('profile.show')">
 									{{ t('spa.pages.profile.label') }}
 								</DropdownLink>
 
-								<DropdownLink :href="route('logout')" method="post">
+								<DropdownLink @click="logout" as="button">
 									{{ t('spa.pages.users.logout') }}
 								</DropdownLink>
 							</div>

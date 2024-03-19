@@ -177,6 +177,12 @@ return [
                 ],
             ],
         ],
+        'login' => [
+            'label' => 'Login',
+        ],
+        'register' => [
+            'label' => 'Register',
+        ],
     ],
     'modals' => [
         'change_language' => 'Do you want to switch to {locale}?',

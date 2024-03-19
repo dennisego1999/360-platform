@@ -1,4 +1,5 @@
 <script setup>
+import { useI18n } from 'vue-i18n';
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
 import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
@@ -7,11 +8,22 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import AppLayout from '@/Layouts/AppLayout.vue';
+import Layout from '@/Layouts/Layout.vue';
 
+// Define options
+defineOptions({
+	layout: [Layout, AppLayout]
+});
+
+// Define props
 defineProps({
 	canResetPassword: Boolean,
 	status: String
 });
+
+// Set translation
+const { t } = useI18n();
 
 const form = useForm({
 	email: '',
@@ -30,9 +42,9 @@ const submit = () => {
 </script>
 
 <template>
-	<Head title="Log in" />
-
 	<AuthenticationCard>
+		<Head :title="t('spa.pages.login.label')" />
+
 		<template #logo>
 			<AuthenticationCardLogo />
 		</template>

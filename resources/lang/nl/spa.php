@@ -177,6 +177,12 @@ return [
                 ],
             ],
         ],
+        'login' => [
+            'label' => 'Log in',
+        ],
+        'register' => [
+            'label' => 'Registreer',
+        ],
     ],
     'modals' => [
         'change_language' => 'Wilt u veranderen naar {locale}?',
