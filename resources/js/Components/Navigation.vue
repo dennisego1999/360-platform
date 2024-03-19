@@ -21,10 +21,10 @@ function openNotificationsOverlay() {
 
 <template>
 	<div
-		class="flex items-center w-full p-4 transition-colors text-white font-bold"
+		class="flex items-center w-full p-4 bg-indigo-500 text-white font-bold"
 		:class="{
-			'justify-between bg-indigo-500': !usePage().props.is_dashboard,
-			'justify-start gap-8 bg-red-500': usePage().props.is_dashboard
+			'justify-between': !usePage().props.is_dashboard,
+			'justify-start gap-8': usePage().props.is_dashboard
 		}"
 	>
 		<Link :href="route('home')">
@@ -102,9 +102,7 @@ function openNotificationsOverlay() {
 			<div class="flex justify-between items-center gap-4">
 				<Dropdown v-if="usePage().props.auth.user" align="right" width="48">
 					<template #trigger>
-						<button
-							class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition"
-						>
+						<button class="flex text-sm border-2 border-white rounded-full transition">
 							<img
 								v-if="usePage().props.auth.user"
 								class="h-8 w-8 rounded-full object-cover"
