@@ -4,11 +4,12 @@ import { Head, Link, usePage } from '@inertiajs/vue3';
 import { EyeIcon, PencilSquareIcon, TrashIcon } from '@heroicons/vue/20/solid/index.js';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import Layout from '@/Layouts/Layout.vue';
+import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 
 // Define options
 defineOptions({
-	layout: AppLayout
+	layout: [Layout, DashboardLayout]
 });
 
 // Define props

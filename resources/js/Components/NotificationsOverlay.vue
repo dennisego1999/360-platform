@@ -80,14 +80,14 @@ function selectTab(tab) {
 		<Dialog as="div" class="fixed z-40" @close="close">
 			<TransitionChild
 				as="template"
-				enter="transition-opacity ease-linear duration-300"
+				enter="ease-in-out duration-500"
 				enter-from="opacity-0"
 				enter-to="opacity-100"
-				leave="transition-opacity ease-linear duration-300"
+				leave="ease-in-out duration-500"
 				leave-from="opacity-100"
 				leave-to="opacity-0"
 			>
-				<div class="fixed lg:hidden inset-0 bg-gray-900/80" />
+				<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
 			</TransitionChild>
 
 			<div class="fixed inset-0 overflow-hidden">
@@ -104,7 +104,7 @@ function selectTab(tab) {
 						>
 							<DialogPanel class="pointer-events-auto w-screen max-w-md">
 								<div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl">
-									<div class="bg-indigo-700 px-4 py-6 sm:px-6">
+									<div class="bg-teal-500 p-4">
 										<div class="flex items-center justify-between">
 											<DialogTitle class="text-base font-semibold leading-6 text-white">
 												{{ t('spa.notifications.label') }}
@@ -113,7 +113,7 @@ function selectTab(tab) {
 											<div class="ml-3 flex h-7 items-center">
 												<button
 													type="button"
-													class="relative rounded-md bg-indigo-700 text-indigo-200 hover:text-white focus:outline-none"
+													class="relative rounded-md bg-teal-500 text-indigo-200 hover:text-white focus:outline-none"
 													@click="close"
 												>
 													<span class="absolute -inset-2.5" />

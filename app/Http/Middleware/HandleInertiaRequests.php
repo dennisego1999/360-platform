@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -44,6 +45,7 @@ class HandleInertiaRequests extends Middleware
             //General setup
             'current_locale' => LaravelLocalization::getCurrentLocale(),
             'locales' => fn () => $this->getLocales(),
+            'notifications' => fn () => $this->getNotifications($request),
             'current_route_name' => $request->route()->getName(),
             'policies' => fn () => $this->getPolicies(),
             'flash' => $this->getSessionFlashing($request),
@@ -57,6 +59,11 @@ class HandleInertiaRequests extends Middleware
         }
 
         return $data;
+    }
+
+    private function getNotifications(Request $request): Collection
+    {
+        return $request->user()?->notifications ?: collect();
     }
 
     protected function getSessionFlashing(Request $request): array

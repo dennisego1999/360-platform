@@ -4,11 +4,12 @@ import { Head, useForm } from '@inertiajs/vue3';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import ThreeSixtyAreaForm from '@/Components/ThreeSixtyAreaForm.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import Layout from '@/Layouts/Layout.vue';
+import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 
 // Define options
 defineOptions({
-	layout: AppLayout
+	layout: [Layout, DashboardLayout]
 });
 
 // Set translation

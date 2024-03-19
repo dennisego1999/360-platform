@@ -3,11 +3,12 @@ import { useI18n } from 'vue-i18n';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import InputField from '@/Components/InputField.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import Layout from '@/Layouts/Layout.vue';
+import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 
 // Define options
 defineOptions({
-	layout: AppLayout
+	layout: [Layout, DashboardLayout]
 });
 
 // Define props

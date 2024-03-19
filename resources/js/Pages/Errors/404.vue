@@ -1,10 +1,11 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
+import Layout from '@/Layouts/Layout.vue';
 
 // Define options
 defineOptions({
-	layout: AppLayout
+	layout: [Layout, AppLayout]
 });
 </script>
 

@@ -7,11 +7,12 @@ import SectionBorder from '@/Components/SectionBorder.vue';
 import TwoFactorAuthenticationForm from '@/Pages/Profile/Partials/TwoFactorAuthenticationForm.vue';
 import UpdatePasswordForm from '@/Pages/Profile/Partials/UpdatePasswordForm.vue';
 import UpdateProfileInformationForm from '@/Pages/Profile/Partials/UpdateProfileInformationForm.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import Layout from '@/Layouts/Layout.vue';
+import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 
 // Define options
 defineOptions({
-	layout: AppLayout
+	layout: [Layout, DashboardLayout]
 });
 
 // Define props

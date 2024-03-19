@@ -4,11 +4,12 @@ import { Head, useForm } from '@inertiajs/vue3';
 import SecondaryButton from '@/Components/SecondaryButton.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import ThreeSixtyClickpointForm from '@/Components/ThreeSixtyClickpointForm.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import Layout from '@/Layouts/Layout.vue';
+import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 
 // Define options
 defineOptions({
-	layout: AppLayout
+	layout: [Layout, DashboardLayout]
 });
 
 // Define props

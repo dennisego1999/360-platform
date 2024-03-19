@@ -76,7 +76,10 @@ return [
         'info' => 'Add your html content here',
     ],
     'notifications' => [
+        'label' => 'Notifications',
         'mark_as_read' => 'Notification has been marked as read.',
+        'no_unread_notifications' => 'You have 0 unread notifications.',
+        'no_notifications' => 'You have 0 notifications.',
     ],
     'issues' => [
         'no_translated_viewpoint' => 'Untranslated viewpoint. Can\'t select until translation is created',

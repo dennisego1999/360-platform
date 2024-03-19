@@ -3,10 +3,11 @@ import { Head } from '@inertiajs/vue3';
 import { useI18n } from 'vue-i18n';
 import Welcome from '@/Components/Welcome.vue';
 import AppLayout from '@/Layouts/AppLayout.vue';
+import Layout from '@/Layouts/Layout.vue';
 
 // Define options
 defineOptions({
-	layout: AppLayout
+	layout: [Layout, AppLayout]
 });
 
 // Set translation

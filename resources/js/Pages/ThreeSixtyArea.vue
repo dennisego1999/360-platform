@@ -8,10 +8,11 @@ import Modal from '@/Components/Modal.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import ThreeSixtyContentTypeInfo from '@/Components/ThreeSixtyContentTypeInfo.vue';
 import ThreeSixtyContentTypeVideo from '@/Components/ThreeSixtyContentTypeVideo.vue';
+import Layout from '@/Layouts/Layout.vue';
 
 // Define options
 defineOptions({
-	layout: AppLayout
+	layout: [Layout, AppLayout]
 });
 
 // Define props

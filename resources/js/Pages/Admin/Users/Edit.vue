@@ -7,11 +7,12 @@ import SecondaryButton from '@/Components/SecondaryButton.vue';
 import InputField from '@/Components/InputField.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import MultiselectDropdown from '@/Components/MultiselectDropdown.vue';
-import AppLayout from '@/Layouts/AppLayout.vue';
+import Layout from '@/Layouts/Layout.vue';
+import DashboardLayout from '@/Layouts/DashboardLayout.vue';
 
 // Define options
 defineOptions({
-	layout: AppLayout
+	layout: [Layout, DashboardLayout]
 });
 
 // Define props

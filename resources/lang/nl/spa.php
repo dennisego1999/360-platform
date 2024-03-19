@@ -65,7 +65,7 @@ return [
         'initial_view' => [
             'label' => 'Eerste weergave',
             'pitch' => 'Pitch',
-            'yaw' => 'Yaw'
+            'yaw' => 'Yaw',
         ],
     ],
     'instructions' => [
@@ -76,7 +76,10 @@ return [
         'info' => 'Voeg je html content hier toe',
     ],
     'notifications' => [
+        'label' => 'Meldingen',
         'mark_as_read' => 'Bericht is gemarkeerd als gelezen.',
+        'no_unread_notifications' => 'U heeft 0 ongelezen meldingen.',
+        'no_notifications' => 'U heeft 0 meldingen.',
     ],
     'issues' => [
         'no_translated_viewpoint' => 'Niet vertaald kijkpunt. Kan niet selecteren tot dat de vertaling is aangemaakt',
