@@ -23,7 +23,7 @@ class ViewpointUpdateAction
                 ?->delete();
 
             // Add new media
-            $model->addMedia($data['new_image'])->toMediaCollection('viewpoints', 'assets');
+            $model->addMedia($data['new_image'])->toMediaCollection('viewpoints');
         }
     }
 }
