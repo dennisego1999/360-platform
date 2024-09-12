@@ -68,12 +68,8 @@ function logout() {
 
 							<template #content>
 								<div class="flex flex-col justify-center items-start">
-									<DropdownLink
-										v-for="(item, index) in usePage().props.navigationItems"
-										:key="'responsive-menu-item-' + index"
-										:href="item.href"
-									>
-										{{ item.label }}
+									<DropdownLink v-if="!usePage().props.is_dashboard" :href="route('admin.dashboard')">
+										{{ t('spa.pages.dashboard.label') }}
 									</DropdownLink>
 
 									<DropdownLink :href="route('profile.show')">
