@@ -35,7 +35,7 @@
 Run the following command to start queue workers
 
 ```sh
-php artisan queue:work --queue=default
+php artisan horizon
 ```
 
 ### Tinkerwell
