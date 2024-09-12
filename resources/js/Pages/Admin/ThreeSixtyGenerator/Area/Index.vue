@@ -22,7 +22,7 @@ const { t } = useI18n();
 </script>
 
 <template>
-	<div>
+	<div class="w-full">
 		<Head :title="t('spa.pages.three_sixty_generator.areas.index.label')" />
 
 		<div class="flex flex-col gap-6">

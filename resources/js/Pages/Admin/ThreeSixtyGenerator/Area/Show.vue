@@ -20,6 +20,8 @@ const props = defineProps({
 // Set translation
 const { t } = useI18n();
 
+console.log(props.area);
+
 // Set variables
 const form = useForm({
 	name: props.area.name ?? {},
