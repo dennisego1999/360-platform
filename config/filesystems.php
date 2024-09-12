@@ -44,10 +44,10 @@ return [
             'throw' => false,
         ],
 
-        'assets' => [
+        'public-viewpoints' => [
             'driver' => 'scoped',
             'disk' => 'public',
-            'prefix' => 'assets',
+            'prefix' => 'viewpoints',
         ],
 
         's3' => [

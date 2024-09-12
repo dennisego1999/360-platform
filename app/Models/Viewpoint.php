@@ -48,6 +48,7 @@ class Viewpoint extends Model implements HasMedia
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('viewpoints')
+            ->useDisk('public-viewpoints')
             ->singleFile();
     }
 
